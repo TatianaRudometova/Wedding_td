@@ -57,6 +57,17 @@ body {
     height: 100vh;
     z-index: 1000;
     pointer-events: none;
+    display: flex;
+    justify-content: center;
+}
+
+/* Внутренний контейнер конверта (ограничивает ширину) */
+.envelope-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Максимальная ширина конверта */
+    height: 100vh;
+    margin: 0 auto;
 }
 
 /* Верхняя часть конверта */
@@ -67,14 +78,15 @@ body {
     width: 100%;
     height: 70vh;
     background-image: url('top.png');
-    background-size: cover;
+    background-size: contain; /* Изменено с cover на contain */
     background-position: center bottom;
     background-repeat: no-repeat;
     transform-origin: top;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1002; /* Верх сверху */
+    z-index: 1001;
     pointer-events: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    /* Тень для объема */
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
 }
 
 /* Нижняя часть конверта */
@@ -83,28 +95,17 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60vh;
+    height: 65vh;
     background-image: url('bottom.png');
-    background-size: cover;
+    background-size: contain; /* Изменено с cover на contain */
     background-position: center top;
     background-repeat: no-repeat;
     transform-origin: bottom;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001; /* Низ снизу */
+    z-index: 1002;
     pointer-events: none;
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* Добавляем непрозрачную подложку под нижнюю часть */
-.envelope-bottom::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10vh; /* Высота подложки */
-    background: #e0dee0; /* Цвет фона */
-    z-index: -1;
+    /* Тень для объема */
+    filter: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.2));
 }
 
 /* Текст на конверте */
@@ -116,23 +117,23 @@ body {
     pointer-events: none;
     color: #4a3a2a;
     text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .envelope-text.top {
     top: 15%;
-    transform: translateY(-50%);
-    font-size: clamp(24px, 5vw, 48px);
+    font-size: clamp(20px, 4vw, 42px);
     letter-spacing: 4px;
+    white-space: nowrap;
 }
 
 .envelope-text.bottom {
     bottom: 10%;
-    transform: translateX(-50%);
-    left: 50%;
-    font-size: clamp(16px, 3vw, 24px);
+    font-size: clamp(14px, 2.5vw, 22px);
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(5px);
-    padding: 12px 30px;
+    padding: 10px 25px;
     border-radius: 60px;
     display: inline-block;
     width: auto;
@@ -144,14 +145,9 @@ body {
     animation: gentle-pulse 2s infinite;
 }
 
-@keyframes gentle-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.02); }
-}
-
-/* Область для клика (весь экран) */
+/* Область для клика (весь экран, но с учетом центрирования) */
 .envelope-click-area {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -159,6 +155,13 @@ body {
     z-index: 1004;
     pointer-events: auto;
     cursor: pointer;
+}
+
+/* Для красивого отображения на широких экранах */
+@media (min-width: 1600px) {
+    .envelope-container {
+        max-width: 1000px;
+    }
 }
 
 /* Анимация открытия */
