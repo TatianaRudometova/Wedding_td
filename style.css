@@ -61,31 +61,23 @@ body {
     justify-content: center;
 }
 
-/* Внутренний контейнер конверта (ограничивает ширину) */
-.envelope-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* Максимальная ширина конверта */
-    height: 100vh;
-    margin: 0 auto;
-}
-
 /* Верхняя часть конверта */
 .envelope-top {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%; /* Центрируем */
+    transform: translateX(-50%); /* Центрируем */
+    width: 90%; /* Ширина конверта - сделайте нужную */
+    max-width: 800px; /* Максимальная ширина */
     height: 70vh;
     background-image: url('top.png');
-    background-size: contain; /* Изменено с cover на contain */
+    background-size: contain;
     background-position: center bottom;
     background-repeat: no-repeat;
     transform-origin: top;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
     pointer-events: none;
-    /* Тень для объема */
     filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
 }
 
@@ -93,18 +85,19 @@ body {
 .envelope-bottom {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%; /* Центрируем */
+    transform: translateX(-50%); /* Центрируем */
+    width: 90%; /* Та же ширина */
+    max-width: 800px;
     height: 65vh;
     background-image: url('bottom.png');
-    background-size: contain; /* Изменено с cover на contain */
+    background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
     transform-origin: bottom;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1002;
     pointer-events: none;
-    /* Тень для объема */
     filter: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.2));
 }
 
@@ -157,12 +150,7 @@ body {
     cursor: pointer;
 }
 
-/* Для красивого отображения на широких экранах */
-@media (min-width: 600px) {
-    .envelope-container {
-        max-width: 600px;
-    }
-}
+
 
 /* Анимация открытия */
 .envelope-fullscreen.open .envelope-top {
