@@ -207,14 +207,14 @@ body {
     width: 250px;
     height: 300px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     transition: transform 0.3s ease;
 }
 
-/* Левая фотография (угол 125 градусов) */
+/* Левая фотография (угол -25 градусов) */
 .photo-left {
-    transform: rotate(125deg);
+    transform: rotate(-25deg);
     animation: swing-left 3s infinite ease-in-out;
 }
 
@@ -226,16 +226,16 @@ body {
 
 /* Анимация покачивания для левой фотографии */
 @keyframes swing-left {
-    0% { transform: rotate(120deg) translateX(0); }
+    0% { transform: rotate(125deg) translateX(0); }
     50% { transform: rotate(130deg) translateX(5px) translateY(-5px); }
-    100% { transform: rotate(120deg) translateX(0); }
+    100% { transform: rotate(125deg) translateX(0); }
 }
 
 /* Анимация покачивания для правой фотографии */
 @keyframes swing-right {
-    0% { transform: rotate(30deg) translateX(0); }
+    0% { transform: rotate(35deg) translateX(0); }
     50% { transform: rotate(40deg) translateX(-5px) translateY(-5px); }
-    100% { transform: rotate(30deg) translateX(0); }
+    100% { transform: rotate(35deg) translateX(0); }
 }
 
 /* Имена под фотографиями */
