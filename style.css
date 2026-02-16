@@ -158,9 +158,9 @@ body {
 }
 
 /* Для красивого отображения на широких экранах */
-@media (min-width: 1600px) {
+@media (min-width: 600px) {
     .envelope-container {
-        max-width: 1000px;
+        max-width: 600px;
     }
 }
 
