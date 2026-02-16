@@ -59,22 +59,21 @@ body {
     pointer-events: none;
 }
 
-/* Верхняя часть конверта (с наложением) */
+/* Верхняя часть конверта */
 .envelope-top {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60vh; /* Наложение */
-    background-image: url('images/top.png');
+    height: 70vh;
+    background-image: url('top.png');
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
     transform-origin: top;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1002;
+    z-index: 1002; /* Верх сверху */
     pointer-events: none;
-    /* Тень для объема */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -84,17 +83,28 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 53vh;
-    background-image: url('images/bottom.png');
+    height: 60vh;
+    background-image: url('bottom.png');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     transform-origin: bottom;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
+    z-index: 1001; /* Низ снизу */
     pointer-events: none;
-    /* Тень для объема */
     box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Добавляем непрозрачную подложку под нижнюю часть */
+.envelope-bottom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh; /* Высота подложки */
+    background: #e0dee0; /* Цвет фона */
+    z-index: -1;
 }
 
 /* Текст на конверте */
