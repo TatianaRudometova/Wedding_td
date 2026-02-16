@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитрий и Татьяна | Приглашение</title>
+    
+    <!-- Шрифт Lolita -->
+    <link href="https://fonts.googleapis.com/css2?family=Lolita&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Подключаем внешний CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <!-- Затемняющий фон для конверта -->
+        <div class="envelope-overlay" id="envelopeOverlay"></div>
+        
+        <!-- Конверт -->
+        <div class="envelope-fullscreen" id="envelope">
+            <!-- Верхняя часть -->
+            <div class="envelope-top"></div>
+            
+            <!-- Нижняя часть -->
+            <div class="envelope-bottom"></div>
+            
+            <!-- Текст на конверте -->
+            <div class="envelope-text top">ПРИГЛАШЕНИЕ НА СВАДЬБУ</div>
+            <div class="envelope-text bottom" id="openButton">НАЖМИТЕ, ЧТОБЫ ОТКРЫТЬ</div>
+            
+            <!-- Область для клика (весь экран) -->
+            <div class="envelope-click-area" id="clickArea"></div>
+        </div>
+        
+        <!-- Основной контент (появляется после открытия) -->
+        <div class="main-content" id="mainContent">
+            <div class="photos-container">
+                <!-- Левая фотография (под углом 125°) -->
+                <img src="images/photo-left.jpg" alt="Дмитрий" class="photo photo-left">
+                
+                <!-- Правая фотография (под углом 35°) -->
+                <img src="images/photo-right.jpg" alt="Татьяна" class="photo photo-right">
+            </div>
+            
+            <!-- Имена -->
+            <div class="names">
+                <span>ДМИТРИЙ</span>
+                <span>ТАТЬЯНА</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Подключаем внешний JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
