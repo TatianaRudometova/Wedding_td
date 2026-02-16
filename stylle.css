@@ -1,0 +1,289 @@
+/* СБРОС СТИЛЕЙ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lolita', cursive;
+    background-color: #e0dee0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ФОН ИЗ КАРТИНКИ */
+.page {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('images/paper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Затемняющий фон для конверта (#e0dee0) */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #e0dee0;
+    z-index: 998;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+/* Тени по краям (эффект глубины) */
+.envelope-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.15) 100%);
+    pointer-events: none;
+}
+
+/* Конверт */
+.envelope-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Верхняя часть конверта (с наложением) */
+.envelope-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh; /* Наложение */
+    background-image: url('images/top.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1002;
+    pointer-events: none;
+    /* Тень для объема */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Нижняя часть конверта */
+.envelope-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 53vh;
+    background-image: url('images/bottom.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    transform-origin: bottom;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1001;
+    pointer-events: none;
+    /* Тень для объема */
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Текст на конверте */
+.envelope-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 1003;
+    pointer-events: none;
+    color: #4a3a2a;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+}
+
+.envelope-text.top {
+    top: 15%;
+    transform: translateY(-50%);
+    font-size: clamp(24px, 5vw, 48px);
+    letter-spacing: 4px;
+}
+
+.envelope-text.bottom {
+    bottom: 10%;
+    transform: translateX(-50%);
+    left: 50%;
+    font-size: clamp(16px, 3vw, 24px);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    padding: 12px 30px;
+    border-radius: 60px;
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    pointer-events: auto;
+    cursor: pointer;
+    animation: gentle-pulse 2s infinite;
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.02); }
+}
+
+/* Область для клика (весь экран) */
+.envelope-click-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1004;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Анимация открытия */
+.envelope-fullscreen.open .envelope-top {
+    transform: translateY(-100%);
+}
+
+.envelope-fullscreen.open .envelope-bottom {
+    transform: translateY(100%);
+}
+
+.envelope-fullscreen.open ~ .envelope-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Скрываем конверт после анимации */
+.envelope-fullscreen.hidden {
+    display: none;
+}
+
+/* ОСНОВНОЙ КОНТЕНТ (появляется после открытия) */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+    pointer-events: none;
+    position: relative;
+    z-index: 10;
+}
+
+.main-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* КОНТЕЙНЕР ДЛЯ ФОТОГРАФИЙ */
+.photos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+/* Общие стили для фото */
+.photo {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+/* Левая фотография (угол 125 градусов) */
+.photo-left {
+    transform: rotate(125deg);
+    animation: swing-left 3s infinite ease-in-out;
+}
+
+/* Правая фотография (угол 35 градусов) */
+.photo-right {
+    transform: rotate(35deg);
+    animation: swing-right 3s infinite ease-in-out;
+}
+
+/* Анимация покачивания для левой фотографии */
+@keyframes swing-left {
+    0% { transform: rotate(120deg) translateX(0); }
+    50% { transform: rotate(130deg) translateX(5px) translateY(-5px); }
+    100% { transform: rotate(120deg) translateX(0); }
+}
+
+/* Анимация покачивания для правой фотографии */
+@keyframes swing-right {
+    0% { transform: rotate(30deg) translateX(0); }
+    50% { transform: rotate(40deg) translateX(-5px) translateY(-5px); }
+    100% { transform: rotate(30deg) translateX(0); }
+}
+
+/* Имена под фотографиями */
+.names {
+    font-size: 64px;
+    color: #b76e79;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    letter-spacing: 8px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.names span {
+    display: inline-block;
+    margin: 0 15px;
+    animation: float-name 3s infinite ease-in-out;
+}
+
+@keyframes float-name {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+@media (max-width: 768px) {
+    .photo {
+        width: 180px;
+        height: 220px;
+    }
+    
+    .names {
+        font-size: 42px;
+        letter-spacing: 4px;
+    }
+    
+    .envelope-text.top {
+        font-size: 20px;
+        top: 20%;
+    }
+    
+    .envelope-text.bottom {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+    
+    .photos-container {
+        gap: 20px;
+    }
+}
