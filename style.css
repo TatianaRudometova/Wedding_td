@@ -63,70 +63,49 @@ h1, h2, h3, .section-title, .greeting-title {
 
 /* ========== СТРАНИЦА 1: Имена и фото ========== */
 .hero-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 20px;
+}
+
+.hero-content {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 600px;
+}
+
+.hero-left {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.hero-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-height: 700px;
-    width: 100%;
-}
-
-.hero-name-left-top,
-.hero-name-right-bottom {
-    position: absolute;
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-name-left-top {
-    left: 20px;
-    top: 50px;
-}
-
-.hero-name-right-bottom {
-    right: 20px;
-    bottom: 50px;
-}
-
-.hero-name {
+.hero-left .hero-name-left {
     font-family: 'Cormorant Garamond', serif;
     font-size: 48px;
     font-weight: 600;
     color: #000000;
     line-height: 1.2;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     margin: 0;
+    transform: rotate(-10deg);
     white-space: nowrap;
 }
 
-/* Дмитрий - слева сверху, наклон 45° против часовой стрелки */
-.hero-name-left-top .hero-name {
-    transform: rotate(-90deg) translateX(-20px);
-    display: inline-block;
-}
-
-/* Татьяна - справа снизу, наклон 45° по часовой стрелке */
-.hero-name-right-bottom .hero-name {
-    transform: rotate(90deg) translateX(20px);
-    display: inline-block;
+.hero-center {
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-photo-wrapper {
     width: 500px;
     height: 650px;
-    margin: 0 auto;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
@@ -139,10 +118,30 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
+.hero-right {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-right .hero-name-right {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.2;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    transform: rotate(10deg);
+    white-space: nowrap;
+}
+
 .hero-date-wrapper {
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .hero-date {
@@ -159,22 +158,38 @@ h1, h2, h3, .section-title, .greeting-title {
     font-weight: 300;
 }
 
-.hero-divider {
-    width: 150px;
-    height: 1px;
-    background-color: #000000;
-    margin: 30px auto;
-    opacity: 0.2;
-}
-
-/* Адаптация для планшетов */
-@media (max-width: 992px) {
-    .hero-wrapper {
-        min-height: 600px;
+/* Десктоп (большие экраны) */
+@media (min-width: 1200px) {
+    .hero-content {
+        min-height: 700px;
     }
     
-    .hero-name {
-        font-size: 42px;
+    .hero-photo-wrapper {
+        width: 550px;
+        height: 700px;
+    }
+    
+    .hero-left .hero-name-left,
+    .hero-right .hero-name-right {
+        font-size: 56px;
+    }
+}
+
+/* Планшеты */
+@media (max-width: 992px) {
+    .hero-content {
+        min-height: 500px;
+        gap: 15px;
+    }
+    
+    .hero-left,
+    .hero-right {
+        flex: 0 0 100px;
+    }
+    
+    .hero-left .hero-name-left,
+    .hero-right .hero-name-right {
+        font-size: 40px;
     }
     
     .hero-photo-wrapper {
@@ -187,29 +202,37 @@ h1, h2, h3, .section-title, .greeting-title {
     }
 }
 
-/* Адаптация для мобильных */
+/* Мобильные */
 @media (max-width: 768px) {
-    .hero-wrapper {
-        min-height: 500px;
+    .hero-content {
+        min-height: auto;
+        flex-direction: column;
+        gap: 20px;
     }
     
-    .hero-name {
-        font-size: 36px;
+    .hero-left,
+    .hero-right {
+        flex: 0 0 auto;
+        width: 100%;
+        justify-content: center;
+        padding: 10px 0;
     }
     
-    .hero-name-left-top {
-        left: 10px;
-        top: 30px;
+    .hero-left .hero-name-left {
+        transform: rotate(0deg);
+        font-size: 42px;
+        text-align: center;
     }
     
-    .hero-name-right-bottom {
-        right: 10px;
-        bottom: 30px;
+    .hero-right .hero-name-right {
+        transform: rotate(0deg);
+        font-size: 42px;
+        text-align: center;
     }
     
     .hero-photo-wrapper {
-        width: 300px;
-        height: 400px;
+        width: 350px;
+        height: 450px;
     }
     
     .hero-date {
@@ -221,28 +244,16 @@ h1, h2, h3, .section-title, .greeting-title {
     }
 }
 
+/* Маленькие мобильные */
 @media (max-width: 480px) {
-    .hero-wrapper {
-        min-height: 400px;
-    }
-    
-    .hero-name {
-        font-size: 28px;
-    }
-    
-    .hero-name-left-top {
-        left: 5px;
-        top: 20px;
-    }
-    
-    .hero-name-right-bottom {
-        right: 5px;
-        bottom: 20px;
+    .hero-left .hero-name-left,
+    .hero-right .hero-name-right {
+        font-size: 36px;
     }
     
     .hero-photo-wrapper {
-        width: 220px;
-        height: 300px;
+        width: 280px;
+        height: 360px;
     }
     
     .hero-date {
