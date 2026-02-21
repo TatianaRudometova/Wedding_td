@@ -7,10 +7,10 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff; /* Белый фон как в примере */
+    background-color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
-    color: #000000; /* Черный текст */
+    color: #000000;
 }
 
 h1, h2, h3, .section-title, .greeting-title, .names-title {
@@ -25,169 +25,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     position: relative;
 }
 
-/* ========== КОНВЕРТ (в стиле примера) ========== */
-.envelope-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: #e0dee0;
-    z-index: 998;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
-
-.envelope-overlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.02) 100%);
-    pointer-events: none;
-}
-
-.envelope-fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.envelope-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60vh;
-    background-image: url('images/top.png');
-    background-size: cover;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    transform-origin: top;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1002;
-    pointer-events: none;
-    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
-}
-
-.envelope-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60vh;
-    background-image: url('images/bottom.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    transform-origin: bottom;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
-    pointer-events: none;
-    filter: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.3));
-}
-
-.envelope-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    z-index: 1003;
-    pointer-events: none;
-    color: #ffffff;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.envelope-text.top {
-    top: 25%;
-    font-size: clamp(24px, 6vw, 48px);
-    letter-spacing: 4px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-}
-
-.envelope-text.bottom {
-    bottom: 20%;
-    font-size: clamp(18px, 4vw, 24px);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    padding: 12px 30px;
-    border-radius: 40px;
-    display: inline-block;
-    width: auto;
-    white-space: nowrap;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    pointer-events: auto;
-    cursor: pointer;
-    animation: gentle-pulse 2s infinite;
-    color: white;
-    text-shadow: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-}
-
-@keyframes gentle-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.03); }
-}
-
-.envelope-click-area {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1004;
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-/* Анимация открытия конверта */
-.envelope-fullscreen.open .envelope-top {
-    transform: translateY(-100%);
-}
-
-.envelope-fullscreen.open .envelope-bottom {
-    transform: translateY(100%);
-}
-
-.envelope-fullscreen.open ~ .envelope-overlay {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.envelope-fullscreen.hidden {
-    display: none;
-}
-
 /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
 .main-content {
     min-height: 100vh;
     width: 100%;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
-    pointer-events: none;
     position: relative;
     z-index: 10;
-    background-color: #ffffff; /* Белый фон */
-}
-
-.main-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
+    background-color: #ffffff;
 }
 
 /* ========== ОБЩИЕ ЭЛЕМЕНТЫ ========== */
@@ -202,6 +46,12 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     padding: 20px 0;
 }
 
+/* Убираем верхний отступ у первой секции */
+.first-section {
+    margin-top: 0;
+    padding-top: 10px;
+}
+
 .section-title {
     text-align: center;
     font-size: 42px;
@@ -212,7 +62,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* ========== СТРАНИЦА 1: Имена и фото (в стиле примера) ========== */
+/* ========== СТРАНИЦА 1: Имена и фото ========== */
 .names-block {
     text-align: center;
     margin-bottom: 40px;
@@ -226,8 +76,8 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-weight: 500;
     letter-spacing: 2px;
     font-family: 'Cormorant Garamond', serif;
-    margin-top: 0; /* Убираем верхний отступ у заголовков */
-    padding-top: 0; /* Убираем верхний внутренний отступ */
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .names-ampersand {
@@ -269,7 +119,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ========== СТРАНИЦА 2: Приветствие (в стиле примера) ========== */
+/* ========== СТРАНИЦА 2: Приветствие ========== */
 .greeting-card {
     background: #f9f9f9;
     padding: 60px 50px;
@@ -899,91 +749,6 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-size: 12px;
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========== */
-@media (max-width: 768px) {
-    .names-title {
-        font-size: 48px;
-    }
-    
-    .greeting-title {
-        font-size: 36px;
-    }
-    
-    .greeting-card {
-        padding: 40px 25px;
-    }
-    
-    .section-title {
-        font-size: 36px;
-    }
-    
-    .location-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .timeline-item {
-        padding: 12px 15px;
-    }
-    
-    .timeline-icon {
-        width: 40px;
-        height: 40px;
-        margin-right: 15px;
-    }
-    
-    .timer-number {
-        font-size: 40px;
-    }
-    
-    .form-radio-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .envelope-text.top {
-        font-size: 22px;
-        top: 30%;
-        white-space: normal;
-        padding: 0 20px;
-    }
-    
-    .envelope-text.bottom {
-        font-size: 16px;
-        padding: 10px 20px;
-        white-space: normal;
-        max-width: 80%;
-    }
-    
-    .envelope-top, .envelope-bottom {
-        height: 70vh;
-    }
-    
-    .dresscode-palette span {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .contacts-grid {
-        gap: 20px;
-    }
-    
-    .contact-card {
-        min-width: 200px;
-        padding: 25px;
-    }
-    
-    .timer-grid {
-        gap: 15px;
-    }
-    
-    .timer-block {
-        min-width: 70px;
-    }
-    
-    .rsvp-form {
-        padding: 40px 25px;
-    }
-}
 /* ========== КНОПКА УПРАВЛЕНИЯ МУЗЫКОЙ ========== */
 .music-control {
     position: fixed;
@@ -1056,8 +821,73 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     animation: musicPulse 2s infinite;
 }
 
-/* Адаптация для мобильных */
+/* ========== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========== */
 @media (max-width: 768px) {
+    .names-title {
+        font-size: 48px;
+    }
+    
+    .greeting-title {
+        font-size: 36px;
+    }
+    
+    .greeting-card {
+        padding: 40px 25px;
+    }
+    
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-item {
+        padding: 12px 15px;
+    }
+    
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+    
+    .timer-number {
+        font-size: 40px;
+    }
+    
+    .form-radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dresscode-palette span {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .contacts-grid {
+        gap: 20px;
+    }
+    
+    .contact-card {
+        min-width: 200px;
+        padding: 25px;
+    }
+    
+    .timer-grid {
+        gap: 15px;
+    }
+    
+    .timer-block {
+        min-width: 70px;
+    }
+    
+    .rsvp-form {
+        padding: 40px 25px;
+    }
+    
     .music-control {
         bottom: 20px;
         right: 20px;
