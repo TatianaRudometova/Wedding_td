@@ -159,4 +159,94 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1000);
     }
+    // ========== УПРАВЛЕНИЕ МУЗЫКОЙ ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('wedding-audio');
+    const musicControl = document.getElementById('musicControl');
+    let isMusicInitialized = false;
+    let isMuted = false;
+    
+    // Устанавливаем низкую громкость по умолчанию (20%)
+    if (audio) {
+        audio.volume = 0.2;
+    }
+    
+    // Функция попытки воспроизведения музыки
+    function tryPlayMusic() {
+        if (!audio || isMusicInitialized) return;
+        
+        audio.play()
+            .then(() => {
+                console.log('Музыка играет');
+                isMusicInitialized = true;
+                musicControl.classList.add('visible');
+                musicControl.classList.remove('muted');
+            })
+            .catch(error => {
+                console.log('Автовоспроизведение заблокировано, ждем взаимодействия');
+                // Показываем кнопку, но в muted состоянии
+                musicControl.classList.add('visible');
+                musicControl.classList.add('muted');
+            });
+    }
+    
+    // Функция переключения звука
+    function toggleMute() {
+        if (!audio) return;
+        
+        if (isMuted) {
+            // Включаем звук
+            audio.muted = false;
+            audio.volume = 0.2; // Возвращаем громкость
+            musicControl.classList.remove('muted');
+            isMuted = false;
+        } else {
+            // Выключаем звук
+            audio.muted = true;
+            musicControl.classList.add('muted');
+            isMuted = true;
+        }
+    }
+    
+    // Пытаемся включить музыку после открытия конверта
+    const openEnvelope = document.getElementById('openButton');
+    const clickArea = document.getElementById('clickArea');
+    
+    function handleEnvelopeOpen() {
+        setTimeout(() => {
+            tryPlayMusic();
+        }, 500); // Немного задерживаем, чтобы конверт успел открыться
+    }
+    
+    if (openEnvelope) {
+        openEnvelope.addEventListener('click', handleEnvelopeOpen);
+    }
+    
+    if (clickArea) {
+        clickArea.addEventListener('click', handleEnvelopeOpen);
+    }
+    
+    // Обработчик клика по кнопке управления музыкой
+    if (musicControl) {
+        musicControl.addEventListener('click', toggleMute);
+    }
+    
+    // Дополнительная попытка включить музыку при любом клике по сайту,
+    // если она еще не играет (на случай, если конверт не сработал)
+    document.addEventListener('click', function tryPlayOnAnyClick() {
+        if (!isMusicInitialized && audio) {
+            tryPlayMusic();
+            // Удаляем обработчик после первой успешной попытки
+            document.removeEventListener('click', tryPlayOnAnyClick);
+        }
+    });
+    
+    // Если пользователь взаимодействовал с сайтом до открытия конверта
+    document.addEventListener('touchstart', function tryPlayOnTouch() {
+        if (!isMusicInitialized && audio) {
+            tryPlayMusic();
+            document.removeEventListener('touchstart', tryPlayOnTouch);
+        }
+    });
+});
 });
