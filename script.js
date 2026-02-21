@@ -58,9 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (calendarGrid) {
         function generateCalendar() {
-            // Июль 2026: 1 июля 2026 - среда
             const daysInMonth = 31;
-            const firstDayOfWeek = 2; // 0 - Пн, 1 - Вт, 2 - Ср
+            const firstDayOfWeek = 2; // 1 июля 2026 - среда
             
             calendarGrid.innerHTML = '';
             
@@ -120,18 +119,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
     
+    // ========== АНИМАЦИЯ ПРИ СКРОЛЛЕ ==========
+    const animateElements = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-right, .fade-in-left, .timeline-item');
+    
+    function checkScroll() {
+        animateElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                if (element.classList.contains('timeline-item') && !element.classList.contains('timeline-animate')) {
+                    element.classList.add('timeline-animate');
+                } else if (!element.classList.contains('fade-in') && 
+                          !element.classList.contains('fade-in-up') && 
+                          !element.classList.contains('fade-in-right') && 
+                          !element.classList.contains('fade-in-left')) {
+                    // Для обычных элементов
+                }
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', checkScroll);
+    setTimeout(checkScroll, 100);
+    
     // ========== УПРАВЛЕНИЕ МУЗЫКОЙ ==========
     const audio = document.getElementById('wedding-audio');
     const musicControl = document.getElementById('musicControl');
     let isMusicInitialized = false;
     let isMuted = false;
     
-    // Устанавливаем низкую громкость по умолчанию (20%)
     if (audio) {
         audio.volume = 0.2;
     }
     
-    // Функция попытки воспроизведения музыки
     function tryPlayMusic() {
         if (!audio || isMusicInitialized) return;
         
@@ -143,52 +164,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 musicControl.classList.remove('muted');
             })
             .catch(error => {
-                console.log('Автовоспроизведение заблокировано, ждем взаимодействия');
-                // Показываем кнопку, но в muted состоянии
+                console.log('Автовоспроизведение заблокировано');
                 musicControl.classList.add('visible');
                 musicControl.classList.add('muted');
             });
     }
     
-    // Функция переключения звука
     function toggleMute() {
         if (!audio) return;
         
         if (isMuted) {
-            // Включаем звук
             audio.muted = false;
-            audio.volume = 0.2; // Возвращаем громкость
+            audio.volume = 0.2;
             musicControl.classList.remove('muted');
             isMuted = false;
         } else {
-            // Выключаем звук
             audio.muted = true;
             musicControl.classList.add('muted');
             isMuted = true;
         }
     }
     
-    // Пытаемся включить музыку после загрузки страницы
     setTimeout(() => {
         tryPlayMusic();
     }, 1000);
     
-    // Обработчик клика по кнопке управления музыкой
     if (musicControl) {
         musicControl.addEventListener('click', toggleMute);
     }
     
-    // Дополнительная попытка включить музыку при любом клике по сайту,
-    // если она еще не играет
     document.addEventListener('click', function tryPlayOnAnyClick() {
         if (!isMusicInitialized && audio) {
             tryPlayMusic();
-            // Удаляем обработчик после первой успешной попытки
             document.removeEventListener('click', tryPlayOnAnyClick);
         }
     });
     
-    // Если пользователь взаимодействовал с сайтом
     document.addEventListener('touchstart', function tryPlayOnTouch() {
         if (!isMusicInitialized && audio) {
             tryPlayMusic();
