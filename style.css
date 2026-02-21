@@ -11,7 +11,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     color: #4a4a4a;
-    height: 100vh; /* На весь экран */
 }
 
 h1, h2, h3, .section-title, .greeting-title, .names-title {
@@ -21,10 +20,9 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .page {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position: relative;
-    overflow: hidden; /* Скрываем прокрутку страницы, прокрутка будет внутри контейнера */
 }
 
 /* ========== КОНВЕРТ ========== */
@@ -174,99 +172,33 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
 .main-content {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     opacity: 0;
-    transition: opacity 0.8s ease 0.3s;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
     pointer-events: none;
     position: relative;
     z-index: 10;
-    overflow-y: hidden; /* Скрываем скролл самого main-content */
+    background-color: #e0dee0; /* Фон как у конверта */
 }
 
 .main-content.visible {
     opacity: 1;
+    transform: translateY(0);
     pointer-events: all;
-}
-
-/* ========== КОНТЕЙНЕР ДЛЯ СТРАНИЦ ========== */
-.pages-container {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory; /* Принудительная привязка к страницам */
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth; /* Плавная прокрутка */
-}
-
-/* ========== СТИЛИ ДЛЯ КАЖДОЙ СТРАНИЦЫ ========== */
-.page-section {
-    height: 100vh;
-    width: 100%;
-    scroll-snap-align: start; /* Привязка к началу страницы */
-    scroll-snap-stop: always;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0dee0; /* Фон как у конверта */
-    position: relative;
-}
-
-/* Контейнер для контента внутри страницы */
-.page-content {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    max-height: 100vh;
-    overflow-y: auto; /* Если контента слишком много, скроллим внутри */
-}
-
-/* ========== НАВИГАЦИОННЫЕ СТРЕЛКИ ========== */
-.nav-arrows {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-}
-
-.main-content.visible .nav-arrows {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.nav-arrow {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(183, 110, 121, 0.8);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 24px;
-    transition: background 0.3s, transform 0.3s;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.3);
-}
-
-.nav-arrow:hover {
-    background: #b76e79;
-    transform: scale(1.1);
 }
 
 /* ========== ОБЩИЕ ЭЛЕМЕНТЫ ========== */
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
+}
+
+.section {
+    margin: 60px 0;
+    padding: 20px 0;
 }
 
 .section-title {
@@ -310,7 +242,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .couple-photo {
     max-width: 100%;
-    max-height: 50vh;
+    max-height: 60vh;
     border-radius: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
@@ -791,7 +723,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     color: #b76e79;
 }
 
-/* ========== СТРАНИЦА 11: Таймер и футер ========== */
+/* ========== СТРАНИЦА 11: Таймер ========== */
 .timer-container {
     text-align: center;
     background: white;
@@ -801,7 +733,6 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     background-size: cover;
     background-position: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
 }
 
 .timer-title {
@@ -832,12 +763,21 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     margin-top: 5px;
 }
 
-/* Футер */
+/* ========== ФУТЕР ========== */
+.footer {
+    margin-top: 60px;
+    padding: 40px 0;
+    background: rgba(255,255,255,0.3);
+}
+
 .footer-copyright {
     text-align: center;
-    padding: 40px 0 20px;
     color: #8a7a6f;
     font-size: 14px;
+}
+
+.footer-copyright p {
+    margin: 5px 0;
 }
 
 /* ========== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========== */
@@ -865,6 +805,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     
     .timeline-time {
         min-width: auto;
+        margin-bottom: 5px;
     }
     
     .timer-number {
@@ -886,18 +827,16 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
         padding: 8px 20px;
     }
     
-    .nav-arrows {
-        right: 10px;
-    }
-    
-    .nav-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    
     .dresscode-palette span {
         width: 50px;
         height: 50px;
+    }
+    
+    .contacts-grid {
+        gap: 30px;
+    }
+    
+    .timer-grid {
+        gap: 20px;
     }
 }
