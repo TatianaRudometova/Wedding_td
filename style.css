@@ -32,7 +32,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8); /* Темное наложение */
+    background: #e0dee0;
     z-index: 998;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -45,7 +45,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.9) 100%);
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.02) 100%);
     pointer-events: none;
 }
 
@@ -216,6 +216,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .names-block {
     text-align: center;
     margin-bottom: 40px;
+    padding-top: 0;
 }
 
 .names-title {
@@ -225,12 +226,14 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-weight: 500;
     letter-spacing: 2px;
     font-family: 'Cormorant Garamond', serif;
+    margin-top: 0; /* Убираем верхний отступ у заголовков */
+    padding-top: 0; /* Убираем верхний внутренний отступ */
 }
 
 .names-ampersand {
     font-size: 48px;
     color: #000000;
-    margin: 10px 0;
+    margin: 5px 0;
     opacity: 0.5;
 }
 
