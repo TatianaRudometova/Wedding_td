@@ -1,22 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ===== ОТКРЫВАНИЕ КОНВЕРТА =====
+    // ========== ОТКРЫВАНИЕ КОНВЕРТА ==========
     const envelope = document.getElementById('envelope');
     const clickArea = document.getElementById('clickArea');
     const openButton = document.getElementById('openButton');
     const mainContent = document.getElementById('mainContent');
     const overlay = document.getElementById('envelopeOverlay');
+    const navArrows = document.getElementById('navArrows');
     
     let isOpened = false;
     
+    // Функция открытия конверта
     function openEnvelope() {
         if (isOpened) return;
         isOpened = true;
         
-        envelope.classList.add('open');
+        envelope.classList.add('open'); // Запускаем анимацию открытия
         
+        // Через 0.8с скрываем конверт и показываем основной контент
         setTimeout(function() {
-            envelope.classList.add('hidden');
-            mainContent.classList.add('visible');
+            envelope.classList.add('hidden'); // Прячем конверт
+            mainContent.classList.add('visible'); // Показываем основной контент
+            if (navArrows) {
+                navArrows.style.display = 'flex'; // Показываем стрелки навигации
+            }
             if (overlay) {
                 overlay.style.opacity = '0';
                 setTimeout(() => {
@@ -26,11 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 800);
     }
     
-    // Открытие по клику
+    // Открытие по клику на область
     if (clickArea) {
         clickArea.addEventListener('click', openEnvelope);
     }
     
+    // Открытие по клику на кнопку
     if (openButton) {
         openButton.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -38,10 +45,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Автоматическое открытие через 5 секунд
+    // Автоматическое открытие через 5 секунд (демо-режим)
     setTimeout(openEnvelope, 5000);
     
-    // ===== СЛАЙДЕР ПОЖЕЛАНИЙ =====
+    // ========== НАВИГАЦИЯ ПО СТРАНИЦАМ (СТРЕЛКИ) ==========
+    const pagesContainer = document.getElementById('pagesContainer');
+    const arrowUp = document.getElementById('arrowUp');
+    const arrowDown = document.getElementById('arrowDown');
+    const pageSections = document.querySelectorAll('.page-section');
+    
+    let currentPageIndex = 0; // Текущая страница (начинаем с 0 - первая страница)
+    
+    // Функция прокрутки к определенной странице
+    function scrollToPage(index) {
+        if (index >= 0 && index < pageSections.length && pagesContainer) {
+            pageSections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            currentPageIndex = index;
+        }
+    }
+    
+    // Обработчик для стрелки вверх
+    if (arrowUp) {
+        arrowUp.addEventListener('click', function() {
+            scrollToPage(currentPageIndex - 1);
+        });
+    }
+    
+    // Обработчик для стрелки вниз
+    if (arrowDown) {
+        arrowDown.addEventListener('click', function() {
+            scrollToPage(currentPageIndex + 1);
+        });
+    }
+    
+    // Отслеживаем текущую страницу при прокрутке
+    if (pagesContainer) {
+        pagesContainer.addEventListener('scroll', function() {
+            const scrollPosition = pagesContainer.scrollTop;
+            pageSections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollPosition >= sectionTop - sectionHeight/3 && scrollPosition < sectionTop + sectionHeight - sectionHeight/3) {
+                    currentPageIndex = index;
+                }
+            });
+        });
+    }
+    
+    // ========== СЛАЙДЕР ПОЖЕЛАНИЙ ==========
     const sliderTrack = document.getElementById('sliderTrack');
     const slides = document.querySelectorAll('.slider-slide');
     const dots = document.querySelectorAll('.dot');
@@ -51,12 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sliderTrack && slides.length > 0) {
         let currentSlide = 0;
         
+        // Функция обновления слайдера
         function updateSlider(index) {
             if (index < 0) index = slides.length - 1;
             if (index >= slides.length) index = 0;
             
             sliderTrack.style.transform = `translateX(-${index * 100}%)`;
             
+            // Обновляем активный класс для слайдов
             slides.forEach((slide, i) => {
                 if (i === index) {
                     slide.classList.add('active');
@@ -65,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
+            // Обновляем точки
             dots.forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.add('active');
@@ -76,18 +130,21 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSlide = index;
         }
         
+        // Кнопка "назад"
         if (prevBtn) {
             prevBtn.addEventListener('click', function() {
                 updateSlider(currentSlide - 1);
             });
         }
         
+        // Кнопка "вперед"
         if (nextBtn) {
             nextBtn.addEventListener('click', function() {
                 updateSlider(currentSlide + 1);
             });
         }
         
+        // Клик по точкам
         dots.forEach((dot, index) => {
             dot.addEventListener('click', function() {
                 updateSlider(index);
@@ -95,7 +152,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== FAQ АККОРДЕОН =====
+    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
+    const calendarGrid = document.getElementById('calendarGrid');
+    
+    if (calendarGrid) {
+        function generateCalendar() {
+            // Июль 2026: 1 июля 2026 - среда
+            const daysInMonth = 31;
+            const firstDayOfWeek = 2; // 0 - Пн, 1 - Вт, 2 - Ср, ... (1 июля 2026 - среда)
+            
+            // Очищаем календарь
+            calendarGrid.innerHTML = '';
+            
+            // Создаем пустые ячейки для первых дней месяца
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                emptyDay.style.visibility = 'hidden';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Создаем ячейки для дней месяца
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                // Подсвечиваем 17 число
+                if (day === 17) {
+                    dayElement.classList.add('highlight');
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+        
+        generateCalendar();
+    }
+    
+    // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
+    const weddingDate = new Date('2026-07-17T16:00:00').getTime();
+    
+    const timerDays = document.getElementById('timerDays');
+    const timerHours = document.getElementById('timerHours');
+    const timerMinutes = document.getElementById('timerMinutes');
+    const timerSeconds = document.getElementById('timerSeconds');
+    
+    if (timerDays && timerHours && timerMinutes && timerSeconds) {
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            // Расчет времени
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Обновление с ведущими нулями
+            timerDays.textContent = days < 10 ? '0' + days : days;
+            timerHours.textContent = hours < 10 ? '0' + hours : hours;
+            timerMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+            timerSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+            
+            // Если дата прошла
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                timerDays.textContent = '00';
+                timerHours.textContent = '00';
+                timerMinutes.textContent = '00';
+                timerSeconds.textContent = '00';
+            }
+        }, 1000);
+    }
+    
+    // ========== FAQ АККОРДЕОН (если используется) ==========
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     faqQuestions.forEach(question => {
@@ -110,37 +241,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // ===== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА =====
-    const weddingDate = new Date('2026-07-17T16:00:00').getTime();
-    
-    const timerDays = document.getElementById('timerDays');
-    const timerHours = document.getElementById('timerHours');
-    const timerMinutes = document.getElementById('timerMinutes');
-    const timerSeconds = document.getElementById('timerSeconds');
-    
-    if (timerDays && timerHours && timerMinutes && timerSeconds) {
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            timerDays.textContent = days < 10 ? '0' + days : days;
-            timerHours.textContent = hours < 10 ? '0' + hours : hours;
-            timerMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
-            timerSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
-            
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                timerDays.textContent = '00';
-                timerHours.textContent = '00';
-                timerMinutes.textContent = '00';
-                timerSeconds.textContent = '00';
-            }
-        }, 1000);
-    }
 });
