@@ -65,6 +65,7 @@ h1, h2, h3, .section-title, .greeting-title {
 .hero-container {
     max-width: 500px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .hero-wrapper {
@@ -78,16 +79,16 @@ h1, h2, h3, .section-title, .greeting-title {
 .hero-name-left-top,
 .hero-name-right-bottom {
     position: absolute;
-    width: 60px;
+    width: 80px; /* Увеличил ширину для отступа */
 }
 
 .hero-name-left-top {
-    left: 0;
+    left: -10px; /* Немного сместил влево от центра */
     top: 0;
 }
 
 .hero-name-right-bottom {
-    right: 0;
+    right: -10px; /* Сместил вправо от центра, чтобы был отступ от края */
     bottom: 0;
 }
 
@@ -167,7 +168,15 @@ h1, h2, h3, .section-title, .greeting-title {
     
     .hero-name-left-top,
     .hero-name-right-bottom {
-        width: 40px;
+        width: 60px;
+    }
+    
+    .hero-name-left-top {
+        left: -5px;
+    }
+    
+    .hero-name-right-bottom {
+        right: -5px;
     }
     
     .hero-photo-wrapper {
@@ -183,6 +192,19 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 480px) {
     .hero-name-vertical {
         font-size: 28px;
+    }
+    
+    .hero-name-left-top,
+    .hero-name-right-bottom {
+        width: 50px;
+    }
+    
+    .hero-name-left-top {
+        left: -3px;
+    }
+    
+    .hero-name-right-bottom {
+        right: -3px;
     }
     
     .hero-photo-wrapper {
