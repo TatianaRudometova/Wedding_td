@@ -114,80 +114,34 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 5: Тайминг с анимацией как в примере -->
+            <!-- СТРАНИЦА 5: Тайминг (предыдущий вариант) -->
             <section class="section">
                 <div class="container">
-                    <div class="section-title fade-in">ПЛАН ДНЯ</div>
-                    <div class="timeline-wrapper">
-                        <!-- Вертикальная линия -->
-                        <div class="timeline-line"></div>
-                        
-                        <div class="timeline-items">
-                            <!-- Элемент 1 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">15:30</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Сбор гостей в ЗАГСе</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Элемент 2 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">16:00</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Торжественная регистрация</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Элемент 3 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">16:30</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Фотопрогулка</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Элемент 4 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">18:00</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Сбор гостей в ресторане</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Элемент 5 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">19:00</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Праздничный ужин</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Элемент 6 -->
-                            <div class="timeline-item timeline-animate">
-                                <div class="timeline-time-wrapper">
-                                    <span class="timeline-time">23:00</span>
-                                </div>
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-event-wrapper">
-                                    <span class="timeline-event">Торт и завершение вечера</span>
-                                </div>
-                            </div>
+                    <div class="section-title fade-in">ТАЙМИНГ ДНЯ</div>
+                    <div class="timeline-grid">
+                        <div class="timeline-item fade-in-right">
+                            <div class="timeline-time">15:30</div>
+                            <div class="timeline-event">Сбор гостей в ЗАГСе</div>
+                        </div>
+                        <div class="timeline-item fade-in-left">
+                            <div class="timeline-time">16:00</div>
+                            <div class="timeline-event">Торжественная регистрация</div>
+                        </div>
+                        <div class="timeline-item fade-in-right">
+                            <div class="timeline-time">16:30</div>
+                            <div class="timeline-event">Фотопрогулка</div>
+                        </div>
+                        <div class="timeline-item fade-in-left">
+                            <div class="timeline-time">18:00</div>
+                            <div class="timeline-event">Сбор гостей в ресторане</div>
+                        </div>
+                        <div class="timeline-item fade-in-right">
+                            <div class="timeline-time">19:00</div>
+                            <div class="timeline-event">Праздничный ужин</div>
+                        </div>
+                        <div class="timeline-item fade-in-left">
+                            <div class="timeline-time">23:00</div>
+                            <div class="timeline-event">Торт и завершение вечера</div>
                         </div>
                     </div>
                 </div>
@@ -360,12 +314,12 @@
         <source src="wedding_song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Кнопка управления музыкой -->
+    <!-- Кнопка управления музыкой (без границ) -->
     <div class="music-control" id="musicControl">
         <div class="music-icon">
             <i class="fas fa-music"></i>
         </div>
-        <div class="music-text">фоновая музыка</div>
+        <div class="music-text">вкл/выкл</div>
     </div>
     
     <script src="script.js"></script>
