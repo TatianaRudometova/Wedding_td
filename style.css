@@ -7,16 +7,16 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #faf7f2; /* Мягкий кремовый фон */
+    background-color: #ffffff; /* Белый фон как в примере */
     line-height: 1.6;
     overflow-x: hidden;
-    color: #4a4a4a;
+    color: #000000; /* Черный текст */
 }
 
 h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .page {
@@ -25,14 +25,14 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     position: relative;
 }
 
-/* ========== КОНВЕРТ ========== */
+/* ========== КОНВЕРТ (в стиле примера) ========== */
 .envelope-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8); /* Темное наложение */
     z-index: 998;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -45,7 +45,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.9) 100%);
     pointer-events: none;
 }
 
@@ -109,21 +109,20 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .envelope-text.top {
-    top: 20%;
+    top: 25%;
     font-size: clamp(24px, 6vw, 48px);
     letter-spacing: 4px;
-    white-space: nowrap;
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .envelope-text.bottom {
-    bottom: 15%;
-    font-size: clamp(16px, 4vw, 26px);
-    background: rgba(0, 0, 0, 0.5);
+    bottom: 20%;
+    font-size: clamp(18px, 4vw, 24px);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     padding: 12px 30px;
-    border-radius: 60px;
+    border-radius: 40px;
     display: inline-block;
     width: auto;
     white-space: nowrap;
@@ -134,11 +133,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     animation: gentle-pulse 2s infinite;
     color: white;
     text-shadow: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }
 
 @keyframes gentle-pulse {
     0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.05); }
+    50% { transform: translateX(-50%) scale(1.03); }
 }
 
 .envelope-click-area {
@@ -152,6 +153,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     cursor: pointer;
 }
 
+/* Анимация открытия конверта */
 .envelope-fullscreen.open .envelope-top {
     transform: translateY(-100%);
 }
@@ -179,7 +181,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     pointer-events: none;
     position: relative;
     z-index: 10;
-    background-color: #faf7f2; /* Мягкий кремовый фон */
+    background-color: #ffffff; /* Белый фон */
 }
 
 .main-content.visible {
@@ -192,191 +194,137 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 60px 20px;
 }
 
 .section {
-    margin: 80px 0; /* Увеличил отступы */
+    margin: 40px 0;
     padding: 20px 0;
-    position: relative;
-}
-
-/* Декоративные линии по бокам секций (новый тренд) */
-.section::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, #d4af37, transparent);
-    opacity: 0.3;
-}
-
-.section::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, #d4af37, transparent);
-    opacity: 0.3;
 }
 
 .section-title {
     text-align: center;
     font-size: 42px;
-    color: #8b5a5b; /* Глубокий бордовый */
-    margin-bottom: 40px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
+    color: #000000;
+    margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-family: 'Cormorant Garamond', serif;
 }
 
-/* Декоративное подчеркивание с золотом */
-.section-title:after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #d4af37, transparent);
-    margin: 15px auto 0;
-}
-
-/* ========== СТРАНИЦА 1: Имена и фото ========== */
+/* ========== СТРАНИЦА 1: Имена и фото (в стиле примера) ========== */
 .names-block {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .names-title {
-    font-size: 64px;
-    color: #8b5a5b; /* Глубокий бордовый */
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.1); /* Легкое золотое свечение */
-    position: relative;
-    display: inline-block;
-}
-
-/* Золотые акценты вокруг имен */
-.names-title::before,
-.names-title::after {
-    content: '✦';
-    color: #d4af37;
-    font-size: 24px;
-    position: absolute;
-    opacity: 0.5;
-}
-
-.names-title::before {
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.names-title::after {
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 72px;
+    color: #000000;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .names-ampersand {
     font-size: 48px;
-    color: #d4af37; /* Античное золото */
+    color: #000000;
     margin: 10px 0;
-    animation: heartbeat 2s infinite;
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); color: #c98a8f; }
+    opacity: 0.5;
 }
 
 .photos-placeholder {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .couple-photo {
     max-width: 100%;
     max-height: 60vh;
-    border-radius: 30px 30px 30px 0; /* Асимметричные углы в тренде */
-    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.15);
-    border: 2px solid rgba(212, 175, 55, 0.3); /* Золотая рамка */
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.couple-photo:hover {
-    transform: scale(1.02);
-    box-shadow: 0 30px 50px rgba(212, 175, 55, 0.2);
-}
-
-/* ========== СТРАНИЦА 2: Приветствие ========== */
-.greeting {
+.hero-date {
     text-align: center;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px); /* Эффект матового стекла */
-    padding: 50px;
-    border-radius: 60px 0 60px 0;
-    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    position: relative;
-    overflow: hidden;
+    font-size: 24px;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 20px;
 }
 
-/* Декоративный золотой уголок */
-.greeting::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.1) 50%);
+/* Анимация появления */
+.fade-in {
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== СТРАНИЦА 2: Приветствие (в стиле примера) ========== */
+.greeting-card {
+    background: #f9f9f9;
+    padding: 60px 50px;
+    border-radius: 30px 0 30px 0;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .greeting-title {
     font-size: 48px;
-    color: #8b5a5b;
+    color: #000000;
     margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .greeting-text {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.8;
-    max-width: 600px;
-    margin: 0 auto 20px;
-    color: #5a5a5a;
+    margin-bottom: 25px;
+    color: #333333;
+    font-weight: 300;
+    text-align: center;
+}
+
+.greeting-signature {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
 }
 
 /* ========== СТРАНИЦА 3: Календарь ========== */
 .calendar-container {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 30px;
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 30px 0 30px 0;
     max-width: 500px;
     margin: 0 auto;
-    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .calendar-header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    font-weight: bold;
-    color: #c98a8f; /* Пыльная роза */
-    margin-bottom: 10px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 30px;
 }
 
 .calendar-day {
@@ -384,32 +332,34 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(249, 243, 240, 0.5);
+    background: #ffffff;
     border-radius: 50%;
     font-size: 16px;
     cursor: default;
-    transition: all 0.2s;
-}
-
-.calendar-day:hover {
-    background: rgba(212, 175, 55, 0.1);
-    transform: scale(1.05);
+    border: 1px solid #eaeaea;
 }
 
 .calendar-day.highlight {
-    background: #c98a8f; /* Пыльная роза */
+    background: #000000;
     color: white;
-    font-weight: bold;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+    font-weight: 500;
+    border: none;
 }
 
 .calendar-note {
     text-align: center;
-    font-size: 20px;
-    color: #8b5a5b;
-    font-weight: 500;
-    margin-top: 20px;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.calendar-date {
+    text-align: center;
+    font-size: 32px;
+    color: #000000;
     font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 2px;
 }
 
 /* ========== СТРАНИЦА 4: Локация ========== */
@@ -421,122 +371,122 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .location-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 30px 30px 30px 0;
+    background: #f9f9f9;
+    border-radius: 20px 0 20px 0;
     padding: 30px;
-    box-shadow: 0 15px 30px rgba(139, 90, 91, 0.1);
     text-align: center;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
 }
 
 .location-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 40px rgba(212, 175, 55, 0.15);
 }
 
 .location-name {
-    font-size: 24px;
-    color: #8b5a5b;
+    font-size: 22px;
+    color: #000000;
     margin-bottom: 10px;
     font-family: 'Cormorant Garamond', serif;
 }
 
 .location-address {
-    font-size: 15px;
-    color: #6b5a4f;
+    font-size: 14px;
+    color: #666666;
     margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .location-map {
     width: 100%;
     height: 200px;
     border: none;
-    border-radius: 20px 20px 20px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 15px 0 15px 0;
 }
 
 .map-button {
     display: inline-block;
     padding: 10px 25px;
-    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
-    color: white;
+    background: transparent;
+    color: #000000;
     text-decoration: none;
-    border-radius: 50px;
+    border: 1px solid #000000;
+    border-radius: 30px;
     font-size: 14px;
     margin-top: 20px;
     transition: all 0.3s;
-    border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .map-button:hover {
-    background: linear-gradient(135deg, #d4af37, #c98a8f);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    background: #000000;
+    color: #ffffff;
 }
 
 /* ========== СТРАНИЦА 5: Тайминг ========== */
-.timeline {
+.timeline-grid {
     max-width: 600px;
     margin: 0 auto;
 }
 
 .timeline-item {
     display: flex;
+    align-items: center;
     margin-bottom: 25px;
     padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(139, 90, 91, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
+    background: #f9f9f9;
+    border-radius: 15px 0 15px 0;
+    transition: transform 0.2s;
 }
 
 .timeline-item:hover {
     transform: translateX(5px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
 }
 
-/* Золотая полоска слева */
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, #d4af37, #c98a8f);
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-icon-img {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0.7;
+}
+
+.timeline-content {
+    flex: 1;
 }
 
 .timeline-time {
-    min-width: 120px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    color: #c98a8f;
-    font-family: 'Cormorant Garamond', serif;
+    color: #000000;
+    margin-bottom: 3px;
 }
 
 .timeline-event {
-    font-size: 16px;
-    color: #5a5a5a;
+    font-size: 15px;
+    color: #666666;
 }
 
 /* ========== СТРАНИЦА 6: Дресс-код ========== */
+.dresscode-card {
+    background: #f9f9f9;
+    padding: 50px 40px;
+    border-radius: 30px 0 30px 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 .dresscode-text {
     text-align: center;
-    font-size: 20px;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 30px 30px 30px 0;
-    box-shadow: 0 10px 25px rgba(139, 90, 91, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 30px;
+    font-weight: 300;
 }
 
 .dresscode-palette {
@@ -548,21 +498,30 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .dresscode-palette span {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border: 3px solid white;
-    transition: all 0.3s;
-    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid white;
+    transition: transform 0.3s;
 }
 
 .dresscode-palette span:hover {
-    transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+    transform: scale(1.1);
 }
 
-/* ========== СТРАНИЦА 7: Пожелания ========== */
+.dresscode-image {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.dresscode-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px 0 15px 0;
+}
+
+/* ========== СТРАНИЦА 7: Пожелания (Слайдер) ========== */
 .wishlist-slider {
     position: relative;
     max-width: 600px;
@@ -581,9 +540,9 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: white;
-    border: 1px solid #d4af37;
-    color: #c98a8f;
+    background: transparent;
+    border: 1px solid #000000;
+    color: #000000;
     cursor: pointer;
     font-size: 20px;
     transition: all 0.3s;
@@ -591,10 +550,8 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .slider-arrow:hover {
-    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
+    background: #000000;
     color: white;
-    border-color: #c98a8f;
-    transform: scale(1.1);
 }
 
 .slider-dots {
@@ -603,8 +560,8 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #d9d9d9;
     cursor: pointer;
@@ -612,14 +569,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .dot.active {
-    background: #d4af37;
+    background: #000000;
     transform: scale(1.2);
-    box-shadow: 0 0 10px #d4af37;
 }
 
 .slider-container {
     overflow: hidden;
-    border-radius: 30px 30px 30px 0;
+    border-radius: 20px 0 20px 0;
 }
 
 .slider-track {
@@ -637,71 +593,59 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     opacity: 1;
 }
 
-.wishlist-text {
+.wishlist-card {
     text-align: center;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    background: #f9f9f9;
     padding: 40px;
-    border-radius: 30px 30px 30px 0;
-    box-shadow: 0 15px 30px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px 0 20px 0;
 }
 
 .wishlist-note {
-    background: rgba(201, 138, 143, 0.1);
+    background: #ffffff;
     padding: 20px;
-    border-radius: 20px 20px 20px 0;
+    border-radius: 15px 0 15px 0;
     margin: 20px 0;
-    border: 1px dashed #d4af37;
+    border: 1px solid #eaeaea;
 }
 
 .wishlist-note-title {
     font-size: 20px;
     margin-bottom: 15px;
-    color: #8b5a5b;
+    color: #000000;
     font-family: 'Cormorant Garamond', serif;
 }
 
 .wishlist-message {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.8;
     margin: 30px 0;
+    color: #333333;
 }
 
 .payment-icons {
     display: flex;
     justify-content: center;
     gap: 30px;
-    font-size: 40px;
-    color: #d4af37;
+    font-size: 36px;
+    color: #000000;
     margin: 30px 0;
 }
 
-.payment-icons i {
-    transition: all 0.3s;
-}
-
-.payment-icons i:hover {
-    transform: translateY(-5px);
-    color: #c98a8f;
-}
-
 /* ========== СТРАНИЦА 8: Чат ========== */
-.chat-block {
+.chat-card {
     text-align: center;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 40px 40px 40px 0;
-    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: #f9f9f9;
+    padding: 50px 40px;
+    border-radius: 30px 0 30px 0;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .chat-text {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.8;
-    max-width: 500px;
-    margin: 0 auto 30px;
+    margin-bottom: 30px;
+    color: #333333;
 }
 
 .chat-phone {
@@ -711,48 +655,42 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .chat-phone-img {
     max-width: 100%;
     height: auto;
-    border-radius: 20px 20px 20px 0;
+    border-radius: 20px 0 20px 0;
     max-height: 200px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border: 2px solid rgba(212, 175, 55, 0.3);
 }
 
 .chat-button {
     display: inline-block;
-    padding: 15px 40px;
-    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
-    color: white;
+    padding: 12px 40px;
+    background: transparent;
+    color: #000000;
     text-decoration: none;
-    border-radius: 50px;
-    font-size: 18px;
-    font-weight: 600;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 400;
     transition: all 0.3s;
-    border: 1px solid #d4af37;
 }
 
 .chat-button:hover {
-    background: linear-gradient(135deg, #d4af37, #c98a8f);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    background: #000000;
+    color: white;
 }
 
 /* ========== СТРАНИЦА 9: Анкета ========== */
-.form-text {
+.form-intro {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 30px;
-    color: #8b5a5b;
+    color: #333333;
 }
 
 .rsvp-form {
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 40px 40px 40px 0;
-    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: #f9f9f9;
+    padding: 50px 40px;
+    border-radius: 30px 0 30px 0;
 }
 
 .form-group {
@@ -761,27 +699,28 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .form-label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
-    color: #8b5a5b;
-    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 400;
+    color: #000000;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .form-input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 25px;
-    font-size: 15px;
+    border: 1px solid #eaeaea;
+    border-radius: 30px;
+    font-size: 14px;
     font-family: 'Montserrat', sans-serif;
-    transition: all 0.3s;
-    background: rgba(255, 255, 255, 0.8);
+    transition: border 0.3s;
+    background: #ffffff;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #d4af37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    border-color: #000000;
 }
 
 .form-radio-group {
@@ -794,14 +733,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .form-radio input {
-    width: 18px;
-    height: 18px;
-    accent-color: #c98a8f;
+    width: 16px;
+    height: 16px;
 }
 
 .form-checkbox-group {
@@ -814,178 +752,148 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .form-checkbox input {
-    width: 18px;
-    height: 18px;
-    accent-color: #c98a8f;
+    width: 16px;
+    height: 16px;
 }
 
 .form-submit {
-    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
-    color: white;
-    border: 1px solid #d4af37;
-    padding: 15px 40px;
-    font-size: 18px;
-    border-radius: 25px;
+    background: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 12px 40px;
+    font-size: 16px;
+    border-radius: 30px;
     cursor: pointer;
     width: 100%;
-    font-weight: 600;
+    font-weight: 400;
     transition: all 0.3s;
 }
 
 .form-submit:hover {
-    background: linear-gradient(135deg, #d4af37, #c98a8f);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    background: #000000;
+    color: white;
 }
 
 /* ========== СТРАНИЦА 10: Контакты ========== */
-.contacts-text {
+.contacts-intro {
     text-align: center;
-    font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 30px 30px 30px 0;
-    box-shadow: 0 10px 25px rgba(139, 90, 91, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: #666666;
 }
 
 .contacts-grid {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-    margin: 30px 0;
-}
-
-.contact-item {
-    text-align: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 30px 30px 30px 0;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    transition: all 0.3s;
-    min-width: 200px;
-}
-
-.contact-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
-}
-
-.contact-role {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #8b5a5b;
-    font-family: 'Cormorant Garamond', serif;
-}
-
-.contact-phone {
-    color: #6b5a4f;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-}
-
-.contact-phone:hover {
-    color: #d4af37;
-}
-
-/* ========== СТРАНИЦА 11: Таймер ========== */
-.timer-container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 50px;
-    border-radius: 60px 60px 60px 0;
-    box-shadow: 0 30px 50px rgba(139, 90, 91, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Декоративные золотые точки */
-.timer-container::before,
-.timer-container::after {
-    content: '✦';
-    color: #d4af37;
-    font-size: 30px;
-    position: absolute;
-    opacity: 0.3;
-}
-
-.timer-container::before {
-    top: 20px;
-    left: 20px;
-}
-
-.timer-container::after {
-    bottom: 20px;
-    right: 20px;
-}
-
-.timer-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: 500;
-    color: #8b5a5b;
-}
-
-.timer-grid {
     display: flex;
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
 }
 
+.contact-card {
+    text-align: center;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 20px 0 20px 0;
+    min-width: 250px;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-role {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #000000;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.contact-phone {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.contact-phone:hover {
+    border-bottom-color: #000000;
+}
+
+/* ========== СТРАНИЦА 11: Таймер ========== */
+.timer-card {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 50px 40px;
+    border-radius: 30px 0 30px 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.timer-title {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 300;
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
 .timer-block {
-    background: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 20px;
-    min-width: 120px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    min-width: 100px;
 }
 
 .timer-number {
-    font-size: 48px;
-    font-weight: 700;
-    color: #c98a8f;
+    font-size: 56px;
+    font-weight: 500;
+    color: #000000;
     font-family: 'Cormorant Garamond', serif;
     line-height: 1.2;
 }
 
 .timer-label {
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #8b5a5b;
+    letter-spacing: 1px;
+    color: #666666;
     margin-top: 5px;
 }
 
 /* ========== ФУТЕР ========== */
 .footer {
-    margin-top: 60px;
-    padding: 40px 0;
-    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.1), transparent);
+    margin-top: 80px;
+    padding: 50px 0;
+    background: #f9f9f9;
+    border-radius: 30px 0 0 0;
 }
 
-.footer-copyright {
+.footer-content {
     text-align: center;
-    color: #8b5a5b;
+    color: #000000;
     font-size: 14px;
 }
 
-.footer-copyright p {
+.footer-content p {
     margin: 5px 0;
+}
+
+.footer-copyright {
+    margin-top: 20px;
+    opacity: 0.5;
+    font-size: 12px;
 }
 
 /* ========== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========== */
@@ -994,22 +902,16 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
         font-size: 48px;
     }
     
-    .names-title::before,
-    .names-title::after {
-        display: none;
-    }
-    
     .greeting-title {
         font-size: 36px;
     }
     
-    .section-title {
-        font-size: 36px;
+    .greeting-card {
+        padding: 40px 25px;
     }
     
-    .section::before,
-    .section::after {
-        opacity: 0.1;
+    .section-title {
+        font-size: 36px;
     }
     
     .location-grid {
@@ -1017,13 +919,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     }
     
     .timeline-item {
-        flex-direction: column;
-        text-align: center;
+        padding: 12px 15px;
     }
     
-    .timeline-time {
-        min-width: auto;
-        margin-bottom: 5px;
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
     }
     
     .timer-number {
@@ -1037,7 +939,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     
     .envelope-text.top {
         font-size: 22px;
-        top: 25%;
+        top: 30%;
         white-space: normal;
         padding: 0 20px;
     }
@@ -1054,16 +956,17 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     }
     
     .dresscode-palette span {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
     
     .contacts-grid {
         gap: 20px;
     }
     
-    .contact-item {
-        min-width: 150px;
+    .contact-card {
+        min-width: 200px;
+        padding: 25px;
     }
     
     .timer-grid {
@@ -1072,6 +975,9 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     
     .timer-block {
         min-width: 70px;
-        padding: 15px;
+    }
+    
+    .rsvp-form {
+        padding: 40px 25px;
     }
 }
