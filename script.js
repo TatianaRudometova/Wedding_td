@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ========== АНИМАЦИЯ ПРИ СКРОЛЛЕ ==========
-    const animateElements = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-right, .fade-in-left, .timeline-item');
+    const animateElements = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-right, .fade-in-left');
     
     function checkScroll() {
         animateElements.forEach(element => {
@@ -128,14 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const windowHeight = window.innerHeight;
             
             if (elementTop < windowHeight - 100) {
-                if (element.classList.contains('timeline-item') && !element.classList.contains('timeline-animate')) {
-                    element.classList.add('timeline-animate');
-                } else if (!element.classList.contains('fade-in') && 
-                          !element.classList.contains('fade-in-up') && 
-                          !element.classList.contains('fade-in-right') && 
-                          !element.classList.contains('fade-in-left')) {
-                    // Для обычных элементов
-                }
+                // Элементы уже имеют классы анимации в HTML
             }
         });
     }
