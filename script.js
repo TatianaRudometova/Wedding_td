@@ -23,16 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     overlay.style.display = 'none';
                 }, 500);
             }
-            
-            // Инициализируем AOS после открытия конверта
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 1000,
-                    once: true,
-                    offset: 100,
-                    easing: 'ease-out-cubic'
-                });
-            }
         }, 800);
     }
     
@@ -108,8 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (calendarGrid) {
         function generateCalendar() {
+            // Июль 2026: 1 июля 2026 - среда
             const daysInMonth = 31;
-            const firstDayOfWeek = 2; // 1 июля 2026 - среда
+            const firstDayOfWeek = 2; // 0 - Пн, 1 - Вт, 2 - Ср
             
             calendarGrid.innerHTML = '';
             
