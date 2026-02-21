@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дмитрий & Татьяна | Свадебное приглашение</title>
     
-    <!-- Подключаем шрифты как на примере -->
+    <!-- Подключаем шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,46 +18,28 @@
 </head>
 <body>
     <div class="page">
-        <!-- ========== КОНВЕРТ (главный экран) ========== -->
-        <!-- Затемняющий фон для конверта (более темный, как в примере) -->
-        <div class="envelope-overlay" id="envelopeOverlay"></div>
-        
-        <!-- Конверт на весь экран -->
-        <div class="envelope-fullscreen" id="envelope">
-            <!-- Верхняя часть конверта (клапан) -->
-            <div class="envelope-top"></div>
-            <!-- Нижняя часть конверта (основа) -->
-            <div class="envelope-bottom"></div>
-            <!-- Текст на конверте как в примере -->
-            <div class="envelope-text top">ПРИГЛАШЕНИЕ НА СВАДЬБУ</div>
-            <!-- Кнопка для открытия в стиле примера -->
-            <div class="envelope-text bottom" id="openButton">нажмите, чтобы открыть</div>
-            <!-- Область для клика -->
-            <div class="envelope-click-area" id="clickArea"></div>
-        </div>
-        
-        <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
-        <div class="main-content" id="mainContent">
+        <!-- ========== ОСНОВНОЙ КОНТЕНТ (сразу виден) ========== -->
+        <div class="main-content visible" id="mainContent">
             
             <!-- СТРАНИЦА 1: Имена и фото -->
-            <section class="section">
+            <section class="section first-section">
                 <div class="container">
-                    <!-- Имена в стиле примера -->
+                    <!-- Имена -->
                     <div class="names-block">
                         <h1 class="names-title">ДМИТРИЙ</h1>
                         <div class="names-ampersand"><i class="fas fa-heart"></i></div>
                         <h1 class="names-title">ТАТЬЯНА</h1>
                     </div>
-                    <!-- Фото пары с плавным появлением -->
+                    <!-- Фото пары -->
                     <div class="photos-placeholder">
                         <img src="images/placeholder-couple.jpg" alt="Дмитрий и Татьяна" class="couple-photo fade-in">
                     </div>
-                    <!-- Дата и подпись как в примере -->
+                    <!-- Дата -->
                     <div class="hero-date">17.07.2026 · 16:00</div>
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 2: Текст приглашения (в стиле примера с белой карточкой) -->
+            <!-- СТРАНИЦА 2: Текст приглашения -->
             <section class="section">
                 <div class="container">
                     <div class="greeting-card">
@@ -86,13 +68,13 @@
                         <!-- Сетка календаря -->
                         <div class="calendar-grid" id="calendarGrid"></div>
                         <p class="calendar-note">Ждем вас 17 числа!</p>
-                        <!-- Дата в стиле примера -->
+                        <!-- Дата -->
                         <div class="calendar-date">26 / 06 / 26</div>
                     </div>
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 4: Локация (как в примере - с картами и кнопками) -->
+            <!-- СТРАНИЦА 4: Локация (с обновленными ссылками) -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">ЛОКАЦИЯ</div>
@@ -103,24 +85,24 @@
                             <div class="location-address">г. Екатеринбург, ул. Карла Либкнехта, 3</div>
                             <!-- Яндекс карта -->
                             <iframe class="location-map" 
-                                src="https://yandex.ru/map-widget/v1/-/CCUJvWt7gA"
+                                src="https://yandex.ru/map-widget/v1/-/CPaL5Qkg"
                                 allowfullscreen>
                             </iframe>
-                            <a href="https://yandex.ru/maps/-/CCUJvWt7gA" target="_blank" class="map-button">
+                            <a href="https://yandex.ru/maps/-/CPaL5Qkg" target="_blank" class="map-button">
                                 посмотреть на карте <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
                         
                         <!-- Карточка ресторана -->
                         <div class="location-card">
-                            <div class="location-name">Ресторан LOFT HALL</div>
-                            <div class="location-address">г. Екатеринбург, ул. Тверитина, 19</div>
+                            <div class="location-name">Дом</div>
+                            <div class="location-address">г. Екатеринбург, адрес появится позже</div>
                             <!-- Яндекс карта -->
                             <iframe class="location-map" 
-                                src="https://yandex.ru/map-widget/v1/-/CCUa0eA0gC"
+                                src="https://yandex.ru/map-widget/v1/-/CPaL5JnR"
                                 allowfullscreen>
                             </iframe>
-                            <a href="https://yandex.ru/maps/-/CCUa0eA0gC" target="_blank" class="map-button">
+                            <a href="https://yandex.ru/maps/-/CPaL5JnR" target="_blank" class="map-button">
                                 посмотреть на карте <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
@@ -128,7 +110,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 5: Тайминг (как в примере - с иконками) -->
+            <!-- СТРАНИЦА 5: Тайминг -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">Тайминг дня</div>
@@ -180,7 +162,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 6: Дресс-код (как в примере - с палитрой) -->
+            <!-- СТРАНИЦА 6: Дресс-код -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">ДРЕСС-КОД</div>
@@ -196,7 +178,7 @@
                             <span style="background: #b7a69e;" title="Серо-бежевый"></span>
                             <span style="background: #ecd4c0;" title="Шампань"></span>
                         </div>
-                        <!-- Картинка дресс-кода (как в примере) -->
+                        <!-- Картинка дресс-кода -->
                         <div class="dresscode-image">
                             <img src="images/dresscode.png" alt="Палитра дресс-кода" class="dresscode-img">
                         </div>
@@ -204,7 +186,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 7: Пожелания (Слайдер как в примере, но с вашим контентом) -->
+            <!-- СТРАНИЦА 7: Пожелания (Слайдер) -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">ПОЖЕЛАНИЯ</div>
@@ -252,7 +234,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 8: Чат для гостей (как в примере) -->
+            <!-- СТРАНИЦА 8: Чат для гостей -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">Чат для гостей</div>
@@ -266,7 +248,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 9: Анкета для гостей (ваша форма, но в стиле примера) -->
+            <!-- СТРАНИЦА 9: Анкета для гостей -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">АНКЕТА ГОСТЯ</div>
@@ -279,7 +261,7 @@
                             <input type="text" name="name" class="form-input" placeholder="Анна и Дмитрий Смирновы" required>
                         </div>
                         
-                        <!-- Радио-кнопки: придет / не придет (как в примере) -->
+                        <!-- Радио-кнопки: придет / не придет -->
                         <div class="form-group">
                             <label class="form-label">Сможете ли вы присутствовать на торжестве? *</label>
                             <div class="form-radio-group">
@@ -311,13 +293,13 @@
                             <input type="text" name="music" class="form-input" placeholder="Валерий Меладзе">
                         </div>
                         
-                        <!-- Кнопка отправки в стиле примера -->
+                        <!-- Кнопка отправки -->
                         <button type="submit" class="form-submit">Отправить</button>
                     </form>
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 10: Контакты (как в примере - с именами и телефонами) -->
+            <!-- СТРАНИЦА 10: Контакты -->
             <section class="section">
                 <div class="container">
                     <div class="section-title">КОНТАКТЫ</div>
@@ -337,7 +319,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 11: Таймер обратного отсчета (как в примере - с отдельными блоками) -->
+            <!-- СТРАНИЦА 11: Таймер обратного отсчета -->
             <section class="section">
                 <div class="container">
                     <div class="timer-card">
@@ -378,22 +360,21 @@
         </div> <!-- Закрытие main-content -->
     </div> <!-- Закрытие page -->
     
+    <!-- Аудио плеер (скрытый) -->
+    <audio id="wedding-audio" loop preload="auto">
+        <source src="wedding_song.mp3" type="audio/mpeg">
+        <!-- <source src="путь/к/вашей/песне.ogg" type="audio/ogg"> -->
+    </audio>
+
+    <!-- Кнопка управления музыкой -->
+    <div class="music-control" id="musicControl">
+        <div class="music-icon">
+            <i class="fas fa-music"></i>
+        </div>
+        <div class="music-text">фоновая музыка</div>
+    </div>
+    
     <!-- Подключаем внешний JavaScript -->
     <script src="script.js"></script>
-
-    <!-- Аудио плеер (скрытый) -->
-<audio id="wedding-audio" loop preload="auto">
-  <source src="wedding_song.mp3" type="audio/mpeg">
-  <!-- <source src="путь/к/вашей/песне.ogg" type="audio/ogg">
-  Ваш браузер не поддерживает аудио.-->
-</audio>
-
-<!-- Кнопка управления музыкой -->
-<div class="music-control" id="musicControl">
-  <div class="music-icon">
-    <i class="fas fa-music"></i>
-  </div>
-  <div class="music-text">фоновая музыка</div>
-</div>
 </body>
 </html>
