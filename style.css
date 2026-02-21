@@ -67,7 +67,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     top: 0;
     left: 0; /* Убираем translateX, теперь позиционируем от левого края */
     width: 100%; /* На всю ширину родителя */
-    height: 60vh; /* Чуть выше, чтобы лучше перекрывало */
+    height: 70vh; /* Чуть выше, чтобы лучше перекрывало */
     background-image: url('images/top.png');
     background-size: cover; /* Растягиваем на всю ширину */
     background-position: center bottom;
@@ -84,7 +84,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     bottom: 0;
     left: 0; /* Убираем translateX */
     width: 100%; /* На всю ширину родителя */
-    height: 60vh; /* Чуть выше */
+    height: 70vh; /* Чуть выше */
     background-image: url('images/bottom.png');
     background-size: cover; /* Растягиваем на всю ширину */
     background-position: center top;
