@@ -79,37 +79,42 @@ h1, h2, h3, .section-title, .greeting-title {
 .hero-name-left-top,
 .hero-name-right-bottom {
     position: absolute;
-    width: 80px; /* Увеличил ширину для отступа */
+    width: 60px;
 }
 
 .hero-name-left-top {
-    left: 10px; /* Немного сместил влево от центра */
-    top: 0;
+    left: -20px; /* Отодвигаем от фото */
+    top: 20px;
 }
 
 .hero-name-right-bottom {
-    right: 10px; /* Сместил вправо от центра, чтобы был отступ от края */
-    bottom: 0;
+    right: -20px; /* Отодвигаем от фото */
+    bottom: 20px;
 }
 
 .hero-name-vertical {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 500;
     color: #000000;
     line-height: 1.1;
     letter-spacing: 4px;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
     text-transform: uppercase;
     margin: 0;
 }
 
+/* Дмитрий - слева сверху, против часовой стрелки */
+.hero-name-left-top .hero-name-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    transform: rotate(180deg); /* Поворот против часовой стрелки */
+}
+
+/* Татьяна - справа снизу, по часовой стрелке */
 .hero-name-right-bottom .hero-name-vertical {
     writing-mode: vertical-rl;
     text-orientation: upright;
-    /* Для правильного отображения справа */
-    transform: rotate(180deg);
+    transform: rotate(0deg); /* Обычное вертикальное письмо (по часовой) */
 }
 
 .hero-photo-wrapper {
@@ -163,20 +168,17 @@ h1, h2, h3, .section-title, .greeting-title {
     }
     
     .hero-name-vertical {
-        font-size: 36px;
-    }
-    
-    .hero-name-left-top,
-    .hero-name-right-bottom {
-        width: 60px;
+        font-size: 32px;
     }
     
     .hero-name-left-top {
-        left: -5px;
+        left: -10px;
+        top: 10px;
     }
     
     .hero-name-right-bottom {
-        right: -5px;
+        right: -10px;
+        bottom: 10px;
     }
     
     .hero-photo-wrapper {
@@ -191,20 +193,15 @@ h1, h2, h3, .section-title, .greeting-title {
 
 @media (max-width: 480px) {
     .hero-name-vertical {
-        font-size: 28px;
-    }
-    
-    .hero-name-left-top,
-    .hero-name-right-bottom {
-        width: 50px;
+        font-size: 26px;
     }
     
     .hero-name-left-top {
-        left: -3px;
+        left: -5px;
     }
     
     .hero-name-right-bottom {
-        right: -3px;
+        right: -5px;
     }
     
     .hero-photo-wrapper {
@@ -216,7 +213,6 @@ h1, h2, h3, .section-title, .greeting-title {
         font-size: 26px;
     }
 }
-
 .hero-divider {
     width: 100px;
     height: 1px;
