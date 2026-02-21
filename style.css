@@ -70,20 +70,34 @@ h1, h2, h3, .section-title, .greeting-title {
 
 .hero-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    min-height: 600px;
+    justify-content: center;
+    min-height: 800px;
+    position: relative;
 }
 
-.hero-left {
-    flex: 0 0 120px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+/* Контейнер для фото */
+.hero-photo-wrapper {
+    width: 500px;
+    height: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    /* Убрано скругление */
 }
 
-.hero-left .hero-name-left {
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Имя Дмитрий - слева сверху */
+.hero-name-left {
+    position: absolute;
+    left: 50px;
+    top: 50px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 48px;
     font-weight: 600;
@@ -94,38 +108,14 @@ h1, h2, h3, .section-title, .greeting-title {
     margin: 0;
     transform: rotate(-10deg);
     white-space: nowrap;
+    z-index: 10;
 }
 
-.hero-center {
-    flex: 0 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-photo-wrapper {
-    width: 500px;
-    height: 650px;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-.hero-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hero-right {
-    flex: 0 0 120px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.hero-right .hero-name-right {
+/* Имя Татьяна - справа снизу */
+.hero-name-right {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 48px;
     font-weight: 600;
@@ -136,6 +126,7 @@ h1, h2, h3, .section-title, .greeting-title {
     margin: 0;
     transform: rotate(10deg);
     white-space: nowrap;
+    z-index: 10;
 }
 
 .hero-date-wrapper {
@@ -161,62 +152,117 @@ h1, h2, h3, .section-title, .greeting-title {
 /* Десктоп (большие экраны) */
 @media (min-width: 1200px) {
     .hero-content {
-        min-height: 700px;
+        min-height: 900px;
     }
     
     .hero-photo-wrapper {
-        width: 550px;
-        height: 700px;
+        width: 600px;
+        height: 750px;
     }
     
-    .hero-left .hero-name-left,
-    .hero-right .hero-name-right {
-        font-size: 56px;
+    .hero-name-left {
+        font-size: 60px;
+        left: 80px;
+        top: 80px;
+    }
+    
+    .hero-name-right {
+        font-size: 60px;
+        right: 80px;
+        bottom: 80px;
     }
 }
 
 /* Планшеты */
 @media (max-width: 992px) {
     .hero-content {
-        min-height: 500px;
-        gap: 15px;
-    }
-    
-    .hero-left,
-    .hero-right {
-        flex: 0 0 100px;
-    }
-    
-    .hero-left .hero-name-left,
-    .hero-right .hero-name-right {
-        font-size: 40px;
+        min-height: 700px;
     }
     
     .hero-photo-wrapper {
-        width: 400px;
-        height: 520px;
+        width: 450px;
+        height: 600px;
     }
     
-    .hero-date {
+    .hero-name-left {
         font-size: 42px;
+        left: 30px;
+        top: 30px;
+    }
+    
+    .hero-name-right {
+        font-size: 42px;
+        right: 30px;
+        bottom: 30px;
     }
 }
 
 /* Мобильные */
 @media (max-width: 768px) {
     .hero-content {
-        min-height: auto;
-        flex-direction: column;
-        gap: 20px;
+        min-height: 600px;
     }
     
-    .hero-left,
-    .hero-right {
-        flex: 0 0 auto;
-        width: 100%;
-        justify-content: center;
-        padding: 10px 0;
+    .hero-photo-wrapper {
+        width: 400px; /* Увеличено */
+        height: 500px; /* Увеличено */
     }
+    
+    .hero-name-left {
+        font-size: 36px;
+        left: 20px;
+        top: 20px;
+        transform: rotate(-8deg);
+    }
+    
+    .hero-name-right {
+        font-size: 36px;
+        right: 20px;
+        bottom: 20px;
+        transform: rotate(8deg);
+    }
+}
+
+/* Маленькие мобильные */
+@media (max-width: 480px) {
+    .hero-content {
+        min-height: 500px;
+    }
+    
+    .hero-photo-wrapper {
+        width: 320px; /* Еще увеличено */
+        height: 420px;
+    }
+    
+    .hero-name-left {
+        font-size: 30px;
+        left: 10px;
+        top: 10px;
+        transform: rotate(-5deg);
+    }
+    
+    .hero-name-right {
+        font-size: 30px;
+        right: 10px;
+        bottom: 10px;
+        transform: rotate(5deg);
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-photo-wrapper {
+        width: 280px;
+        height: 360px;
+    }
+    
+    .hero-name-left {
+        font-size: 26px;
+    }
+    
+    .hero-name-right {
+        font-size: 26px;
+    }
+}
     
     .hero-left .hero-name-left {
         transform: rotate(0deg);
