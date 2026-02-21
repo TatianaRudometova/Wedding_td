@@ -21,18 +21,34 @@
         <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
         <div class="main-content visible" id="mainContent">
             
-            <!-- СТРАНИЦА 1: Имена и фото -->
+            <!-- СТРАНИЦА 1: Имена и фото (как в примере) -->
             <section class="section first-section">
-                <div class="container">
-                    <div class="names-block">
-                        <h1 class="names-title fade-in">ДМИТРИЙ</h1>
-                        <div class="names-ampersand fade-in"><i class="fas fa-heart"></i></div>
-                        <h1 class="names-title fade-in">ТАТЬЯНА</h1>
+                <div class="container hero-container">
+                    <div class="hero-wrapper">
+                        <!-- Имя Дмитрий вертикально слева вверху -->
+                        <div class="hero-name-left-top">
+                            <h1 class="hero-name-vertical">ДМИТРИЙ</h1>
+                        </div>
+                        
+                        <!-- Фото по центру -->
+                        <div class="hero-photo-wrapper">
+                            <img src="images/placeholder-couple.jpg" alt="Дмитрий и Татьяна" class="hero-photo fade-in">
+                        </div>
+                        
+                        <!-- Имя Татьяна вертикально слева внизу -->
+                        <div class="hero-name-left-bottom">
+                            <h1 class="hero-name-vertical">ТАТЬЯНА</h1>
+                        </div>
                     </div>
-                    <div class="photos-placeholder">
-                        <img src="images/placeholder-couple.jpg" alt="Дмитрий и Татьяна" class="couple-photo fade-in">
+                    
+                    <!-- Дата под фото -->
+                    <div class="hero-date-wrapper">
+                        <div class="hero-date">17.07.2026</div>
+                        <div class="hero-time">16:00</div>
                     </div>
-                    <div class="hero-date fade-in">17.07.2026 · 16:00</div>
+                    
+                    <!-- Декоративная линия -->
+                    <div class="hero-divider"></div>
                 </div>
             </section>
             
@@ -62,7 +78,6 @@
                         </div>
                         <div class="calendar-grid" id="calendarGrid"></div>
                         <p class="calendar-note">Ждем вас 17 числа!</p>
-                        <div class="calendar-date">17 / 07 / 26</div>
                     </div>
                 </div>
             </section>
@@ -80,7 +95,7 @@
                                 allowfullscreen>
                             </iframe>
                             <a href="https://yandex.ru/maps/-/CPaL5Qkg" target="_blank" class="map-button">
-                                посмотреть на карте <i class="fas fa-external-link-alt"></i>
+                                посмотреть на карте
                             </a>
                         </div>
                         
@@ -92,7 +107,7 @@
                                 allowfullscreen>
                             </iframe>
                             <a href="https://yandex.ru/maps/-/CPaL5JnR" target="_blank" class="map-button">
-                                посмотреть на карте <i class="fas fa-external-link-alt"></i>
+                                посмотреть на карте
                             </a>
                         </div>
                     </div>
@@ -102,52 +117,95 @@
             <!-- СТРАНИЦА 5: Тайминг с анимацией как в примере -->
             <section class="section">
                 <div class="container">
-                    <div class="section-title fade-in">ТАЙМИНГ ДНЯ</div>
-                    <div class="timeline-grid">
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">15:30</div>
-                            <div class="timeline-event">Сбор гостей в ЗАГСе</div>
-                        </div>
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">16:00</div>
-                            <div class="timeline-event">Торжественная регистрация</div>
-                        </div>
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">16:30</div>
-                            <div class="timeline-event">Фотопрогулка</div>
-                        </div>
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">18:00</div>
-                            <div class="timeline-event">Сбор гостей в ресторане</div>
-                        </div>
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">19:00</div>
-                            <div class="timeline-event">Праздничный ужин</div>
-                        </div>
-                        <div class="timeline-item timeline-animate">
-                            <div class="timeline-time">23:00</div>
-                            <div class="timeline-event">Торт и завершение вечера</div>
+                    <div class="section-title fade-in">ПЛАН ДНЯ</div>
+                    <div class="timeline-wrapper">
+                        <!-- Вертикальная линия -->
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-items">
+                            <!-- Элемент 1 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">15:30</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Сбор гостей в ЗАГСе</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Элемент 2 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">16:00</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Торжественная регистрация</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Элемент 3 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">16:30</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Фотопрогулка</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Элемент 4 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">18:00</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Сбор гостей в ресторане</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Элемент 5 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">19:00</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Праздничный ужин</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Элемент 6 -->
+                            <div class="timeline-item timeline-animate">
+                                <div class="timeline-time-wrapper">
+                                    <span class="timeline-time">23:00</span>
+                                </div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-event-wrapper">
+                                    <span class="timeline-event">Торт и завершение вечера</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 6: Дресс-код (только текст) -->
+            <!-- СТРАНИЦА 6: Дресс-код -->
             <section class="section">
                 <div class="container">
                     <div class="section-title fade-in">ДРЕСС-КОД</div>
                     <div class="dresscode-card fade-in-up">
                         <div class="dresscode-text">
-                            Поддержите цветовую гамму нашей свадьбы — <strong>пастельные тона</strong>.
-                        </div>
-                        <div class="dresscode-text-small">
-                            Будем рады видеть вас в элегантных нарядах нежных оттенков.
+                            Поддержите цветовую гамму нашей свадьбы — пастельные тона
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 7: Пожелания (Слайдер с анимацией) -->
+            <!-- СТРАНИЦА 7: Пожелания (Слайдер) -->
             <section class="section">
                 <div class="container">
                     <div class="section-title fade-in">ПОЖЕЛАНИЯ</div>
@@ -185,7 +243,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 8: Чат для гостей (без картинки) -->
+            <!-- СТРАНИЦА 8: Чат для гостей -->
             <section class="section">
                 <div class="container">
                     <div class="section-title fade-in">ЧАТ ДЛЯ ГОСТЕЙ</div>
@@ -196,7 +254,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 9: Анкета для гостей (обновленная) -->
+            <!-- СТРАНИЦА 9: Анкета для гостей -->
             <section class="section">
                 <div class="container">
                     <div class="section-title fade-in">АНКЕТА ГОСТЯ</div>
@@ -237,7 +295,7 @@
                 </div>
             </section>
             
-            <!-- СТРАНИЦА 10: Контакты (с обновленными номерами) -->
+            <!-- СТРАНИЦА 10: Контакты -->
             <section class="section">
                 <div class="container">
                     <div class="section-title fade-in">КОНТАКТЫ</div>
