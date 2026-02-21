@@ -380,5 +380,20 @@
     
     <!-- Подключаем внешний JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Аудио плеер (скрытый) -->
+<audio id="wedding-audio" loop preload="auto">
+  <source src="путь/к/вашей/песне.mp3" type="audio/mpeg">
+  <source src="путь/к/вашей/песне.ogg" type="audio/ogg">
+  Ваш браузер не поддерживает аудио.
+</audio>
+
+<!-- Кнопка управления музыкой -->
+<div class="music-control" id="musicControl">
+  <div class="music-icon">
+    <i class="fas fa-music"></i>
+  </div>
+  <div class="music-text">фоновая музыка</div>
+</div>
 </body>
 </html>
