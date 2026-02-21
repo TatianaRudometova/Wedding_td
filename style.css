@@ -61,11 +61,14 @@ h1, h2, h3, .section-title, .greeting-title {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* ========== СТРАНИЦА 1: Имена и фото (как в примере) ========== */
+/* ========== СТРАНИЦА 1: Имена и фото ========== */
 .hero-container {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-wrapper {
@@ -73,57 +76,60 @@ h1, h2, h3, .section-title, .greeting-title {
     align-items: center;
     justify-content: center;
     position: relative;
-    min-height: 500px;
+    min-height: 600px;
+    width: 100%;
 }
 
 .hero-name-left-top,
 .hero-name-right-bottom {
     position: absolute;
-    width: 60px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-name-left-top {
-    left: -20px; /* Отодвигаем от фото */
-    top: 20px;
+    left: 0;
+    top: 30px;
 }
 
 .hero-name-right-bottom {
-    right: -20px; /* Отодвигаем от фото */
-    bottom: 20px;
+    right: 0;
+    bottom: 30px;
 }
 
-.hero-name-vertical {
+.hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 500;
     color: #000000;
-    line-height: 1.1;
-    letter-spacing: 4px;
+    line-height: 1.2;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin: 0;
+    white-space: nowrap;
 }
 
-/* Дмитрий - слева сверху, против часовой стрелки */
-.hero-name-left-top .hero-name-vertical {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    transform: rotate(180deg); /* Поворот против часовой стрелки */
+/* Дмитрий - слева сверху, поворот на 45° против часовой стрелки */
+.hero-name-left-top .hero-name {
+    transform: rotate(-45deg);
+    transform-origin: left top;
 }
 
-/* Татьяна - справа снизу, по часовой стрелке */
-.hero-name-right-bottom .hero-name-vertical {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    transform: rotate(0deg); /* Обычное вертикальное письмо (по часовой) */
+/* Татьяна - справа снизу, поворот на 45° по часовой стрелке */
+.hero-name-right-bottom .hero-name {
+    transform: rotate(45deg);
+    transform-origin: right bottom;
 }
 
 .hero-photo-wrapper {
-    width: 280px;
-    height: 420px;
+    width: 380px;
+    height: 520px;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .hero-photo {
@@ -135,82 +141,107 @@ h1, h2, h3, .section-title, .greeting-title {
 
 .hero-date-wrapper {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 20px;
 }
 
 .hero-date {
-    font-size: 36px;
+    font-size: 42px;
     font-family: 'Cormorant Garamond', serif;
     color: #000000;
     line-height: 1.2;
 }
 
 .hero-time {
-    font-size: 18px;
+    font-size: 20px;
     color: #666666;
-    margin-top: 5px;
+    margin-top: 8px;
     font-weight: 300;
 }
 
 .hero-divider {
-    width: 100px;
+    width: 120px;
     height: 1px;
     background-color: #000000;
-    margin: 20px auto;
+    margin: 25px auto;
     opacity: 0.2;
 }
 
 /* Адаптация для мобильных */
 @media (max-width: 768px) {
     .hero-wrapper {
-        min-height: 400px;
+        min-height: 500px;
     }
     
-    .hero-name-vertical {
-        font-size: 32px;
+    .hero-name {
+        font-size: 36px;
     }
     
     .hero-name-left-top {
-        left: -10px;
-        top: 10px;
+        left: -5px;
+        top: 20px;
     }
     
     .hero-name-right-bottom {
-        right: -10px;
-        bottom: 10px;
+        right: -5px;
+        bottom: 20px;
     }
     
     .hero-photo-wrapper {
-        width: 220px;
-        height: 330px;
+        width: 300px;
+        height: 420px;
+    }
+    
+    .hero-date {
+        font-size: 36px;
+    }
+    
+    .hero-time {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-wrapper {
+        min-height: 400px;
+    }
+    
+    .hero-name {
+        font-size: 28px;
+    }
+    
+    .hero-name-left-top {
+        left: -5px;
+        top: 15px;
+    }
+    
+    .hero-name-right-bottom {
+        right: -5px;
+        bottom: 15px;
+    }
+    
+    .hero-photo-wrapper {
+        width: 240px;
+        height: 340px;
     }
     
     .hero-date {
         font-size: 30px;
     }
+    
+    .hero-time {
+        font-size: 16px;
+    }
 }
 
-@media (max-width: 480px) {
-    .hero-name-vertical {
-        font-size: 26px;
-    }
-    
-    .hero-name-left-top {
-        left: -5px;
-    }
-    
-    .hero-name-right-bottom {
-        right: -5px;
+@media (max-width: 360px) {
+    .hero-name {
+        font-size: 24px;
     }
     
     .hero-photo-wrapper {
-        width: 180px;
-        height: 270px;
-    }
-    
-    .hero-date {
-        font-size: 26px;
+        width: 200px;
+        height: 280px;
     }
 }
 .hero-divider {
