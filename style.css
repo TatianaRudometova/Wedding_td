@@ -61,29 +61,62 @@ h1, h2, h3, .section-title, .greeting-title {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* ========== СТРАНИЦА 1: Имена и фото ========== */
+/* ========== СТРАНИЦА 1: Имена и фото (как в примере) ========== */
 .hero-container {
-    max-width: 1200px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-}
-
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 800px;
     position: relative;
+    min-height: 800px;
 }
 
-/* Контейнер для фото */
+/* Имя Дмитрий - слева сверху, повернут на 270deg (против часовой стрелки) */
+.hero-name-left {
+    position: absolute;
+    top: 104px;
+    left: -68px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.55;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+    transform: rotate(270deg);
+    transform-origin: left top;
+    z-index: 10;
+}
+
+/* Имя Татьяна - справа снизу, повернут на 90deg (по часовой стрелке) */
+.hero-name-right {
+    position: absolute;
+    bottom: 283px;
+    right: -68px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.55;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+    transform: rotate(90deg);
+    transform-origin: right bottom;
+    z-index: 10;
+}
+
+/* Фото */
 .hero-photo-wrapper {
-    width: 500px;
-    height: 650px;
-    margin: 0 auto;
+    position: absolute;
+    top: 39px;
+    left: 74px;
+    width: 270px;
+    height: 405px;
     overflow: hidden;
-    /* Убрано скругление */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .hero-photo {
@@ -93,221 +126,147 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева сверху */
-.hero-name-left {
-    position: absolute;
-    left: 50px;
-    top: 50px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 600;
-    color: #000000;
-    line-height: 1.2;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    transform: rotate(-10deg);
-    white-space: nowrap;
-    z-index: 10;
-}
-
-/* Имя Татьяна - справа снизу */
-.hero-name-right {
-    position: absolute;
-    right: 50px;
-    bottom: 50px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
-    font-weight: 600;
-    color: #000000;
-    line-height: 1.2;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    transform: rotate(10deg);
-    white-space: nowrap;
-    z-index: 10;
-}
-
+/* Дата под фото */
 .hero-date-wrapper {
+    position: absolute;
+    bottom: 70px;
+    left: 70px;
+    width: 278px;
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
 }
 
 .hero-date {
-    font-size: 48px;
+    font-size: 32px;
     font-family: 'Cormorant Garamond', serif;
     color: #000000;
     line-height: 1.2;
+    margin-bottom: 10px;
 }
 
 .hero-time {
-    font-size: 22px;
+    font-size: 18px;
     color: #666666;
-    margin-top: 10px;
     font-weight: 300;
 }
 
-/* Десктоп (большие экраны) */
-@media (min-width: 1200px) {
-    .hero-content {
-        min-height: 900px;
-    }
-    
-    .hero-photo-wrapper {
-        width: 600px;
-        height: 750px;
-    }
-    
-    .hero-name-left {
-        font-size: 60px;
-        left: 80px;
-        top: 80px;
-    }
-    
-    .hero-name-right {
-        font-size: 60px;
-        right: 80px;
-        bottom: 80px;
-    }
+/* Текст под фото (в примере было "В нашей жизни скоро состоится важное событие — наша свадьба!") */
+.hero-text {
+    position: absolute;
+    bottom: 0;
+    left: 70px;
+    width: 278px;
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 300;
+    line-height: 1.4;
 }
 
-/* Планшеты */
-@media (max-width: 992px) {
-    .hero-content {
+/* Декоративная линия */
+.hero-divider {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    width: 322px;
+    height: 2px;
+}
+
+.hero-divider svg {
+    width: 100%;
+    height: 100%;
+    stroke: #000000;
+    stroke-width: 1;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .hero-container {
         min-height: 700px;
     }
     
-    .hero-photo-wrapper {
-        width: 450px;
-        height: 600px;
-    }
-    
     .hero-name-left {
-        font-size: 42px;
-        left: 30px;
-        top: 30px;
+        font-size: 50px;
+        top: 93px;
+        left: -59px;
     }
     
     .hero-name-right {
-        font-size: 42px;
-        right: 30px;
-        bottom: 30px;
+        font-size: 50px;
+        bottom: 261px;
+        right: -59px;
+    }
+    
+    .hero-photo-wrapper {
+        width: 238px;
+        height: 357px;
+        top: 39px;
+        left: 61px;
+    }
+    
+    .hero-date-wrapper {
+        bottom: 60px;
+        left: 50px;
+        width: 260px;
+    }
+    
+    .hero-date {
+        font-size: 28px;
     }
 }
 
-/* Мобильные */
-@media (max-width: 768px) {
-    .hero-content {
+@media (max-width: 480px) {
+    .hero-container {
         min-height: 600px;
     }
     
-    .hero-photo-wrapper {
-        width: 400px; /* Увеличено */
-        height: 500px; /* Увеличено */
-    }
-    
     .hero-name-left {
-        font-size: 36px;
-        left: 20px;
-        top: 20px;
-        transform: rotate(-8deg);
+        font-size: 46px;
+        top: 67px;
+        left: -60px;
     }
     
     .hero-name-right {
-        font-size: 36px;
-        right: 20px;
-        bottom: 20px;
-        transform: rotate(8deg);
-    }
-}
-
-/* Маленькие мобильные */
-@media (max-width: 480px) {
-    .hero-content {
-        min-height: 500px;
+        font-size: 46px;
+        bottom: 227px;
+        right: -60px;
     }
     
     .hero-photo-wrapper {
-        width: 320px; /* Еще увеличено */
-        height: 420px;
+        width: 214px;
+        height: 321px;
+        top: 30px;
+        left: 53px;
     }
     
-    .hero-name-left {
-        font-size: 30px;
-        left: 10px;
-        top: 10px;
-        transform: rotate(-5deg);
+    .hero-date-wrapper {
+        bottom: 40px;
+        left: 30px;
+        width: 240px;
     }
     
-    .hero-name-right {
-        font-size: 30px;
-        right: 10px;
-        bottom: 10px;
-        transform: rotate(5deg);
+    .hero-date {
+        font-size: 26px;
     }
 }
 
 @media (max-width: 360px) {
-    .hero-photo-wrapper {
-        width: 280px;
-        height: 360px;
-    }
-    
     .hero-name-left {
-        font-size: 26px;
+        font-size: 40px;
+        top: 50px;
+        left: -50px;
     }
     
     .hero-name-right {
-        font-size: 26px;
-    }
-}
-    
-    .hero-left .hero-name-left {
-        transform: rotate(0deg);
-        font-size: 42px;
-        text-align: center;
-    }
-    
-    .hero-right .hero-name-right {
-        transform: rotate(0deg);
-        font-size: 42px;
-        text-align: center;
+        font-size: 40px;
+        bottom: 200px;
+        right: -50px;
     }
     
     .hero-photo-wrapper {
-        width: 350px;
-        height: 450px;
-    }
-    
-    .hero-date {
-        font-size: 36px;
-    }
-    
-    .hero-time {
-        font-size: 18px;
-    }
-}
-
-/* Маленькие мобильные */
-@media (max-width: 480px) {
-    .hero-left .hero-name-left,
-    .hero-right .hero-name-right {
-        font-size: 36px;
-    }
-    
-    .hero-photo-wrapper {
-        width: 280px;
-        height: 360px;
-    }
-    
-    .hero-date {
-        font-size: 30px;
-    }
-    
-    .hero-time {
-        font-size: 16px;
+        width: 180px;
+        height: 270px;
+        top: 30px;
+        left: 40px;
     }
 }
 
