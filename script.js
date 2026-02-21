@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const openButton = document.getElementById('openButton');
     const mainContent = document.getElementById('mainContent');
     const overlay = document.getElementById('envelopeOverlay');
-    const navArrows = document.getElementById('navArrows');
     
     let isOpened = false;
     
@@ -20,9 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             envelope.classList.add('hidden'); // Прячем конверт
             mainContent.classList.add('visible'); // Показываем основной контент
-            if (navArrows) {
-                navArrows.style.display = 'flex'; // Показываем стрелки навигации
-            }
             if (overlay) {
                 overlay.style.opacity = '0';
                 setTimeout(() => {
@@ -47,50 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Автоматическое открытие через 5 секунд (демо-режим)
     setTimeout(openEnvelope, 5000);
-    
-    // ========== НАВИГАЦИЯ ПО СТРАНИЦАМ (СТРЕЛКИ) ==========
-    const pagesContainer = document.getElementById('pagesContainer');
-    const arrowUp = document.getElementById('arrowUp');
-    const arrowDown = document.getElementById('arrowDown');
-    const pageSections = document.querySelectorAll('.page-section');
-    
-    let currentPageIndex = 0; // Текущая страница (начинаем с 0 - первая страница)
-    
-    // Функция прокрутки к определенной странице
-    function scrollToPage(index) {
-        if (index >= 0 && index < pageSections.length && pagesContainer) {
-            pageSections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-            currentPageIndex = index;
-        }
-    }
-    
-    // Обработчик для стрелки вверх
-    if (arrowUp) {
-        arrowUp.addEventListener('click', function() {
-            scrollToPage(currentPageIndex - 1);
-        });
-    }
-    
-    // Обработчик для стрелки вниз
-    if (arrowDown) {
-        arrowDown.addEventListener('click', function() {
-            scrollToPage(currentPageIndex + 1);
-        });
-    }
-    
-    // Отслеживаем текущую страницу при прокрутке
-    if (pagesContainer) {
-        pagesContainer.addEventListener('scroll', function() {
-            const scrollPosition = pagesContainer.scrollTop;
-            pageSections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollPosition >= sectionTop - sectionHeight/3 && scrollPosition < sectionTop + sectionHeight - sectionHeight/3) {
-                    currentPageIndex = index;
-                }
-            });
-        });
-    }
     
     // ========== СЛАЙДЕР ПОЖЕЛАНИЙ ==========
     const sliderTrack = document.getElementById('sliderTrack');
