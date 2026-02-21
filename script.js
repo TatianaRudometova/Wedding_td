@@ -1,44 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ========== ОТКРЫВАНИЕ КОНВЕРТА ==========
-    const envelope = document.getElementById('envelope');
-    const clickArea = document.getElementById('clickArea');
-    const openButton = document.getElementById('openButton');
-    const mainContent = document.getElementById('mainContent');
-    const overlay = document.getElementById('envelopeOverlay');
-    
-    let isOpened = false;
-    
-    function openEnvelope() {
-        if (isOpened) return;
-        isOpened = true;
-        
-        envelope.classList.add('open');
-        
-        setTimeout(function() {
-            envelope.classList.add('hidden');
-            mainContent.classList.add('visible');
-            if (overlay) {
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 500);
-            }
-        }, 800);
-    }
-    
-    if (clickArea) {
-        clickArea.addEventListener('click', openEnvelope);
-    }
-    
-    if (openButton) {
-        openButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            openEnvelope();
-        });
-    }
-    
-    setTimeout(openEnvelope, 5000);
-    
     // ========== СЛАЙДЕР ПОЖЕЛАНИЙ ==========
     const sliderTrack = document.getElementById('sliderTrack');
     const slides = document.querySelectorAll('.slider-slide');
@@ -159,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1000);
     }
+    
     // ========== УПРАВЛЕНИЕ МУЗЫКОЙ ==========
-document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('wedding-audio');
     const musicControl = document.getElementById('musicControl');
     let isMusicInitialized = false;
@@ -208,23 +168,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Пытаемся включить музыку после открытия конверта
-    const openEnvelope = document.getElementById('openButton');
-    const clickArea = document.getElementById('clickArea');
-    
-    function handleEnvelopeOpen() {
-        setTimeout(() => {
-            tryPlayMusic();
-        }, 500); // Немного задерживаем, чтобы конверт успел открыться
-    }
-    
-    if (openEnvelope) {
-        openEnvelope.addEventListener('click', handleEnvelopeOpen);
-    }
-    
-    if (clickArea) {
-        clickArea.addEventListener('click', handleEnvelopeOpen);
-    }
+    // Пытаемся включить музыку после загрузки страницы
+    setTimeout(() => {
+        tryPlayMusic();
+    }, 1000);
     
     // Обработчик клика по кнопке управления музыкой
     if (musicControl) {
@@ -232,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Дополнительная попытка включить музыку при любом клике по сайту,
-    // если она еще не играет (на случай, если конверт не сработал)
+    // если она еще не играет
     document.addEventListener('click', function tryPlayOnAnyClick() {
         if (!isMusicInitialized && audio) {
             tryPlayMusic();
@@ -241,12 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Если пользователь взаимодействовал с сайтом до открытия конверта
+    // Если пользователь взаимодействовал с сайтом
     document.addEventListener('touchstart', function tryPlayOnTouch() {
         if (!isMusicInitialized && audio) {
             tryPlayMusic();
             document.removeEventListener('touchstart', tryPlayOnTouch);
         }
     });
-});
 });
