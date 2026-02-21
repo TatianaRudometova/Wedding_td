@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #e0dee0; /* Цвет фона как у конверта */
+    background-color: #faf7f2; /* Мягкий кремовый фон */
     line-height: 1.6;
     overflow-x: hidden;
     color: #4a4a4a;
@@ -32,7 +32,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6); /* Более темное наложение (было #e0dee0) */
+    background: rgba(0, 0, 0, 0.6);
     z-index: 998;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -45,7 +45,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%); /* Более сильное затемнение по краям */
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%);
     pointer-events: none;
 }
 
@@ -53,47 +53,47 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* На всю ширину окна */
+    width: 100vw;
     height: 100vh;
     z-index: 1000;
     pointer-events: none;
     display: flex;
     justify-content: center;
-    align-items: center; /* Центрируем по вертикали */
+    align-items: center;
 }
 
 .envelope-top {
     position: absolute;
     top: 0;
-    left: 0; /* Убираем translateX, теперь позиционируем от левого края */
-    width: 100%; /* На всю ширину родителя */
-    height: 70vh; /* Чуть выше, чтобы лучше перекрывало */
+    left: 0;
+    width: 100%;
+    height: 60vh;
     background-image: url('images/top.png');
-    background-size: cover; /* Растягиваем на всю ширину */
+    background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
     transform-origin: top;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1002;
     pointer-events: none;
-    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3)); /* Усиливаем тень */
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
 }
 
 .envelope-bottom {
     position: absolute;
     bottom: 0;
-    left: 0; /* Убираем translateX */
-    width: 100%; /* На всю ширину родителя */
-    height: 70vh; /* Чуть выше */
+    left: 0;
+    width: 100%;
+    height: 60vh;
     background-image: url('images/bottom.png');
-    background-size: cover; /* Растягиваем на всю ширину */
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     transform-origin: bottom;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
     pointer-events: none;
-    filter: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.3)); /* Усиливаем тень */
+    filter: drop-shadow(0 -8px 15px rgba(0, 0, 0, 0.3));
 }
 
 .envelope-text {
@@ -102,25 +102,25 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     text-align: center;
     z-index: 1003;
     pointer-events: none;
-    color: #ffffff; /* Белый текст для лучшей видимости на темном фоне */
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Усиливаем тень текста */
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .envelope-text.top {
-    top: 20%; /* Немного ниже */
-    font-size: clamp(24px, 6vw, 48px); /* Увеличиваем размер на мобильных */
+    top: 20%;
+    font-size: clamp(24px, 6vw, 48px);
     letter-spacing: 4px;
     white-space: nowrap;
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 700; /* Жирнее */
+    font-weight: 700;
 }
 
 .envelope-text.bottom {
-    bottom: 15%; /* Выше, чтобы не налезало на край */
+    bottom: 15%;
     font-size: clamp(16px, 4vw, 26px);
-    background: rgba(0, 0, 0, 0.5); /* Темный фон для контраста */
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
     padding: 12px 30px;
     border-radius: 60px;
@@ -138,7 +138,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 @keyframes gentle-pulse {
     0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.05); } /* Немного сильнее пульсация */
+    50% { transform: translateX(-50%) scale(1.05); }
 }
 
 .envelope-click-area {
@@ -152,13 +152,12 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     cursor: pointer;
 }
 
-/* Анимация открытия конверта */
 .envelope-fullscreen.open .envelope-top {
-    transform: translateY(-100%); /* Убираем translateX, только движение вверх */
+    transform: translateY(-100%);
 }
 
 .envelope-fullscreen.open .envelope-bottom {
-    transform: translateY(100%); /* Убираем translateX, только движение вниз */
+    transform: translateY(100%);
 }
 
 .envelope-fullscreen.open ~ .envelope-overlay {
@@ -168,28 +167,6 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .envelope-fullscreen.hidden {
     display: none;
-}
-
-/* Адаптация для телефонов */
-@media (max-width: 768px) {
-    .envelope-text.top {
-        top: 25%; /* Немного ниже на телефонах */
-        font-size: 22px;
-        white-space: normal; /* Разрешаем перенос на телефонах */
-        padding: 0 20px;
-    }
-    
-    .envelope-text.bottom {
-        bottom: 20%;
-        font-size: 16px;
-        padding: 10px 20px;
-        white-space: normal; /* Разрешаем перенос */
-        max-width: 80%; /* Ограничиваем ширину */
-    }
-    
-    .envelope-top, .envelope-bottom {
-        height: 70vh; /* На телефонах делаем выше */
-    }
 }
 
 /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
@@ -202,7 +179,7 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     pointer-events: none;
     position: relative;
     z-index: 10;
-    background-color: #e0dee0; /* Фон как у конверта */
+    background-color: #faf7f2; /* Мягкий кремовый фон */
 }
 
 .main-content.visible {
@@ -219,24 +196,51 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .section {
-    margin: 60px 0;
+    margin: 80px 0; /* Увеличил отступы */
     padding: 20px 0;
+    position: relative;
+}
+
+/* Декоративные линии по бокам секций (новый тренд) */
+.section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+    opacity: 0.3;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+    opacity: 0.3;
 }
 
 .section-title {
     text-align: center;
     font-size: 42px;
-    color: #b76e79;
+    color: #8b5a5b; /* Глубокий бордовый */
     margin-bottom: 40px;
     position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
+/* Декоративное подчеркивание с золотом */
 .section-title:after {
     content: '';
     display: block;
     width: 80px;
     height: 2px;
-    background: #d4b2a7;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
     margin: 15px auto 0;
 }
 
@@ -248,14 +252,45 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .names-title {
     font-size: 64px;
-    color: #b76e79;
+    color: #8b5a5b; /* Глубокий бордовый */
     line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.1); /* Легкое золотое свечение */
+    position: relative;
+    display: inline-block;
+}
+
+/* Золотые акценты вокруг имен */
+.names-title::before,
+.names-title::after {
+    content: '✦';
+    color: #d4af37;
+    font-size: 24px;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.names-title::before {
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.names-title::after {
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .names-ampersand {
     font-size: 48px;
-    color: #b76e79;
+    color: #d4af37; /* Античное золото */
     margin: 10px 0;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #c98a8f; }
 }
 
 .photos-placeholder {
@@ -265,22 +300,44 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .couple-photo {
     max-width: 100%;
     max-height: 60vh;
-    border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-radius: 30px 30px 30px 0; /* Асимметричные углы в тренде */
+    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.15);
+    border: 2px solid rgba(212, 175, 55, 0.3); /* Золотая рамка */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.couple-photo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 30px 50px rgba(212, 175, 55, 0.2);
 }
 
 /* ========== СТРАНИЦА 2: Приветствие ========== */
 .greeting {
     text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 40px 0 40px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px); /* Эффект матового стекла */
+    padding: 50px;
+    border-radius: 60px 0 60px 0;
+    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративный золотой уголок */
+.greeting::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.1) 50%);
 }
 
 .greeting-title {
     font-size: 48px;
-    color: #b76e79;
+    color: #8b5a5b;
     margin-bottom: 30px;
 }
 
@@ -289,16 +346,19 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     line-height: 1.8;
     max-width: 600px;
     margin: 0 auto 20px;
+    color: #5a5a5a;
 }
 
 /* ========== СТРАНИЦА 3: Календарь ========== */
 .calendar-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 30px;
     max-width: 500px;
     margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .calendar-header {
@@ -306,8 +366,10 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     font-weight: bold;
-    color: #b76e79;
+    color: #c98a8f; /* Пыльная роза */
     margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
 }
 
 .calendar-grid {
@@ -322,24 +384,32 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f9f3f0;
+    background: rgba(249, 243, 240, 0.5);
     border-radius: 50%;
     font-size: 16px;
     cursor: default;
+    transition: all 0.2s;
+}
+
+.calendar-day:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: scale(1.05);
 }
 
 .calendar-day.highlight {
-    background: #b76e79;
+    background: #c98a8f; /* Пыльная роза */
     color: white;
     font-weight: bold;
-    box-shadow: 0 0 0 3px #f0d9d1;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
 }
 
 .calendar-note {
     text-align: center;
     font-size: 20px;
-    color: #b76e79;
+    color: #8b5a5b;
     font-weight: 500;
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 /* ========== СТРАНИЦА 4: Локация ========== */
@@ -351,17 +421,26 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .location-card {
-    background: white;
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 30px 30px 30px 0;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    box-shadow: 0 15px 30px rgba(139, 90, 91, 0.1);
     text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 40px rgba(212, 175, 55, 0.15);
 }
 
 .location-name {
     font-size: 24px;
-    color: #b76e79;
+    color: #8b5a5b;
     margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .location-address {
@@ -374,23 +453,27 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     width: 100%;
     height: 200px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px 20px 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .map-button {
     display: inline-block;
     padding: 10px 25px;
-    background: #b76e79;
+    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
     color: white;
     text-decoration: none;
     border-radius: 50px;
     font-size: 14px;
     margin-top: 20px;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .map-button:hover {
-    background: #9a5a64;
+    background: linear-gradient(135deg, #d4af37, #c98a8f);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
 /* ========== СТРАНИЦА 5: Тайминг ========== */
@@ -402,17 +485,38 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .timeline-item {
     display: flex;
     margin-bottom: 25px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(139, 90, 91, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+}
+
+/* Золотая полоска слева */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #d4af37, #c98a8f);
 }
 
 .timeline-time {
     min-width: 120px;
     font-size: 20px;
     font-weight: 600;
-    color: #b76e79;
+    color: #c98a8f;
     font-family: 'Cormorant Garamond', serif;
 }
 
@@ -427,10 +531,12 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-size: 20px;
     max-width: 600px;
     margin: 0 auto 30px;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border-radius: 30px 30px 30px 0;
+    box-shadow: 0 10px 25px rgba(139, 90, 91, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .dresscode-palette {
@@ -442,19 +548,21 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .dresscode-palette span {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border: 2px solid white;
-    transition: transform 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 3px solid white;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 .dresscode-palette span:hover {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
 }
 
-/* ========== СТРАНИЦА 7: Пожелания (Слайдер) ========== */
+/* ========== СТРАНИЦА 7: Пожелания ========== */
 .wishlist-slider {
     position: relative;
     max-width: 600px;
@@ -474,8 +582,8 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     height: 50px;
     border-radius: 50%;
     background: white;
-    border: 1px solid #b76e79;
-    color: #b76e79;
+    border: 1px solid #d4af37;
+    color: #c98a8f;
     cursor: pointer;
     font-size: 20px;
     transition: all 0.3s;
@@ -483,8 +591,10 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 }
 
 .slider-arrow:hover {
-    background: #b76e79;
+    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
     color: white;
+    border-color: #c98a8f;
+    transform: scale(1.1);
 }
 
 .slider-dots {
@@ -498,16 +608,18 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     border-radius: 50%;
     background: #d9d9d9;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .dot.active {
-    background: #b76e79;
+    background: #d4af37;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #d4af37;
 }
 
 .slider-container {
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 30px 30px 30px 0;
 }
 
 .slider-track {
@@ -527,24 +639,27 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .wishlist-text {
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 30px 30px 30px 0;
+    box-shadow: 0 15px 30px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .wishlist-note {
-    background: #fff5f0;
+    background: rgba(201, 138, 143, 0.1);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px 20px 20px 0;
     margin: 20px 0;
-    border: 1px dashed #b76e79;
+    border: 1px dashed #d4af37;
 }
 
 .wishlist-note-title {
     font-size: 20px;
     margin-bottom: 15px;
-    color: #b76e79;
+    color: #8b5a5b;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .wishlist-message {
@@ -558,17 +673,28 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     justify-content: center;
     gap: 30px;
     font-size: 40px;
-    color: #b76e79;
+    color: #d4af37;
     margin: 30px 0;
+}
+
+.payment-icons i {
+    transition: all 0.3s;
+}
+
+.payment-icons i:hover {
+    transform: translateY(-5px);
+    color: #c98a8f;
 }
 
 /* ========== СТРАНИЦА 8: Чат ========== */
 .chat-block {
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 40px 40px 40px 0;
+    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .chat-text {
@@ -585,25 +711,29 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .chat-phone-img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 20px 20px 20px 0;
     max-height: 200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid rgba(212, 175, 55, 0.3);
 }
 
 .chat-button {
     display: inline-block;
     padding: 15px 40px;
-    background: #b76e79;
+    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
     color: white;
     text-decoration: none;
     border-radius: 50px;
     font-size: 18px;
     font-weight: 600;
-    transition: background 0.3s;
-    border: 1px solid #000;
+    transition: all 0.3s;
+    border: 1px solid #d4af37;
 }
 
 .chat-button:hover {
-    background: #9a5a64;
+    background: linear-gradient(135deg, #d4af37, #c98a8f);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
 /* ========== СТРАНИЦА 9: Анкета ========== */
@@ -611,15 +741,18 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     text-align: center;
     font-size: 20px;
     margin-bottom: 30px;
+    color: #8b5a5b;
 }
 
 .rsvp-form {
     max-width: 600px;
     margin: 0 auto;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 40px 40px 40px 0;
+    box-shadow: 0 20px 40px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .form-group {
@@ -630,23 +763,25 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     display: block;
     margin-bottom: 10px;
     font-weight: 500;
-    color: #5a5a5a;
+    color: #8b5a5b;
     font-size: 16px;
 }
 
 .form-input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #000;
+    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 25px;
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
-    transition: border 0.3s;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #b76e79;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 .form-radio-group {
@@ -660,12 +795,13 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     align-items: center;
     gap: 8px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .form-radio input {
     width: 18px;
     height: 18px;
-    accent-color: #b76e79;
+    accent-color: #c98a8f;
 }
 
 .form-checkbox-group {
@@ -679,29 +815,32 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     align-items: center;
     gap: 8px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .form-checkbox input {
     width: 18px;
     height: 18px;
-    accent-color: #b76e79;
+    accent-color: #c98a8f;
 }
 
 .form-submit {
-    background: #b76e79;
+    background: linear-gradient(135deg, #c98a8f, #8b5a5b);
     color: white;
-    border: 1px solid #000;
+    border: 1px solid #d4af37;
     padding: 15px 40px;
     font-size: 18px;
     border-radius: 25px;
     cursor: pointer;
     width: 100%;
     font-weight: 600;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .form-submit:hover {
-    background: #9a5a64;
+    background: linear-gradient(135deg, #d4af37, #c98a8f);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
 /* ========== СТРАНИЦА 10: Контакты ========== */
@@ -710,10 +849,12 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     font-size: 18px;
     max-width: 600px;
     margin: 0 auto 30px;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border-radius: 30px 30px 30px 0;
+    box-shadow: 0 10px 25px rgba(139, 90, 91, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .contacts-grid {
@@ -726,41 +867,77 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 
 .contact-item {
     text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 30px 30px 30px 0;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s;
+    min-width: 200px;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
 }
 
 .contact-role {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #b76e79;
+    color: #8b5a5b;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .contact-phone {
     color: #6b5a4f;
     text-decoration: none;
     font-size: 18px;
+    transition: color 0.3s;
 }
 
 .contact-phone:hover {
-    color: #b76e79;
+    color: #d4af37;
 }
 
 /* ========== СТРАНИЦА 11: Таймер ========== */
 .timer-container {
     text-align: center;
-    background: white;
-    padding: 40px;
-    border-radius: 40px 0 40px 0;
-    background-image: url('images/timer-bg.png'); /* Фон для таймера (опционально) */
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    border-radius: 60px 60px 60px 0;
+    box-shadow: 0 30px 50px rgba(139, 90, 91, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративные золотые точки */
+.timer-container::before,
+.timer-container::after {
+    content: '✦';
+    color: #d4af37;
+    font-size: 30px;
+    position: absolute;
+    opacity: 0.3;
+}
+
+.timer-container::before {
+    top: 20px;
+    left: 20px;
+}
+
+.timer-container::after {
+    bottom: 20px;
+    right: 20px;
 }
 
 .timer-title {
     font-size: 24px;
     margin-bottom: 30px;
     font-weight: 500;
+    color: #8b5a5b;
 }
 
 .timer-grid {
@@ -770,18 +947,27 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     flex-wrap: wrap;
 }
 
+.timer-block {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 120px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
 .timer-number {
     font-size: 48px;
     font-weight: 700;
-    color: #b76e79;
+    color: #c98a8f;
     font-family: 'Cormorant Garamond', serif;
+    line-height: 1.2;
 }
 
 .timer-label {
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #8a7a6f;
+    color: #8b5a5b;
     margin-top: 5px;
 }
 
@@ -789,12 +975,12 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
 .footer {
     margin-top: 60px;
     padding: 40px 0;
-    background: rgba(255,255,255,0.3);
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.1), transparent);
 }
 
 .footer-copyright {
     text-align: center;
-    color: #8a7a6f;
+    color: #8b5a5b;
     font-size: 14px;
 }
 
@@ -808,12 +994,22 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
         font-size: 48px;
     }
     
+    .names-title::before,
+    .names-title::after {
+        display: none;
+    }
+    
     .greeting-title {
         font-size: 36px;
     }
     
     .section-title {
         font-size: 36px;
+    }
+    
+    .section::before,
+    .section::after {
+        opacity: 0.1;
     }
     
     .location-grid {
@@ -840,25 +1036,42 @@ h1, h2, h3, .section-title, .greeting-title, .names-title {
     }
     
     .envelope-text.top {
-        font-size: 20px;
-        top: 20%;
+        font-size: 22px;
+        top: 25%;
+        white-space: normal;
+        padding: 0 20px;
     }
     
     .envelope-text.bottom {
-        font-size: 14px;
-        padding: 8px 20px;
+        font-size: 16px;
+        padding: 10px 20px;
+        white-space: normal;
+        max-width: 80%;
+    }
+    
+    .envelope-top, .envelope-bottom {
+        height: 70vh;
     }
     
     .dresscode-palette span {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
     
     .contacts-grid {
-        gap: 30px;
+        gap: 20px;
+    }
+    
+    .contact-item {
+        min-width: 150px;
     }
     
     .timer-grid {
-        gap: 20px;
+        gap: 15px;
+    }
+    
+    .timer-block {
+        min-width: 70px;
+        padding: 15px;
     }
 }
