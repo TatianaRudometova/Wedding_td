@@ -83,18 +83,18 @@ h1, h2, h3, .section-title, .greeting-title {
 }
 
 .hero-name-left-top {
-    left: -10px; /* Немного сместил влево от центра */
+    left: 10px; /* Немного сместил влево от центра */
     top: 0;
 }
 
 .hero-name-right-bottom {
-    right: -10px; /* Сместил вправо от центра, чтобы был отступ от края */
+    right: 10px; /* Сместил вправо от центра, чтобы был отступ от края */
     bottom: 0;
 }
 
 .hero-name-vertical {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 500;
     color: #000000;
     line-height: 1.1;
