@@ -66,7 +66,7 @@ h1, h2, h3, .section-title, .greeting-title {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -87,6 +87,7 @@ h1, h2, h3, .section-title, .greeting-title {
     aspect-ratio: 5 / 7;
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    margin-bottom: 60px; /* Добавляем место для даты */
 }
 
 .hero-photo {
@@ -96,12 +97,12 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева от фото, повернуто, прижато к верхнему краю */
+/* Имя Дмитрий - слева от фото по центру вертикали */
 .hero-name-left {
     position: absolute;
     left: -80px;
-    /* Смещаем вниз на половину высоты буквы */
-    top: -0.3em;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -110,16 +111,16 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    transform: rotate(-90deg);
-    transform-origin: left top;
+    transform-origin: center;
     line-height: 1;
 }
 
-/* Имя Татьяна - справа от фото, повернуто, прижато к нижнему краю */
+/* Имя Татьяна - справа от фото по центру вертикали */
 .hero-name-right {
     position: absolute;
-    right: -40px; /* Уменьшили отступ с -80px до -40px */
-    bottom: 0;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -128,20 +129,20 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    transform: rotate(90deg);
-    transform-origin: right bottom;
+    transform-origin: center;
     line-height: 1;
 }
 
 /* Дата под фото */
 .hero-date-wrapper {
     position: absolute;
-    bottom: -60px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     width: 100%;
     min-width: 200px;
+    background: transparent;
 }
 
 .hero-date {
@@ -164,12 +165,11 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (min-width: 1200px) {
     .hero-name-left {
         left: -100px;
-        top: -0.3em;
         font-size: 60px;
     }
     
     .hero-name-right {
-        right: -50px; /* Увеличили для больших экранов, но все равно ближе */
+        right: -100px;
         font-size: 60px;
     }
 }
@@ -178,37 +178,32 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 992px) {
     .hero-name-left {
         left: -60px;
-        top: -0.3em;
     }
     
     .hero-name-right {
-        right: -35px;
+        right: -60px;
     }
 }
 
 /* Телефоны */
 @media (max-width: 768px) {
     .hero-container {
-        padding: 40px 10px;
+        padding: 20px 10px;
     }
     
     .hero-name-left {
         left: -50px;
-        top: -0.2em; /* Чуть меньше смещение на телефонах */
         font-size: 36px;
     }
     
     .hero-name-right {
-        right: -30px;
+        right: -50px;
         font-size: 36px;
     }
     
     .hero-photo-wrapper {
         width: min(60vw, 300px);
-    }
-    
-    .hero-date-wrapper {
-        bottom: -50px;
+        margin-bottom: 50px;
     }
 }
 
@@ -216,21 +211,17 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 480px) {
     .hero-name-left {
         left: -40px;
-        top: -0.2em;
         font-size: 30px;
     }
     
     .hero-name-right {
-        right: -25px;
+        right: -40px;
         font-size: 30px;
     }
     
     .hero-photo-wrapper {
         width: min(70vw, 250px);
-    }
-    
-    .hero-date-wrapper {
-        bottom: -45px;
+        margin-bottom: 45px;
     }
 }
 
@@ -238,13 +229,16 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 360px) {
     .hero-name-left {
         left: -35px;
-        top: -0.2em;
         font-size: 26px;
     }
     
     .hero-name-right {
-        right: -20px;
+        right: -35px;
         font-size: 26px;
+    }
+    
+    .hero-photo-wrapper {
+        margin-bottom: 40px;
     }
 }
 /* Анимации */
