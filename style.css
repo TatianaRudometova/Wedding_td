@@ -114,8 +114,8 @@ h1, h2, h3, .section-title, .greeting-title {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    height: 600px;
+    width: 600px;
+    height: 800px;
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
