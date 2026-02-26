@@ -73,8 +73,8 @@ h1, h2, h3, .section-title, .greeting-title {
 /* Имя Дмитрий - слева сверху, повернут на 90° против часовой стрелки */
 .hero-name-left {
     position: absolute;
-    top: 80px;
-    left: 0px;
+    top: 0px;
+    left: 80px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 60px;
     font-weight: 500;
@@ -92,8 +92,8 @@ h1, h2, h3, .section-title, .greeting-title {
 /* Имя Татьяна - справа снизу, повернут на 90° по часовой стрелке */
 .hero-name-right {
     position: absolute;
-    bottom: 80px;
-    right: 0px;
+    bottom: 10px;
+    right: 80px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 60px;
     font-weight: 500;
