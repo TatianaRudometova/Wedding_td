@@ -63,31 +63,40 @@ h1, h2, h3, .section-title, .greeting-title {
 
 /* ========== СТРАНИЦА 1: Имена и фото ========== */
 .hero-container {
-    max-width: 600px;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     position: relative;
-    min-height: 900px;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* Контейнер для фото и имен - чтобы имена были привязаны к фото */
+/* Контейнер для фото и имен */
 .hero-photo-container {
     position: relative;
-    width: 500px;
-    height: 700px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Фото */
+/* Контейнер для фото */
 .hero-photo-wrapper {
-    width: 100%;
-    height: 100%;
+    width: 70vw; /* 70% ширины экрана */
+    max-width: 600px; /* но не больше 600px */
+    min-width: 280px; /* и не меньше 280px */
+    height: auto;
+    aspect-ratio: 5 / 7; /* пропорция фото */
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-photo {
@@ -97,14 +106,14 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева от фото, по центру по вертикали */
+/* Имя Дмитрий - слева от фото */
 .hero-name-left {
     position: absolute;
-    left: -60px;
+    left: calc(50% - 35vw - 30px); /* Отступ слева от центра */
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 60px;
+    font-size: calc(16px + 2vw); /* Адаптивный размер */
     font-weight: 500;
     color: #000000;
     letter-spacing: 4px;
@@ -113,16 +122,17 @@ h1, h2, h3, .section-title, .greeting-title {
     white-space: nowrap;
     transform-origin: center;
     z-index: 10;
+    text-align: center;
 }
 
-/* Имя Татьяна - справа от фото, по центру по вертикали */
+/* Имя Татьяна - справа от фото */
 .hero-name-right {
     position: absolute;
-    right: -60px;
+    right: calc(50% - 35vw - 30px); /* Отступ справа от центра */
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 60px;
+    font-size: calc(16px + 2vw);
     font-weight: 500;
     color: #000000;
     letter-spacing: 4px;
@@ -131,21 +141,23 @@ h1, h2, h3, .section-title, .greeting-title {
     white-space: nowrap;
     transform-origin: center;
     z-index: 10;
+    text-align: center;
 }
 
-/* Дата под фото - без фона */
+/* Дата под фото */
 .hero-date-wrapper {
     position: absolute;
-    bottom: -60px;
+    bottom: -50px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     z-index: 20;
 }
 
 .hero-date {
-    font-size: 42px;
+    font-size: calc(24px + 1.5vw);
     font-family: 'Cormorant Garamond', serif;
     color: #000000;
     line-height: 1.2;
@@ -153,106 +165,127 @@ h1, h2, h3, .section-title, .greeting-title {
 }
 
 .hero-time {
-    font-size: 22px;
+    font-size: calc(14px + 0.8vw);
     color: #666666;
     font-weight: 300;
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ (768px - 1024px) ========== */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .hero-photo-container {
-        width: 400px;
-        height: 560px;
-    }
-    
+/* ========== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ========== */
+
+/* Очень большие экраны (более 1200px) */
+@media (min-width: 1200px) {
     .hero-name-left {
-        font-size: 52px;
-        left: -50px;
+        font-size: 60px;
+        left: calc(50% - 300px - 40px);
     }
     
     .hero-name-right {
-        font-size: 52px;
-        right: -50px;
-    }
-    
-    .hero-date-wrapper {
-        bottom: -50px;
-        width: 280px;
+        font-size: 60px;
+        right: calc(50% - 300px - 40px);
     }
     
     .hero-date {
-        font-size: 38px;
+        font-size: 42px;
     }
     
     .hero-time {
-        font-size: 20px;
+        font-size: 22px;
     }
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ (до 768px) ========== */
-@media (max-width: 768px) {
-    .hero-container {
-        min-height: auto;
-        padding: 40px 20px;
-    }
-    
-    .hero-photo-container {
-        width: 280px;
-        height: 392px;
-    }
-    
+/* Десктопы (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
     .hero-name-left {
-        font-size: 40px;
-        left: -45px;
+        left: calc(50% - 250px - 30px);
     }
     
     .hero-name-right {
-        font-size: 40px;
-        right: -45px;
-    }
-    
-    .hero-date-wrapper {
-        bottom: -45px;
-        width: 220px;
-    }
-    
-    .hero-date {
-        font-size: 32px;
-    }
-    
-    .hero-time {
-        font-size: 18px;
+        right: calc(50% - 250px - 30px);
     }
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ (до 480px) ========== */
-@media (max-width: 480px) {
-    .hero-photo-container {
-        width: 200px;
-        height: 280px;
-    }
-    
+/* Планшеты (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
     .hero-name-left {
-        font-size: 32px;
-        left: -35px;
+        left: calc(50% - 200px - 20px);
     }
     
     .hero-name-right {
-        font-size: 32px;
-        right: -35px;
+        right: calc(50% - 200px - 20px);
     }
     
     .hero-date-wrapper {
         bottom: -40px;
-        width: 180px;
+    }
+}
+
+/* Телефоны (до 767px) */
+@media (max-width: 767px) {
+    .hero-photo-wrapper {
+        width: 60vw; /* На телефонах фото чуть меньше */
+        max-width: 350px;
     }
     
-    .hero-date {
-        font-size: 26px;
+    .hero-name-left {
+        left: calc(50% - 30vw - 15px);
+        font-size: calc(14px + 1.5vw);
     }
     
-    .hero-time {
-        font-size: 16px;
+    .hero-name-right {
+        right: calc(50% - 30vw - 15px);
+        font-size: calc(14px + 1.5vw);
+    }
+    
+    .hero-date-wrapper {
+        bottom: -35px;
+    }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+    .hero-photo-wrapper {
+        width: 70vw;
+    }
+    
+    .hero-name-left {
+        left: calc(50% - 35vw - 10px);
+    }
+    
+    .hero-name-right {
+        right: calc(50% - 35vw - 10px);
+    }
+    
+    .hero-date-wrapper {
+        bottom: -30px;
+    }
+}
+
+/* Очень маленькие телефоны (до 360px) */
+@media (max-width: 360px) {
+    .hero-name-left {
+        left: calc(50% - 35vw - 5px);
+    }
+    
+    .hero-name-right {
+        right: calc(50% - 35vw - 5px);
+    }
+}
+
+/* Специально для iPhone с большим разрешением (например, iPhone 12-15 Pro Max) */
+@media (min-width: 380px) and (max-width: 430px) and (min-height: 800px) {
+    .hero-photo-wrapper {
+        width: 55vw;
+        max-width: 320px;
+    }
+    
+    .hero-name-left {
+        left: calc(50% - 27.5vw - 15px);
+        font-size: 28px;
+    }
+    
+    .hero-name-right {
+        right: calc(50% - 27.5vw - 15px);
+        font-size: 28px;
     }
 }
 /* Анимации */
