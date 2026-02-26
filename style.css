@@ -100,7 +100,8 @@ h1, h2, h3, .section-title, .greeting-title {
 .hero-name-left {
     position: absolute;
     left: -80px;
-    top: 0;
+    /* Смещаем вниз на половину высоты буквы */
+    top: -0.3em;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -117,7 +118,7 @@ h1, h2, h3, .section-title, .greeting-title {
 /* Имя Татьяна - справа от фото, повернуто, прижато к нижнему краю */
 .hero-name-right {
     position: absolute;
-    right: -80px;
+    right: -40px; /* Уменьшили отступ с -80px до -40px */
     bottom: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
@@ -163,11 +164,12 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (min-width: 1200px) {
     .hero-name-left {
         left: -100px;
+        top: -0.3em;
         font-size: 60px;
     }
     
     .hero-name-right {
-        right: -100px;
+        right: -50px; /* Увеличили для больших экранов, но все равно ближе */
         font-size: 60px;
     }
 }
@@ -176,10 +178,11 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 992px) {
     .hero-name-left {
         left: -60px;
+        top: -0.3em;
     }
     
     .hero-name-right {
-        right: -60px;
+        right: -35px;
     }
 }
 
@@ -191,11 +194,12 @@ h1, h2, h3, .section-title, .greeting-title {
     
     .hero-name-left {
         left: -50px;
+        top: -0.2em; /* Чуть меньше смещение на телефонах */
         font-size: 36px;
     }
     
     .hero-name-right {
-        right: -50px;
+        right: -30px;
         font-size: 36px;
     }
     
@@ -212,11 +216,12 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 480px) {
     .hero-name-left {
         left: -40px;
+        top: -0.2em;
         font-size: 30px;
     }
     
     .hero-name-right {
-        right: -40px;
+        right: -25px;
         font-size: 30px;
     }
     
@@ -233,11 +238,12 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 360px) {
     .hero-name-left {
         left: -35px;
+        top: -0.2em;
         font-size: 26px;
     }
     
     .hero-name-right {
-        right: -35px;
+        right: -20px;
         font-size: 26px;
     }
 }
