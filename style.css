@@ -62,32 +62,28 @@ h1, h2, h3, .section-title, .greeting-title {
 }
 
 /* ========== СТРАНИЦА 1: Имена и фото ========== */
+
 .hero-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 40px 20px;
 }
 
-/* Контейнер для фото и имен */
 .hero-photo-container {
     position: relative;
-    display: inline-block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Фото */
 .hero-photo-wrapper {
-    width: clamp(250px, 40vw, 500px);
-    height: auto;
+    width: clamp(320px, 55vw, 650px);
     aspect-ratio: 5 / 7;
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    margin-bottom: 70px; /* Увеличил место для даты */
 }
 
 .hero-photo {
@@ -97,148 +93,81 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева от фото, прижато к ВЕРХНЕМУ краю */
-.hero-name-left {
-    position: absolute;
-    left: 0px;
-    top: 45%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 60px);
-    font-weight: 500;
-    color: #000000;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    white-space: nowrap;
-    transform: rotate(-90deg);
-    transform-origin: left;
-    line-height: 1;
-}
+/* ИМЕНА */
 
-/* Имя Татьяна - справа от фото, прижато к НИЖНЕМУ краю */
+.hero-name-left,
 .hero-name-right {
     position: absolute;
-    right: -80px;
-    bottom: 7%;
+    top: 50%;
+    transform: translateY(-50%);
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 60px);
-    font-weight: 500;
-    color: #000000;
-    letter-spacing: 4px;
+    font-size: clamp(36px, 5vw, 70px);
+    letter-spacing: 6px;
     text-transform: uppercase;
-    margin: 0;
     white-space: nowrap;
-    transform: rotate(90deg);
-    transform-origin: right bottom;
-    line-height: 1;
 }
 
-/* Дата под фото */
+/* Слева */
+.hero-name-left {
+    left: -60px;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left top;
+}
+
+/* Справа */
+.hero-name-right {
+    right: -60px;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right top;
+}
+
+/* Дата */
 .hero-date-wrapper {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 40px;
     text-align: center;
-    width: 100%;
-    min-width: 200px;
-    background: transparent;
 }
 
 .hero-date {
-    font-size: clamp(24px, 4vw, 42px);
+    font-size: clamp(26px, 4vw, 44px);
     font-family: 'Cormorant Garamond', serif;
-    color: #000000;
-    line-height: 1.2;
-    margin-bottom: 5px;
 }
 
 .hero-time {
-    font-size: clamp(14px, 2.5vw, 22px);
-    color: #666666;
-    font-weight: 300;
+    font-size: clamp(16px, 2vw, 22px);
+    color: #666;
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ========== */
-
-/* Большие экраны */
-@media (min-width: 1200px) {
-    .hero-name-left {
-        left: -100px;
-        font-size: 60px;
-    }
-    
-    .hero-name-right {
-        right: -100px;
-        font-size: 60px;
-    }
-}
-
-/* Планшеты и маленькие ноутбуки */
-@media (max-width: 992px) {
-    .hero-name-left {
-        left: -20px;
-    }
-    
-    .hero-name-right {
-        right: -0px;
-    }
-}
-
-/* Телефоны */
 @media (max-width: 768px) {
-    .hero-container {
-        padding: 20px 10px;
-    }
-    
-    .hero-name-left {
-        left: -50px;
-        font-size: 36px;
-    }
-    
-    .hero-name-right {
-        right: -50px;
-        font-size: 36px;
-    }
-    
+
     .hero-photo-wrapper {
-        width: min(60vw, 300px);
-        margin-bottom: 60px;
+        width: 80vw;
+    }
+
+    .hero-name-left {
+        left: -45px;
+        font-size: 34px;
+    }
+
+    .hero-name-right {
+        right: -45px;
+        font-size: 34px;
     }
 }
 
-/* Маленькие телефоны */
 @media (max-width: 480px) {
-    .hero-name-left {
-        left: -40px;
-        font-size: 30px;
-    }
-    
-    .hero-name-right {
-        right: -40px;
-        font-size: 30px;
-    }
-    
-    .hero-photo-wrapper {
-        width: min(70vw, 250px);
-        margin-bottom: 55px;
-    }
-}
 
-/* Очень маленькие телефоны */
-@media (max-width: 360px) {
+    .hero-photo-wrapper {
+        width: 85vw;
+    }
+
     .hero-name-left {
         left: -35px;
-        font-size: 26px;
+        font-size: 28px;
     }
-    
+
     .hero-name-right {
         right: -35px;
-        font-size: 26px;
-    }
-    
-    .hero-photo-wrapper {
-        margin-bottom: 50px;
+        font-size: 28px;
     }
 }
 /* Анимации */
