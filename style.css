@@ -87,7 +87,7 @@ h1, h2, h3, .section-title, .greeting-title {
     aspect-ratio: 5 / 7;
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    margin-bottom: 60px; /* Добавляем место для даты */
+    margin-bottom: 70px; /* Увеличил место для даты */
 }
 
 .hero-photo {
@@ -97,12 +97,11 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева от фото по центру вертикали */
+/* Имя Дмитрий - слева от фото, прижато к ВЕРХНЕМУ краю */
 .hero-name-left {
     position: absolute;
     left: -80px;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
+    top: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -111,16 +110,16 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    transform-origin: center;
+    transform: rotate(-90deg);
+    transform-origin: left top;
     line-height: 1;
 }
 
-/* Имя Татьяна - справа от фото по центру вертикали */
+/* Имя Татьяна - справа от фото, прижато к НИЖНЕМУ краю */
 .hero-name-right {
     position: absolute;
     right: -80px;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
+    bottom: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -129,7 +128,8 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    transform-origin: center;
+    transform: rotate(90deg);
+    transform-origin: right bottom;
     line-height: 1;
 }
 
@@ -203,7 +203,7 @@ h1, h2, h3, .section-title, .greeting-title {
     
     .hero-photo-wrapper {
         width: min(60vw, 300px);
-        margin-bottom: 50px;
+        margin-bottom: 60px;
     }
 }
 
@@ -221,7 +221,7 @@ h1, h2, h3, .section-title, .greeting-title {
     
     .hero-photo-wrapper {
         width: min(70vw, 250px);
-        margin-bottom: 45px;
+        margin-bottom: 55px;
     }
 }
 
@@ -238,7 +238,7 @@ h1, h2, h3, .section-title, .greeting-title {
     }
     
     .hero-photo-wrapper {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 }
 /* Анимации */
