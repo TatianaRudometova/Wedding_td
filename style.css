@@ -66,53 +66,21 @@ h1, h2, h3, .section-title, .greeting-title {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 20px;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Используем гриды для точного позиционирования */
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
+/* Контейнер для фото и имен */
+.hero-photo-container {
+    position: relative;
+    display: inline-block;
     margin: 0 auto;
 }
 
-/* Левая колонка - имя Дмитрий */
-.hero-left {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.hero-name-left {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 60px);
-    font-weight: 500;
-    color: #000000;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    white-space: nowrap;
-    transform: rotate(-90deg);
-    transform-origin: center;
-    line-height: 1;
-}
-
-/* Центральная колонка - фото и дата */
-.hero-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
+/* Фото */
 .hero-photo-wrapper {
     width: clamp(250px, 40vw, 500px);
     height: auto;
@@ -128,32 +96,11 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-.hero-date-wrapper {
-    text-align: center;
-}
-
-.hero-date {
-    font-size: clamp(28px, 4vw, 42px);
-    font-family: 'Cormorant Garamond', serif;
-    color: #000000;
-    line-height: 1.2;
-    margin-bottom: 5px;
-}
-
-.hero-time {
-    font-size: clamp(16px, 2.5vw, 22px);
-    color: #666666;
-    font-weight: 300;
-}
-
-/* Правая колонка - имя Татьяна */
-.hero-right {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.hero-name-right {
+/* Имя Дмитрий - слева от фото, прижато к верхнему краю */
+.hero-name-left {
+    position: absolute;
+    left: -80px; /* Отступ слева от фото */
+    top: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 500;
@@ -162,56 +109,136 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    transform: rotate(90deg);
-    transform-origin: center;
+    writing-mode: horizontal-tb;
+    transform: rotate(0deg);
     line-height: 1;
 }
 
-/* Адаптация для маленьких экранов */
-@media (max-width: 768px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .hero-left {
-        justify-content: center;
-        order: 1;
-    }
-    
-    .hero-center {
-        order: 2;
-    }
-    
-    .hero-right {
-        justify-content: center;
-        order: 3;
-    }
-    
+/* Имя Татьяна - справа от фото, прижато к нижнему краю */
+.hero-name-right {
+    position: absolute;
+    right: -80px; /* Отступ справа от фото */
+    bottom: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 500;
+    color: #000000;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    transform: rotate(0deg);
+    line-height: 1;
+}
+
+/* Дата под фото */
+.hero-date-wrapper {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    min-width: 200px;
+}
+
+.hero-date {
+    font-size: clamp(24px, 4vw, 42px);
+    font-family: 'Cormorant Garamond', serif;
+    color: #000000;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.hero-time {
+    font-size: clamp(14px, 2.5vw, 22px);
+    color: #666666;
+    font-weight: 300;
+}
+
+/* ========== АДАПТАЦИЯ ДЛЯ РАЗНЫХ ЭКРАНОВ ========== */
+
+/* Большие экраны */
+@media (min-width: 1200px) {
     .hero-name-left {
-        transform: rotate(0deg);
-        font-size: 42px;
+        left: -100px;
+        font-size: 60px;
     }
     
     .hero-name-right {
-        transform: rotate(0deg);
-        font-size: 42px;
-    }
-    
-    .hero-photo-wrapper {
-        width: min(70vw, 350px);
+        right: -100px;
+        font-size: 60px;
     }
 }
 
-/* Для очень маленьких экранов */
-@media (max-width: 480px) {
-    .hero-name-left,
+/* Планшеты и маленькие ноутбуки */
+@media (max-width: 992px) {
+    .hero-name-left {
+        left: -60px;
+    }
+    
     .hero-name-right {
+        right: -60px;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 768px) {
+    .hero-container {
+        padding: 40px 10px;
+    }
+    
+    .hero-name-left {
+        left: -50px;
+        font-size: 36px;
+    }
+    
+    .hero-name-right {
+        right: -50px;
         font-size: 36px;
     }
     
     .hero-photo-wrapper {
-        width: min(80vw, 280px);
+        width: min(60vw, 300px);
+    }
+    
+    .hero-date-wrapper {
+        bottom: -50px;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .hero-name-left {
+        left: -40px;
+        font-size: 30px;
+    }
+    
+    .hero-name-right {
+        right: -40px;
+        font-size: 30px;
+    }
+    
+    .hero-photo-wrapper {
+        width: min(70vw, 250px);
+    }
+    
+    .hero-date-wrapper {
+        bottom: -45px;
+    }
+}
+
+/* Очень маленькие телефоны */
+@media (max-width: 360px) {
+    .hero-name-left {
+        left: -35px;
+        font-size: 26px;
+    }
+    
+    .hero-name-right {
+        right: -35px;
+        font-size: 26px;
     }
 }
 /* Анимации */
