@@ -96,10 +96,10 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* Имя Дмитрий - слева от фото, прижато к верхнему краю */
+/* Имя Дмитрий - слева от фото, повернуто, прижато к верхнему краю */
 .hero-name-left {
     position: absolute;
-    left: -80px; /* Отступ слева от фото */
+    left: -80px;
     top: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
@@ -109,15 +109,15 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    writing-mode: horizontal-tb;
-    transform: rotate(0deg);
+    transform: rotate(-90deg);
+    transform-origin: left top;
     line-height: 1;
 }
 
-/* Имя Татьяна - справа от фото, прижато к нижнему краю */
+/* Имя Татьяна - справа от фото, повернуто, прижато к нижнему краю */
 .hero-name-right {
     position: absolute;
-    right: -80px; /* Отступ справа от фото */
+    right: -80px;
     bottom: 0;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 60px);
@@ -127,8 +127,8 @@ h1, h2, h3, .section-title, .greeting-title {
     text-transform: uppercase;
     margin: 0;
     white-space: nowrap;
-    writing-mode: horizontal-tb;
-    transform: rotate(0deg);
+    transform: rotate(90deg);
+    transform-origin: right bottom;
     line-height: 1;
 }
 
