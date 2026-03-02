@@ -496,7 +496,60 @@ h1, h2, h3, .section-title, .greeting-title {
     max-width: 500px;
     font-weight: 300;
 }
+/* Улучшения для слайдера */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    cursor: grab;
+    user-select: none; /* Запрещаем выделение текста */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
+.slider-track:active {
+    cursor: grabbing;
+}
+
+.slider-slide {
+    flex: 0 0 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Предотвращаем клики во время свайпа */
+}
+
+.slider-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wishlist-card {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+/* Индикатор свайпа для мобильных */
+@media (max-width: 768px) {
+    .slider-container::after {
+        content: '';
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 2px;
+        pointer-events: none;
+    }
+}
 /* ========== СТРАНИЦА 8: Чат ========== */
 .chat-card {
     text-align: center;
