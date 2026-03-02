@@ -75,7 +75,7 @@ h1, h2, h3, .section-title, .greeting-title {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-color: #ffffff; /* Фон всей страницы */
+   /* background-color: #ffffff;  Фон всей страницы */
 }
 
 .hero-photo-container {
