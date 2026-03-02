@@ -282,55 +282,50 @@ h1, h2, h3, .section-title, .greeting-title {
     cursor: default;
     border: 1px solid #eaeaea;
     transition: all 0.2s ease;
-}
-
-/* 17 число в форме сердечка */
-.calendar-day.heart {
-    background: #ff4d4d;
-    color: white;
-    font-weight: bold;
-    border: none;
-    clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
-    /* Для старых браузеров */
-    clip-path: polygon(50% 15%, 61% 8%, 75% 8%, 85% 15%, 90% 25%, 85% 40%, 75% 52%, 61% 65%, 50% 75%, 39% 65%, 25% 52%, 15% 40%, 10% 25%, 15% 15%, 25% 8%, 39% 8%, 50% 15%);
-    font-size: 18px;
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
-    animation: gentlePulse 2s ease infinite;
-}
-
-/* Анимация пульсации */
-@keyframes gentlePulse {
-    0% { transform: scale(1.05); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1.05); }
-}
-
-/* Альтернативный вариант через SVG фон для лучшей поддержки */
-.calendar-day.heart.svg-version {
-    background: #ff4d4d;
-    color: white;
-    border: none;
     position: relative;
     overflow: hidden;
 }
 
-.calendar-day.heart.svg-version::before {
+/* 17 число с картинкой heart.png под цифрой */
+.calendar-day.heart {
+    color: white;
+    font-weight: bold;
+    border: none;
+    position: relative;
+    background: transparent;
+    font-size: 18px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* Картинка heart.png на фоне */
+.calendar-day.heart::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ff4d4d;
+    background-image: url('../images/heart.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: -1;
+    border-radius: 50%; /* Делаем картинку круглой */
+    /* Если хотите форму сердечка, раскомментируйте следующую строку: */
+    /* clip-path: polygon(50% 15%, 61% 8%, 75% 8%, 85% 15%, 90% 25%, 85% 40%, 75% 52%, 61% 65%, 50% 75%, 39% 65%, 25% 52%, 15% 40%, 10% 25%, 15% 15%, 25% 8%, 39% 8%, 50% 15%); */
+}
+
+/* Эффект при наведении */
+.calendar-day.heart:hover::before {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
 
 /* Для мобильных устройств */
 @media (max-width: 768px) {
     .calendar-day.heart {
         font-size: 16px;
-        clip-path: polygon(50% 15%, 61% 8%, 75% 8%, 85% 15%, 90% 25%, 85% 40%, 75% 52%, 61% 65%, 50% 75%, 39% 65%, 25% 52%, 15% 40%, 10% 25%, 15% 15%, 25% 8%, 39% 8%, 50% 15%);
     }
     
     .calendar-day {
@@ -341,6 +336,10 @@ h1, h2, h3, .section-title, .greeting-title {
 @media (max-width: 480px) {
     .calendar-day.heart {
         font-size: 15px;
+    }
+    
+    .calendar-day.heart::before {
+        border-radius: 50%;
     }
     
     .calendar-container {
@@ -361,11 +360,10 @@ h1, h2, h3, .section-title, .greeting-title {
     margin-top: 15px;
 }
 
-/* Если пользователь предпочитает уменьшенное движение */
-@media (prefers-reduced-motion: reduce) {
-    .calendar-day.heart {
-        animation: none;
-    }
+/* Запасной вариант, если картинка не загрузится */
+.calendar-day.heart.fallback::before {
+    background: #ff4d4d;
+    background-image: none;
 }
 /* ========== СТРАНИЦА 4: Локация ========== */
 .location-grid {
