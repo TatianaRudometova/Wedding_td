@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+    // ===== ПРОКРУТКА НАВЕРХ ПРИ ЗАГРУЗКЕ =====
+    window.scrollTo({
+        top: 0,
+        behavior: 'auto' // 'auto' - мгновенно, 'smooth' - плавно
+    });    
     // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ (В САМОМ НАЧАЛЕ) ==========
     const calendarGrid = document.getElementById('calendarGrid');
     
