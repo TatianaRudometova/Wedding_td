@@ -75,6 +75,7 @@ h1, h2, h3, .section-title, .greeting-title {
     align-items: center;
     justify-content: center;
     padding: 10px;
+    background-color: #ffffff; /* Фон всей страницы */
 }
 
 .hero-photo-container {
@@ -84,7 +85,7 @@ h1, h2, h3, .section-title, .greeting-title {
     align-items: center;
 }
 
-/* Фото - без лишних отступов */
+/* Фото - принудительно прозрачный фон */
 .hero-photo-wrapper {
     width: 100%;
     max-width: 500px;
@@ -93,7 +94,7 @@ h1, h2, h3, .section-title, .greeting-title {
     line-height: 0;
     font-size: 0;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    background: transparent;
+    background-color: transparent !important; /* Прозрачный фон */
     border-radius: 10px;
     overflow: hidden;
 }
@@ -105,8 +106,9 @@ h1, h2, h3, .section-title, .greeting-title {
     margin: 0;
     padding: 0;
     object-fit: contain;
-    background: transparent !important; /* Принудительно прозрачный фон */
-    mix-blend-mode: normal; /* Обычный режим наложения */
+    background-color: transparent !important; /* Прозрачный фон */
+    mix-blend-mode: normal; /* Обычный режим смешивания */
+    isolation: isolate; /* Изолировать от фона */
 }
 
 /* Дата под фото */
@@ -114,6 +116,7 @@ h1, h2, h3, .section-title, .greeting-title {
     margin-top: 30px;
     text-align: center;
     padding: 0;
+    background-color: transparent;
 }
 
 .hero-date {
