@@ -197,7 +197,59 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateSlider(index);
             });
         });
+          // ===== ОБРАБОТКА ПОЛЯ "ДРУГОЕ" В АНКЕТЕ =====
+        const otherDrinkCheckbox = document.getElementById('otherDrinkCheckbox');
+        const otherDrinkContainer = document.getElementById('otherDrinkContainer');
         
+        if (otherDrinkCheckbox && otherDrinkContainer) {
+            otherDrinkCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    otherDrinkContainer.style.display = 'block';
+                } else {
+                    otherDrinkContainer.style.display = 'none';
+                    // Очищаем поле, если чекбокс снят
+                    const otherInput = otherDrinkContainer.querySelector('input');
+                    if (otherInput) otherInput.value = '';
+                }
+            });
+        }
+        
+        // ===== ОБРАБОТКА ОТПРАВКИ ФОРМЫ =====
+        const rsvpForm = document.querySelector('.rsvp-form');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Собираем данные формы
+                const formData = new FormData(this);
+                let drinks = [];
+                
+                for (let pair of formData.entries()) {
+                    if (pair[0] === 'drinks[]') {
+                        drinks.push(pair[1]);
+                    }
+                }
+                
+                // Формируем сообщение для отладки (можно заменить на отправку)
+                console.log('Данные формы:');
+                console.log('Имя:', formData.get('name'));
+                console.log('Присутствие:', formData.get('attendance'));
+                console.log('Напитки:', drinks.join(', '));
+                console.log('Другой напиток:', formData.get('other_drink'));
+                console.log('Комментарий:', formData.get('comment'));
+                
+                // Здесь можно отправить данные через FormSpree
+                // this.submit(); // Раскомментировать для реальной отправки
+                
+                alert('Спасибо за подтверждение! Мы свяжемся с вами позже.');
+                this.reset();
+                
+                // Скрываем поле "Другое" после сброса формы
+                if (otherDrinkContainer) {
+                    otherDrinkContainer.style.display = 'none';
+                }
+            });
+        }      
         // ===== ПОДДЕРЖКА СВАЙПОВ =====
         sliderTrack.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
