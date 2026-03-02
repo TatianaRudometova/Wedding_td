@@ -1,4 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ========== ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ФОТО ==========
+    function fixPhotoDisplay() {
+        const heroPhoto = document.querySelector('.hero-photo');
+        const heroWrapper = document.querySelector('.hero-photo-wrapper');
+        
+        if (!heroPhoto || !heroWrapper) return;
+        
+        function adjustPhoto() {
+            // Убираем возможные артефакты
+            heroWrapper.style.lineHeight = '0';
+            heroWrapper.style.fontSize = '0';
+            heroWrapper.style.overflow = 'hidden';
+            
+            heroPhoto.style.margin = '0';
+            heroPhoto.style.padding = '0';
+            heroPhoto.style.display = 'block';
+            heroPhoto.style.width = '100%';
+            heroPhoto.style.height = 'auto';
+            
+            // Логируем для отладки (можно удалить после проверки)
+            if (heroPhoto.complete) {
+                console.log('Фото загружено:', heroPhoto.naturalWidth, 'x', heroPhoto.naturalHeight);
+            }
+        }
+        
+        if (heroPhoto.complete) {
+            adjustPhoto();
+        } else {
+            heroPhoto.onload = adjustPhoto;
+        }
+        
+        // Перестраховка при изменении размера окна
+        window.addEventListener('resize', function() {
+            setTimeout(adjustPhoto, 100);
+        });
+    }
+    
     // ========== СЛАЙДЕР ПОЖЕЛАНИЙ ==========
     const sliderTrack = document.getElementById('sliderTrack');
     const slides = document.querySelectorAll('.slider-slide');
@@ -85,52 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         generateCalendar();
     }
-    // Адаптация фото под реальные пропорции
-    function adjustPhotoContainer() {
-        const heroPhoto = document.querySelector('.hero-photo');
-        const heroWrapper = document.querySelector('.hero-photo-wrapper');
-        
-        if (!heroPhoto || !heroWrapper) return;
-        
-        // Если фото уже загружено
-        if (heroPhoto.complete) {
-            setPhotoDimensions();
-        } else {
-            // Ждем загрузки фото
-            heroPhoto.onload = setPhotoDimensions;
-        }
-        
-        function setPhotoDimensions() {
-            // Получаем пропорции фото
-            const imgWidth = heroPhoto.naturalWidth;
-            const imgHeight = heroPhoto.naturalHeight;
-            const imgRatio = imgWidth / imgHeight;
-            
-            // Определяем ширину контейнера
-            const wrapperWidth = heroWrapper.offsetWidth;
-            
-            // Вычисляем высоту на основе пропорций фото
-            const optimalHeight = wrapperWidth / imgRatio;
-            
-            // Применяем высоту
-            heroWrapper.style.height = optimalHeight + 'px';
-            heroWrapper.style.maxHeight = '80vh'; // Не выше 80% экрана
-            
-            console.log('Фото подстроено:', imgRatio, wrapperWidth, optimalHeight);
-        }
-        
-        // Пересчет при изменении размера окна
-        window.addEventListener('resize', function() {
-            if (heroPhoto.complete) {
-                setPhotoDimensions();
-            }
-        });
-    }
     
-    // Запускаем после загрузки страницы
-    document.addEventListener('DOMContentLoaded', function() {
-        adjustPhotoContainer();
-    });    
     // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
     const weddingDate = new Date('2026-07-17T16:00:00').getTime();
     
@@ -173,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const windowHeight = window.innerHeight;
             
             if (elementTop < windowHeight - 100) {
-                // Элементы уже имеют классы анимации в HTML
+                // Элементы уже имеют классы анимации
             }
         });
     }
@@ -244,4 +236,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.removeEventListener('touchstart', tryPlayOnTouch);
         }
     });
+    
+    // Запускаем исправление фото
+    fixPhotoDisplay();
+});
+
+// Дополнительная проверка после полной загрузки страницы
+window.addEventListener('load', function() {
+    const heroPhoto = document.querySelector('.hero-photo');
+    if (heroPhoto) {
+        console.log('Страница полностью загружена');
+    }
 });
