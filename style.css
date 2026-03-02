@@ -904,3 +904,14 @@ h1, h2, h3, .section-title, .greeting-title {
         padding: 6px 12px;
     }
 }
+/* Анимация появления при скролле */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
