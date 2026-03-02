@@ -93,7 +93,7 @@ h1, h2, h3, .section-title, .greeting-title {
     padding: 0;
     line-height: 0;
     font-size: 0;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+   /*  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);*/
     background-color: transparent !important; /* Прозрачный фон */
     border-radius: 10px;
     overflow: hidden;
