@@ -17,18 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
 const calendarGrid = document.getElementById('calendarGrid');
 
 if (calendarGrid) {
-    console.log('Генерируем календарь с сердечком для 17 июля');
+    console.log('Генерируем календарь с heart.png для 17 июля');
     
     function generateCalendar() {
-        // Параметры для июля 2026
-        const daysInMonth = 31; // В июле 31 день
-        const firstDayOfWeek = 2; // 1 июля 2026 - среда (индекс 2, где 0 - понедельник)
-        const weddingDay = 17; // День свадьбы
+        const daysInMonth = 31;
+        const firstDayOfWeek = 2; // 1 июля 2026 - среда
+        const weddingDay = 17;
         
-        // Очищаем календарь
         calendarGrid.innerHTML = '';
         
-        // Добавляем пустые ячейки для дней до 1 июля
+        // Пустые ячейки для дней до 1 июля
         for (let i = 0; i < firstDayOfWeek; i++) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
@@ -37,45 +35,38 @@ if (calendarGrid) {
             calendarGrid.appendChild(emptyDay);
         }
         
-        // Добавляем дни месяца
+        // Дни месяца
         for (let day = 1; day <= daysInMonth; day++) {
             const dayElement = document.createElement('div');
             dayElement.className = 'calendar-day';
             dayElement.textContent = day;
             
-            // Проверяем, является ли день днем свадьбы
             if (day === weddingDay) {
                 dayElement.classList.add('heart');
                 
-                // Проверяем поддержку clip-path в браузере
-                const isClipPathSupported = CSS.supports('clip-path', 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)');
+                // Проверяем, загрузилась ли картинка
+                const img = new Image();
+                img.onload = function() {
+                    console.log('heart.png загружен успешно');
+                    dayElement.classList.remove('fallback');
+                };
+                img.onerror = function() {
+                    console.log('Ошибка загрузки heart.png, используем запасной фон');
+                    dayElement.classList.add('fallback');
+                };
+                img.src = 'images/heart.png';
                 
-                if (!isClipPathSupported) {
-                    // Для старых браузеров добавляем альтернативный класс
-                    dayElement.classList.add('svg-version');
-                }
-                
-                // Добавляем атрибуты для доступности
+                // Атрибуты доступности
                 dayElement.setAttribute('aria-label', '17 июля - день нашей свадьбы ❤️');
                 dayElement.setAttribute('title', 'Наш особенный день! ❤️');
-                
-                // Добавляем эффект при наведении
-                dayElement.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.15)';
-                });
-                
-                dayElement.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1.05)';
-                });
             }
             
             calendarGrid.appendChild(dayElement);
         }
         
-        console.log('Календарь сгенерирован, 17 число в форме сердечка');
+        console.log('Календарь сгенерирован, под цифрой 17 фон heart.png');
     }
     
-    // Генерируем календарь
     generateCalendar();
 }
     
