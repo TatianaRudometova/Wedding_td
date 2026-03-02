@@ -7,10 +7,17 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff; /* Белый фон */
+    background-color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
     color: #000000;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: block;
 }
 
 h1, h2, h3, .section-title, .greeting-title {
@@ -31,7 +38,7 @@ h1, h2, h3, .section-title, .greeting-title {
     width: 100%;
     position: relative;
     z-index: 10;
-    background-color: #ffffff; /* Белый фон */
+    background-color: #ffffff;
 }
 
 /* ========== ОБЩИЕ ЭЛЕМЕНТЫ ========== */
@@ -48,7 +55,7 @@ h1, h2, h3, .section-title, .greeting-title {
 
 .first-section {
     margin-top: 0;
-    padding-top: 5px;
+    padding-top: 0;
 }
 
 .section-title {
@@ -67,7 +74,7 @@ h1, h2, h3, .section-title, .greeting-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .hero-photo-container {
@@ -77,34 +84,42 @@ h1, h2, h3, .section-title, .greeting-title {
     align-items: center;
 }
 
-/* Фото - адаптивный контейнер */
+/* Фото - без лишних отступов */
 .hero-photo-wrapper {
     width: 100%;
-    max-width: 500px; /* Максимальная ширина на десктопе */
+    max-width: 500px;
     margin: 0 auto;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    background: transparent;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .hero-photo {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain; /* Показываем всё фото */
-    background-color: #f5f5f5; /* Фон на случай узких фото */
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    background: transparent;
 }
 
 /* Дата под фото */
 .hero-date-wrapper {
     margin-top: 30px;
     text-align: center;
+    padding: 0;
 }
 
 .hero-date {
     font-size: clamp(32px, 6vw, 48px);
     font-family: 'Cormorant Garamond', serif;
     line-height: 1.2;
+    color: #000;
 }
 
 .hero-time {
@@ -116,15 +131,48 @@ h1, h2, h3, .section-title, .greeting-title {
 /* Адаптация для разных устройств */
 @media (max-width: 768px) {
     .hero-photo-wrapper {
-        max-width: 90%; /* На планшете - 90% ширины */
+        max-width: 90%;
+    }
+    
+    .hero-container {
+        min-height: 90vh;
     }
 }
 
 @media (max-width: 480px) {
     .hero-photo-wrapper {
-        max-width: 95%; /* На телефоне - почти всю ширину */
+        max-width: 95%;
+        border-radius: 8px;
+    }
+    
+    .hero-container {
+        min-height: 85vh;
+        padding: 5px;
+    }
+    
+    .hero-date-wrapper {
+        margin-top: 20px;
+    }
+    
+    .hero-date {
+        font-size: 36px;
+    }
+    
+    .hero-time {
+        font-size: 20px;
     }
 }
+
+@media (max-width: 360px) {
+    .hero-photo-wrapper {
+        max-width: 98%;
+    }
+    
+    .hero-date {
+        font-size: 32px;
+    }
+}
+
 /* Анимации */
 .fade-in {
     animation: fadeIn 1s ease forwards;
@@ -303,7 +351,7 @@ h1, h2, h3, .section-title, .greeting-title {
     color: #ffffff;
 }
 
-/* ========== СТРАНИЦА 5: Тайминг (предыдущий вариант) ========== */
+/* ========== СТРАНИЦА 5: Тайминг ========== */
 .timeline-grid {
     max-width: 600px;
     margin: 0 auto;
@@ -697,7 +745,7 @@ h1, h2, h3, .section-title, .greeting-title {
     font-weight: 300;
 }
 
-/* ========== КНОПКА УПРАВЛЕНИЯ МУЗЫКОЙ (без границ) ========== */
+/* ========== КНОПКА УПРАВЛЕНИЯ МУЗЫКОЙ ========== */
 .music-control {
     position: fixed;
     bottom: 30px;
@@ -772,23 +820,10 @@ h1, h2, h3, .section-title, .greeting-title {
     animation: musicPulse 2s infinite;
 }
 
-/* ========== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========== */
+/* ========== АДАПТАЦИЯ ========== */
 @media (max-width: 768px) {
-    .hero-wrapper {
-        min-height: 400px;
-    }
-    
-    .hero-name-vertical {
+    .section-title {
         font-size: 36px;
-    }
-    
-    .hero-photo-wrapper {
-        width: 220px;
-        height: 330px;
-    }
-    
-    .hero-date {
-        font-size: 30px;
     }
     
     .greeting-title {
@@ -799,35 +834,12 @@ h1, h2, h3, .section-title, .greeting-title {
         padding: 30px 20px;
     }
     
-    .section-title {
-        font-size: 36px;
-        margin-bottom: 20px;
-    }
-    
     .location-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .timeline-item {
-        padding: 12px 15px;
-    }
-    
-    .timeline-time {
-        font-size: 16px;
-    }
-    
-    .timeline-event {
-        font-size: 14px;
     }
     
     .timer-number {
         font-size: 36px;
-    }
-    
-    .form-radio-group {
-        flex-direction: column;
-        gap: 10px;
     }
     
     .contacts-grid {
@@ -836,53 +848,55 @@ h1, h2, h3, .section-title, .greeting-title {
     
     .contact-card {
         min-width: 180px;
-        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .greeting-title {
+        font-size: 32px;
+    }
+    
+    .greeting-text {
+        font-size: 16px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    .timeline-time {
+        font-size: 18px;
+    }
+    
+    .timeline-event {
+        font-size: 14px;
     }
     
     .timer-grid {
-        gap: 12px;
+        gap: 10px;
     }
     
     .timer-block {
         min-width: 60px;
     }
     
-    .rsvp-form {
-        padding: 25px 20px;
+    .timer-number {
+        font-size: 32px;
     }
     
     .music-control {
         bottom: 20px;
         right: 20px;
         padding: 6px 12px;
-    }
-    
-    .music-icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 6px;
-    }
-    
-    .music-icon i {
-        font-size: 10px;
-    }
-    
-    .music-text {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-name-vertical {
-        font-size: 28px;
-    }
-    
-    .hero-photo-wrapper {
-        width: 180px;
-        height: 270px;
-    }
-    
-    .hero-date {
-        font-size: 26px;
     }
 }
