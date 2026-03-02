@@ -85,7 +85,52 @@ document.addEventListener('DOMContentLoaded', function() {
         
         generateCalendar();
     }
+    // Адаптация фото под реальные пропорции
+    function adjustPhotoContainer() {
+        const heroPhoto = document.querySelector('.hero-photo');
+        const heroWrapper = document.querySelector('.hero-photo-wrapper');
+        
+        if (!heroPhoto || !heroWrapper) return;
+        
+        // Если фото уже загружено
+        if (heroPhoto.complete) {
+            setPhotoDimensions();
+        } else {
+            // Ждем загрузки фото
+            heroPhoto.onload = setPhotoDimensions;
+        }
+        
+        function setPhotoDimensions() {
+            // Получаем пропорции фото
+            const imgWidth = heroPhoto.naturalWidth;
+            const imgHeight = heroPhoto.naturalHeight;
+            const imgRatio = imgWidth / imgHeight;
+            
+            // Определяем ширину контейнера
+            const wrapperWidth = heroWrapper.offsetWidth;
+            
+            // Вычисляем высоту на основе пропорций фото
+            const optimalHeight = wrapperWidth / imgRatio;
+            
+            // Применяем высоту
+            heroWrapper.style.height = optimalHeight + 'px';
+            heroWrapper.style.maxHeight = '80vh'; // Не выше 80% экрана
+            
+            console.log('Фото подстроено:', imgRatio, wrapperWidth, optimalHeight);
+        }
+        
+        // Пересчет при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (heroPhoto.complete) {
+                setPhotoDimensions();
+            }
+        });
+    }
     
+    // Запускаем после загрузки страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        adjustPhotoContainer();
+    });    
     // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
     const weddingDate = new Date('2026-07-17T16:00:00').getTime();
     
