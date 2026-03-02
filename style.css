@@ -105,7 +105,8 @@ h1, h2, h3, .section-title, .greeting-title {
     margin: 0;
     padding: 0;
     object-fit: contain;
-    background: transparent;
+    background: transparent !important; /* Принудительно прозрачный фон */
+    mix-blend-mode: normal; /* Обычный режим наложения */
 }
 
 /* Дата под фото */
