@@ -270,6 +270,7 @@ h1, h2, h3, .section-title, .greeting-title {
     margin-bottom: 25px;
 }
 
+/* Обычный день */
 .calendar-day {
     aspect-ratio: 1;
     display: flex;
@@ -280,22 +281,115 @@ h1, h2, h3, .section-title, .greeting-title {
     font-size: 15px;
     cursor: default;
     border: 1px solid #eaeaea;
+    position: relative;
+    transition: all 0.2s ease;
 }
 
-.calendar-day.highlight {
-    background: #000000;
-    color: white;
-    font-weight: 500;
-    border: none;
+/* День с сердечком (17 число) */
+.calendar-day.heart {
+    background: #ffebee; /* Светло-розовый фон */
+    border: 2px solid #ff4d4d;
+    color: #ff4d4d;
+    font-weight: bold;
+    position: relative;
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(255, 77, 77, 0.2);
 }
 
+/* Сердечко */
+.calendar-day.heart::after {
+    content: "❤️";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 16px;
+    background: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 77, 77, 0.4);
+    animation: softPulse 2s ease infinite;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Анимация пульсации сердечка */
+@keyframes softPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .calendar-day.heart::after {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+        top: -4px;
+        right: -4px;
+    }
+    
+    .calendar-day {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-day.heart::after {
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+        top: -3px;
+        right: -3px;
+    }
+    
+    .calendar-day {
+        font-size: 13px;
+    }
+    
+    .calendar-container {
+        padding: 20px 15px;
+    }
+    
+    .calendar-header {
+        font-size: 13px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 360px) {
+    .calendar-day.heart::after {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+        top: -2px;
+        right: -2px;
+    }
+    
+    .calendar-day {
+        font-size: 12px;
+    }
+}
+
+/* Текст под календарем */
 .calendar-note {
     text-align: center;
     font-size: 17px;
     color: #000000;
     font-weight: 400;
+    margin-top: 15px;
 }
 
+/* Если хотите убрать анимацию для пользователей, которые предпочитают уменьшенное движение */
+@media (prefers-reduced-motion: reduce) {
+    .calendar-day.heart::after {
+        animation: none;
+    }
+}
 /* ========== СТРАНИЦА 4: Локация ========== */
 .location-grid {
     display: grid;
