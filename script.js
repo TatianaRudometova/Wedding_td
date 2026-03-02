@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         behavior: 'auto'
     });    
     
-  // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ С СЕРДЕЧКОМ ==========
+// ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
 const calendarGrid = document.getElementById('calendarGrid');
 
 if (calendarGrid) {
@@ -33,7 +33,7 @@ if (calendarGrid) {
             const emptyDay = document.createElement('div');
             emptyDay.className = 'calendar-day empty';
             emptyDay.style.visibility = 'hidden';
-            emptyDay.style.pointerEvents = 'none'; // Чтобы нельзя было нажать
+            emptyDay.style.pointerEvents = 'none';
             calendarGrid.appendChild(emptyDay);
         }
         
@@ -46,36 +46,37 @@ if (calendarGrid) {
             // Проверяем, является ли день днем свадьбы
             if (day === weddingDay) {
                 dayElement.classList.add('heart');
+                
+                // Проверяем поддержку clip-path в браузере
+                const isClipPathSupported = CSS.supports('clip-path', 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)');
+                
+                if (!isClipPathSupported) {
+                    // Для старых браузеров добавляем альтернативный класс
+                    dayElement.classList.add('svg-version');
+                }
+                
                 // Добавляем атрибуты для доступности
                 dayElement.setAttribute('aria-label', '17 июля - день нашей свадьбы ❤️');
                 dayElement.setAttribute('title', 'Наш особенный день! ❤️');
                 
-                // Добавляем небольшой эффект при наведении (для десктопа)
+                // Добавляем эффект при наведении
                 dayElement.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
+                    this.style.transform = 'scale(1.15)';
                 });
                 
                 dayElement.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1.02)';
+                    this.style.transform = 'scale(1.05)';
                 });
             }
             
             calendarGrid.appendChild(dayElement);
         }
         
-        console.log('Календарь сгенерирован, 17 число отмечено сердечком');
+        console.log('Календарь сгенерирован, 17 число в форме сердечка');
     }
     
     // Генерируем календарь
     generateCalendar();
-    
-    // Обновляем календарь при изменении размера окна (на всякий случай)
-    window.addEventListener('resize', function() {
-        // Ничего не делаем, но можно добавить логику при необходимости
-    });
-    
-} else {
-    console.log('Календарь не найден на странице');
 }
     
     // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
