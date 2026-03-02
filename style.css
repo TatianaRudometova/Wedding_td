@@ -93,34 +93,6 @@ h1, h2, h3, .section-title, .greeting-title {
     display: block;
 }
 
-/* ИМЕНА */
-
-.hero-name-left,
-.hero-name-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 70px);
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-/* Слева */
-.hero-name-left {
-    left: -60px;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: left top;
-}
-
-/* Справа */
-.hero-name-right {
-    right: -60px;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: right top;
-}
-
 /* Дата */
 .hero-date-wrapper {
     margin-top: 40px;
