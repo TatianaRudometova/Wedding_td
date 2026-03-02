@@ -296,6 +296,7 @@ h1, h2, h3, .section-title, .greeting-title {
     font-size: 18px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transform: scale(1.05);
+    overflow: visible; /* Чтобы картинка не обрезалась */
 }
 
 /* Картинка heart.png на фоне */
@@ -304,14 +305,14 @@ h1, h2, h3, .section-title, .greeting-title {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/heart.png');
+    width: 120%;
+    height: 120%;
+    background-image: url('images/heart.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    border-radius: 50%;
+    border-radius: 0;
 }
 
 /* Запасной вариант - если картинка не загрузилась, возвращаем обычный черный круг */
@@ -321,6 +322,8 @@ h1, h2, h3, .section-title, .greeting-title {
     border: none;
     transform: none;
     text-shadow: none;
+    overflow: hidden;
+    border-radius: 50%; /* Возвращаем круг для запасного варианта */
 }
 
 .calendar-day.heart.fallback::before {
