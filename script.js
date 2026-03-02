@@ -48,11 +48,14 @@ if (calendarGrid) {
                 const img = new Image();
                 img.onload = function() {
                     console.log('heart.png загружен успешно');
-                    dayElement.classList.remove('fallback');
+                    // Картинка загрузилась - оставляем класс heart
                 };
                 img.onerror = function() {
-                    console.log('Ошибка загрузки heart.png, используем запасной фон');
+                    console.log('Ошибка загрузки heart.png, возвращаем черный круг');
                     dayElement.classList.add('fallback');
+                    // Возвращаем черный цвет как у обычного выделенного дня
+                    dayElement.style.backgroundColor = '#000000';
+                    dayElement.style.color = 'white';
                 };
                 img.src = 'images/heart.png';
                 
@@ -64,7 +67,7 @@ if (calendarGrid) {
             calendarGrid.appendChild(dayElement);
         }
         
-        console.log('Календарь сгенерирован, под цифрой 17 фон heart.png');
+        console.log('Календарь сгенерирован');
     }
     
     generateCalendar();
