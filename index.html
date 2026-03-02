@@ -213,13 +213,28 @@
                         <div class="form-group">
                             <label class="form-label">Что предпочитаете из напитков?</label>
                             <div class="form-checkbox-group">
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Вино"> Вино</label>
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Игристое"> Игристое</label>
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Водка"> Водка</label>
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Виски"> Виски</label>
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Коньяк"> Коньяк</label>
-                                <label class="form-checkbox"><input type="checkbox" name="drinks" value="Не пью алкоголь"> Не пью алкоголь</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Вино"> Вино</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Игристое"> Игристое</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Водка"> Водка</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Виски"> Виски</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
+                                <label class="form-checkbox"><input type="checkbox" name="drinks[]" value="Не пью алкоголь"> Не пью алкоголь</label>
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="drinks[]" value="Другое" id="otherDrinkCheckbox"> Другое
+                                </label>
                             </div>
+                            
+                            <!-- Поле для ввода другого напитка (изначально скрыто) -->
+                            <div class="form-group" id="otherDrinkContainer" style="display: none; margin-top: 15px;">
+                                <label class="form-label">Укажите какой напиток:</label>
+                                <input type="text" name="other_drink" class="form-input" placeholder="Например: Ром, Текила, Сок...">
+                            </div>
+                        </div>
+                        
+                        <!-- Поле для комментария -->
+                        <div class="form-group">
+                            <label class="form-label">Комментарий или пожелание</label>
+                            <textarea name="comment" class="form-input" rows="4" placeholder="Напишите, если хотите что-то добавить..."></textarea>
                         </div>
                         
                         <button type="submit" class="form-submit">Отправить</button>
