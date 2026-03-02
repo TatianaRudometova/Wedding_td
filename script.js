@@ -1,14 +1,23 @@
+// Отключаем восстановление позиции скролла браузером
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Принудительная прокрутка вверх при загрузке
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', function() {
     // ===== ПРОКРУТКА НАВЕРХ ПРИ ЗАГРУЗКЕ =====
     window.scrollTo({
         top: 0,
-        behavior: 'auto' // 'auto' - мгновенно, 'smooth' - плавно
+        behavior: 'auto'
     });    
-    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ (В САМОМ НАЧАЛЕ) ==========
+    
+    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
     const calendarGrid = document.getElementById('calendarGrid');
     
     if (calendarGrid) {
-        console.log('Генерируем календарь'); // Для отладки
+        console.log('Генерируем календарь');
         
         function generateCalendar() {
             const daysInMonth = 31;
@@ -16,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             calendarGrid.innerHTML = '';
             
-            // Добавляем пустые ячейки для дней до 1 июля
             for (let i = 0; i < firstDayOfWeek; i++) {
                 const emptyDay = document.createElement('div');
                 emptyDay.className = 'calendar-day';
@@ -24,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 calendarGrid.appendChild(emptyDay);
             }
             
-            // Добавляем дни месяца
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day';
@@ -39,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         generateCalendar();
-    } else {
-        console.log('Календарь не найден'); // Для отладки
     }
     
     // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
@@ -50,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const timerSeconds = document.getElementById('timerSeconds');
     
     if (timerDays && timerHours && timerMinutes && timerSeconds) {
-        console.log('Запускаем таймер'); // Для отладки
+        console.log('Запускаем таймер');
         
         const weddingDate = new Date('2026-07-17T16:00:00').getTime();
         
@@ -73,22 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
             timerHours.textContent = hours < 10 ? '0' + hours : hours;
             timerMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
             timerSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
-            
-            console.log('Таймер обновлен:', days, hours, minutes, seconds); // Для отладки
         }
         
-        // Запускаем сразу
         updateTimer();
-        
-        // Запускаем интервал
         const timerInterval = setInterval(updateTimer, 1000);
         
-        // Очищаем интервал при уходе со страницы (для производительности)
         window.addEventListener('beforeunload', function() {
             clearInterval(timerInterval);
         });
-    } else {
-        console.log('Таймер не найден'); // Для отладки
     }
     
     // ========== ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ФОТО ==========
@@ -147,12 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
     
     if (sliderTrack && slides.length > 0) {
-        console.log('Запускаем слайдер'); // Для отладки
+        console.log('Запускаем слайдер');
         
         let currentSlide = 0;
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
         
         function updateSlider(index) {
             if (index < 0) index = slides.length - 1;
@@ -201,112 +195,115 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateSlider(index);
             });
         });
-      // ===== ОТПРАВКА ФОРМЫ ЧЕРЕЗ FETCH (БЕЗ ПЕРЕЗАГРУЗКИ) =====
-const rsvpForm = document.querySelector('.rsvp-form');
-const otherDrinkCheckbox = document.getElementById('otherDrinkCheckbox');
-const otherDrinkContainer = document.getElementById('otherDrinkContainer');
-
-// Показ/скрытие поля "Другое"
-if (otherDrinkCheckbox && otherDrinkContainer) {
-    otherDrinkCheckbox.addEventListener('change', function() {
-        otherDrinkContainer.style.display = this.checked ? 'block' : 'none';
-        if (!this.checked) {
-            const otherInput = otherDrinkContainer.querySelector('input');
-            if (otherInput) otherInput.value = '';
-        }
-    });
-}
-
-// Отправка формы через fetch
-if (rsvpForm) {
-    rsvpForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Теперь отменяем, потому что отправляем сами
         
-        const formData = new FormData(this);
-        
-        // Показываем сообщение о отправке
-        const submitBtn = this.querySelector('.form-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправка...';
-        submitBtn.disabled = true;
-        
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                alert('Спасибо! Ваша анкета отправлена.');
-                this.reset();
-                
-                // Скрываем поле "Другое"
-                if (otherDrinkContainer) {
-                    otherDrinkContainer.style.display = 'none';
-                    if (otherDrinkCheckbox) otherDrinkCheckbox.checked = false;
-                }
-            } else {
-                const data = await response.json();
-                if (data.errors) {
-                    alert('Ошибка: ' + data.errors.map(error => error.message).join(', '));
-                } else {
-                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
-                }
-            }
-        } catch (error) {
-            alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
-            console.error('Error:', error);
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
-    });
-}
         // ===== ПОДДЕРЖКА СВАЙПОВ =====
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
         sliderTrack.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
+            touchStartX = e.changedTouches[0].screenX;
             sliderTrack.style.transition = 'none';
         }, { passive: true });
         
         sliderTrack.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
+            e.preventDefault();
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchEndX - touchStartX;
             
-            currentX = e.touches[0].clientX;
-            const diff = currentX - startX;
             const maxOffset = 50;
             const limitedDiff = Math.max(Math.min(diff, maxOffset), -maxOffset);
             
             const offset = -currentSlide * 100 + (limitedDiff / sliderTrack.offsetWidth) * 100;
             sliderTrack.style.transform = `translateX(${offset}%)`;
-        }, { passive: true });
+        }, { passive: false });
         
-        sliderTrack.addEventListener('touchend', function() {
-            if (!isDragging) return;
-            isDragging = false;
+        sliderTrack.addEventListener('touchend', function(e) {
+            sliderTrack.style.transition = 'transform 0.3s ease';
             
-            const diff = currentX - startX;
+            const diff = touchEndX - touchStartX;
             const threshold = 50;
             
             if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
+                if (diff > 0 && currentSlide > 0) {
                     updateSlider(currentSlide - 1);
-                } else {
+                } else if (diff < 0 && currentSlide < slides.length - 1) {
                     updateSlider(currentSlide + 1);
+                } else {
+                    updateSlider(currentSlide);
                 }
             } else {
                 updateSlider(currentSlide);
             }
             
-            startX = 0;
-            currentX = 0;
+            touchStartX = 0;
+            touchEndX = 0;
         });
         
         sliderTrack.style.cursor = 'grab';
         updateSlider(0);
+    }
+    
+    // ===== ОТПРАВКА ФОРМЫ ЧЕРЕЗ FETCH =====
+    const rsvpForm = document.querySelector('.rsvp-form');
+    const otherDrinkCheckbox = document.getElementById('otherDrinkCheckbox');
+    const otherDrinkContainer = document.getElementById('otherDrinkContainer');
+    
+    // Показ/скрытие поля "Другое"
+    if (otherDrinkCheckbox && otherDrinkContainer) {
+        otherDrinkCheckbox.addEventListener('change', function() {
+            otherDrinkContainer.style.display = this.checked ? 'block' : 'none';
+            if (!this.checked) {
+                const otherInput = otherDrinkContainer.querySelector('input');
+                if (otherInput) otherInput.value = '';
+            }
+        });
+    }
+    
+    // Отправка формы через fetch
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            const submitBtn = this.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('Спасибо! Ваша анкета отправлена.');
+                    this.reset();
+                    
+                    if (otherDrinkContainer) {
+                        otherDrinkContainer.style.display = 'none';
+                        if (otherDrinkCheckbox) otherDrinkCheckbox.checked = false;
+                    }
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        alert('Ошибка: ' + data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+                    }
+                }
+            } catch (error) {
+                alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
+                console.error('Error:', error);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
     }
     
     // ========== УПРАВЛЕНИЕ МУЗЫКОЙ ==========
@@ -381,10 +378,6 @@ if (rsvpForm) {
 window.addEventListener('load', function() {
     console.log('Страница полностью загружена');
     
-    // Принудительно обновляем календарь на всякий случай
-    const calendarGrid = document.getElementById('calendarGrid');
-    if (calendarGrid && calendarGrid.children.length === 0) {
-        console.log('Перегенерируем календарь');
-        // Здесь можно вызвать генерацию снова, но лучше проверить почему не сработало
-    }
+    // Еще раз прокручиваем вверх после полной загрузки
+    window.scrollTo(0, 0);
 });
