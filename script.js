@@ -13,40 +13,70 @@ document.addEventListener('DOMContentLoaded', function() {
         behavior: 'auto'
     });    
     
-    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
-    const calendarGrid = document.getElementById('calendarGrid');
+  // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ С СЕРДЕЧКОМ ==========
+const calendarGrid = document.getElementById('calendarGrid');
+
+if (calendarGrid) {
+    console.log('Генерируем календарь с сердечком для 17 июля');
     
-    if (calendarGrid) {
-        console.log('Генерируем календарь');
+    function generateCalendar() {
+        // Параметры для июля 2026
+        const daysInMonth = 31; // В июле 31 день
+        const firstDayOfWeek = 2; // 1 июля 2026 - среда (индекс 2, где 0 - понедельник)
+        const weddingDay = 17; // День свадьбы
         
-        function generateCalendar() {
-            const daysInMonth = 31;
-            const firstDayOfWeek = 2; // 1 июля 2026 - среда
-            
-            calendarGrid.innerHTML = '';
-            
-            for (let i = 0; i < firstDayOfWeek; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day';
-                emptyDay.style.visibility = 'hidden';
-                calendarGrid.appendChild(emptyDay);
-            }
-            
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                dayElement.textContent = day;
-                
-                if (day === 17) {
-                    dayElement.classList.add('highlight');
-                }
-                
-                calendarGrid.appendChild(dayElement);
-            }
+        // Очищаем календарь
+        calendarGrid.innerHTML = '';
+        
+        // Добавляем пустые ячейки для дней до 1 июля
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            emptyDay.style.visibility = 'hidden';
+            emptyDay.style.pointerEvents = 'none'; // Чтобы нельзя было нажать
+            calendarGrid.appendChild(emptyDay);
         }
         
-        generateCalendar();
+        // Добавляем дни месяца
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'calendar-day';
+            dayElement.textContent = day;
+            
+            // Проверяем, является ли день днем свадьбы
+            if (day === weddingDay) {
+                dayElement.classList.add('heart');
+                // Добавляем атрибуты для доступности
+                dayElement.setAttribute('aria-label', '17 июля - день нашей свадьбы ❤️');
+                dayElement.setAttribute('title', 'Наш особенный день! ❤️');
+                
+                // Добавляем небольшой эффект при наведении (для десктопа)
+                dayElement.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                dayElement.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+            }
+            
+            calendarGrid.appendChild(dayElement);
+        }
+        
+        console.log('Календарь сгенерирован, 17 число отмечено сердечком');
     }
+    
+    // Генерируем календарь
+    generateCalendar();
+    
+    // Обновляем календарь при изменении размера окна (на всякий случай)
+    window.addEventListener('resize', function() {
+        // Ничего не делаем, но можно добавить логику при необходимости
+    });
+    
+} else {
+    console.log('Календарь не найден на странице');
+}
     
     // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
     const timerDays = document.getElementById('timerDays');
