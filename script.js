@@ -89,6 +89,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    // ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
+    const faders = document.querySelectorAll('.fade-in');
+    
+    const appearObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { 
+      threshold: 0.2, // Элемент появляется, когда видно 20%
+      rootMargin: "0px 0px -50px 0px" // Небольшая задержка
+    });
+    
+    faders.forEach(fader => appearObserver.observe(fader));    
     
     // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
     const calendarGrid = document.getElementById('calendarGrid');
