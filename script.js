@@ -170,7 +170,168 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1000);
     }
+    // ===== УЛУЧШЕННЫЙ СЛАЙДЕР ПОЖЕЛАНИЙ С СВАЙПАМИ =====
+const sliderTrack = document.getElementById('sliderTrack');
+const slides = document.querySelectorAll('.slider-slide');
+const prevBtn = document.getElementById('prevWish');
+const nextBtn = document.getElementById('nextWish');
+const dots = document.querySelectorAll('.dot');
+
+if (sliderTrack && slides.length > 0) {
+    let currentSlide = 0;
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
     
+    function updateSlider(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        
+        sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+        sliderTrack.style.transition = 'transform 0.5s ease';
+        
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+        
+        currentSlide = index;
+    }
+    
+    // Обработчики для кнопок
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            updateSlider(currentSlide - 1);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            updateSlider(currentSlide + 1);
+        });
+    }
+    
+    // Обработчики для точек
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            updateSlider(index);
+        });
+    });
+    
+    // ===== ДОБАВЛЯЕМ ПОДДЕРЖКУ СВАЙПОВ =====
+    
+    // Для мобильных устройств (touch-события)
+    sliderTrack.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        sliderTrack.style.transition = 'none'; // Убираем анимацию во время свайпа
+    }, { passive: true });
+    
+    sliderTrack.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        
+        endX = e.touches[0].clientX;
+        const diff = endX - startX;
+        
+        // Плавное смещение при свайпе
+        const offset = -currentSlide * 100 + (diff / sliderTrack.offsetWidth) * 100;
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+    }, { passive: true });
+    
+    sliderTrack.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const diff = endX - startX;
+        const threshold = 50; // Минимальное расстояние для свайпа
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                // Свайп вправо - предыдущий слайд
+                updateSlider(currentSlide - 1);
+            } else {
+                // Свайп влево - следующий слайд
+                updateSlider(currentSlide + 1);
+            }
+        } else {
+            // Возвращаем на место, если свайп был слишком коротким
+            updateSlider(currentSlide);
+        }
+        
+        startX = 0;
+        endX = 0;
+    });
+    
+    // Для компьютеров (мышь с зажатой кнопкой)
+    sliderTrack.addEventListener('mousedown', function(e) {
+        e.preventDefault(); // Предотвращаем выделение текста
+        startX = e.clientX;
+        isDragging = true;
+        sliderTrack.style.transition = 'none';
+        sliderTrack.style.cursor = 'grabbing';
+    });
+    
+    sliderTrack.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        
+        endX = e.clientX;
+        const diff = endX - startX;
+        
+        const offset = -currentSlide * 100 + (diff / sliderTrack.offsetWidth) * 100;
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+    });
+    
+    sliderTrack.addEventListener('mouseup', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        sliderTrack.style.cursor = 'grab';
+        
+        const diff = endX - startX;
+        const threshold = 50;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                updateSlider(currentSlide - 1);
+            } else {
+                updateSlider(currentSlide + 1);
+            }
+        } else {
+            updateSlider(currentSlide);
+        }
+        
+        startX = 0;
+        endX = 0;
+    });
+    
+    // Отмена свайпа, если мышь вышла за пределы слайдера
+    sliderTrack.addEventListener('mouseleave', function() {
+        if (isDragging) {
+            isDragging = false;
+            sliderTrack.style.cursor = 'grab';
+            updateSlider(currentSlide); // Возвращаем на место
+            startX = 0;
+            endX = 0;
+        }
+    });
+    
+    // Устанавливаем курсор для десктопа
+    sliderTrack.style.cursor = 'grab';
+    
+    // Инициализация
+    updateSlider(0);
+}
     // ========== АНИМАЦИЯ ПРИ СКРОЛЛЕ ==========
     const animateElements = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-right, .fade-in-left');
     
