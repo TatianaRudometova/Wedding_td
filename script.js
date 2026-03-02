@@ -1,4 +1,92 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ (В САМОМ НАЧАЛЕ) ==========
+    const calendarGrid = document.getElementById('calendarGrid');
+    
+    if (calendarGrid) {
+        console.log('Генерируем календарь'); // Для отладки
+        
+        function generateCalendar() {
+            const daysInMonth = 31;
+            const firstDayOfWeek = 2; // 1 июля 2026 - среда
+            
+            calendarGrid.innerHTML = '';
+            
+            // Добавляем пустые ячейки для дней до 1 июля
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day';
+                emptyDay.style.visibility = 'hidden';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Добавляем дни месяца
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                if (day === 17) {
+                    dayElement.classList.add('highlight');
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+        
+        generateCalendar();
+    } else {
+        console.log('Календарь не найден'); // Для отладки
+    }
+    
+    // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
+    const timerDays = document.getElementById('timerDays');
+    const timerHours = document.getElementById('timerHours');
+    const timerMinutes = document.getElementById('timerMinutes');
+    const timerSeconds = document.getElementById('timerSeconds');
+    
+    if (timerDays && timerHours && timerMinutes && timerSeconds) {
+        console.log('Запускаем таймер'); // Для отладки
+        
+        const weddingDate = new Date('2026-07-17T16:00:00').getTime();
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            let days, hours, minutes, seconds;
+            
+            if (distance < 0) {
+                days = hours = minutes = seconds = 0;
+            } else {
+                days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            }
+            
+            timerDays.textContent = days < 10 ? '0' + days : days;
+            timerHours.textContent = hours < 10 ? '0' + hours : hours;
+            timerMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+            timerSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+            
+            console.log('Таймер обновлен:', days, hours, minutes, seconds); // Для отладки
+        }
+        
+        // Запускаем сразу
+        updateTimer();
+        
+        // Запускаем интервал
+        const timerInterval = setInterval(updateTimer, 1000);
+        
+        // Очищаем интервал при уходе со страницы (для производительности)
+        window.addEventListener('beforeunload', function() {
+            clearInterval(timerInterval);
+        });
+    } else {
+        console.log('Таймер не найден'); // Для отладки
+    }
+    
     // ========== ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ФОТО ==========
     function fixPhotoDisplay() {
         const heroPhoto = document.querySelector('.hero-photo');
@@ -16,10 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             heroPhoto.style.display = 'block';
             heroPhoto.style.width = '100%';
             heroPhoto.style.height = 'auto';
-            
-            if (heroPhoto.complete) {
-                console.log('Фото загружено:', heroPhoto.naturalWidth, 'x', heroPhoto.naturalHeight);
-            }
         }
         
         if (heroPhoto.complete) {
@@ -33,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ (IntersectionObserver) =====
+    // ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
     const faders = document.querySelectorAll('.fade-in');
     
     if (faders.length > 0) {
@@ -51,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         faders.forEach(fader => appearObserver.observe(fader));
     }
     
-    // ========== УЛУЧШЕННЫЙ СЛАЙДЕР ПОЖЕЛАНИЙ С СВАЙПАМИ ==========
+    // ========== СЛАЙДЕР ПОЖЕЛАНИЙ С СВАЙПАМИ ==========
     const sliderTrack = document.getElementById('sliderTrack');
     const slides = document.querySelectorAll('.slider-slide');
     const prevBtn = document.getElementById('prevWish');
@@ -59,6 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
     
     if (sliderTrack && slides.length > 0) {
+        console.log('Запускаем слайдер'); // Для отладки
+        
         let currentSlide = 0;
         let startX = 0;
         let currentX = 0;
@@ -113,8 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // ===== ПОДДЕРЖКА СВАЙПОВ =====
-        
-        // Для мобильных устройств
         sliderTrack.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
             isDragging = true;
@@ -126,8 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             currentX = e.touches[0].clientX;
             const diff = currentX - startX;
-            
-            // Ограничиваем смещение
             const maxOffset = 50;
             const limitedDiff = Math.max(Math.min(diff, maxOffset), -maxOffset);
             
@@ -156,129 +238,8 @@ document.addEventListener('DOMContentLoaded', function() {
             currentX = 0;
         });
         
-        // Для компьютеров (мышь)
-        sliderTrack.addEventListener('mousedown', function(e) {
-            e.preventDefault();
-            startX = e.clientX;
-            isDragging = true;
-            sliderTrack.style.transition = 'none';
-            sliderTrack.style.cursor = 'grabbing';
-        });
-        
-        sliderTrack.addEventListener('mousemove', function(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            currentX = e.clientX;
-            const diff = currentX - startX;
-            
-            const maxOffset = 50;
-            const limitedDiff = Math.max(Math.min(diff, maxOffset), -maxOffset);
-            
-            const offset = -currentSlide * 100 + (limitedDiff / sliderTrack.offsetWidth) * 100;
-            sliderTrack.style.transform = `translateX(${offset}%)`;
-        });
-        
-        sliderTrack.addEventListener('mouseup', function() {
-            if (!isDragging) return;
-            isDragging = false;
-            sliderTrack.style.cursor = 'grab';
-            
-            const diff = currentX - startX;
-            const threshold = 50;
-            
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
-                    updateSlider(currentSlide - 1);
-                } else {
-                    updateSlider(currentSlide + 1);
-                }
-            } else {
-                updateSlider(currentSlide);
-            }
-            
-            startX = 0;
-            currentX = 0;
-        });
-        
-        sliderTrack.addEventListener('mouseleave', function() {
-            if (isDragging) {
-                isDragging = false;
-                sliderTrack.style.cursor = 'grab';
-                updateSlider(currentSlide);
-                startX = 0;
-                currentX = 0;
-            }
-        });
-        
         sliderTrack.style.cursor = 'grab';
         updateSlider(0);
-    }
-    
-    // ========== ГЕНЕРАЦИЯ КАЛЕНДАРЯ ==========
-    const calendarGrid = document.getElementById('calendarGrid');
-    
-    if (calendarGrid) {
-        function generateCalendar() {
-            const daysInMonth = 31;
-            const firstDayOfWeek = 2; // 1 июля 2026 - среда
-            
-            calendarGrid.innerHTML = '';
-            
-            for (let i = 0; i < firstDayOfWeek; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day';
-                emptyDay.style.visibility = 'hidden';
-                calendarGrid.appendChild(emptyDay);
-            }
-            
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                dayElement.textContent = day;
-                
-                if (day === 17) {
-                    dayElement.classList.add('highlight');
-                }
-                
-                calendarGrid.appendChild(dayElement);
-            }
-        }
-        
-        generateCalendar();
-    }
-    
-    // ========== ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ==========
-    const weddingDate = new Date('2026-07-17T16:00:00').getTime();
-    
-    const timerDays = document.getElementById('timerDays');
-    const timerHours = document.getElementById('timerHours');
-    const timerMinutes = document.getElementById('timerMinutes');
-    const timerSeconds = document.getElementById('timerSeconds');
-    
-    if (timerDays && timerHours && timerMinutes && timerSeconds) {
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            timerDays.textContent = days < 10 ? '0' + days : days;
-            timerHours.textContent = hours < 10 ? '0' + hours : hours;
-            timerMinutes.textContent = minutes < 10 ? '0' + minutes : minutes;
-            timerSeconds.textContent = seconds < 10 ? '0' + seconds : seconds;
-            
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                timerDays.textContent = '00';
-                timerHours.textContent = '00';
-                timerMinutes.textContent = '00';
-                timerSeconds.textContent = '00';
-            }
-        }, 1000);
     }
     
     // ========== УПРАВЛЕНИЕ МУЗЫКОЙ ==========
@@ -349,10 +310,14 @@ document.addEventListener('DOMContentLoaded', function() {
     fixPhotoDisplay();
 });
 
-// Дополнительная проверка после полной загрузки страницы
+// Дополнительная проверка после полной загрузки
 window.addEventListener('load', function() {
-    const heroPhoto = document.querySelector('.hero-photo');
-    if (heroPhoto) {
-        console.log('Страница полностью загружена');
+    console.log('Страница полностью загружена');
+    
+    // Принудительно обновляем календарь на всякий случай
+    const calendarGrid = document.getElementById('calendarGrid');
+    if (calendarGrid && calendarGrid.children.length === 0) {
+        console.log('Перегенерируем календарь');
+        // Здесь можно вызвать генерацию снова, но лучше проверить почему не сработало
     }
 });
