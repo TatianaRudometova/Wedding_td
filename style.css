@@ -306,18 +306,29 @@ h1, h2, h3, .section-title, .greeting-title {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/heart.png');
+    background-image: url('../images/heart.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    
-    /* Если хотите форму сердечка, раскомментируйте следующую строку: */
-    /* clip-path: polygon(50% 15%, 61% 8%, 75% 8%, 85% 15%, 90% 25%, 85% 40%, 75% 52%, 61% 65%, 50% 75%, 39% 65%, 25% 52%, 15% 40%, 10% 25%, 15% 15%, 25% 8%, 39% 8%, 50% 15%); */
+    border-radius: 50%;
 }
 
-/* Эффект при наведении */
-.calendar-day.heart:hover::before {
+/* Запасной вариант - если картинка не загрузилась, возвращаем обычный черный круг */
+.calendar-day.heart.fallback {
+    background: #000000;
+    color: white;
+    border: none;
+    transform: none;
+    text-shadow: none;
+}
+
+.calendar-day.heart.fallback::before {
+    display: none; /* Прячем картинку */
+}
+
+/* Эффект при наведении (только если картинка загрузилась) */
+.calendar-day.heart:not(.fallback):hover::before {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
@@ -338,8 +349,8 @@ h1, h2, h3, .section-title, .greeting-title {
         font-size: 15px;
     }
     
-    .calendar-day.heart::before {
-        border-radius: 50%;
+    .calendar-day.heart.fallback {
+        font-size: 15px;
     }
     
     .calendar-container {
@@ -358,12 +369,6 @@ h1, h2, h3, .section-title, .greeting-title {
     color: #000000;
     font-weight: 400;
     margin-top: 15px;
-}
-
-/* Запасной вариант, если картинка не загрузится */
-.calendar-day.heart.fallback::before {
-    background: #ff4d4d;
-    background-image: none;
 }
 /* ========== СТРАНИЦА 4: Локация ========== */
 .location-grid {
