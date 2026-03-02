@@ -201,59 +201,70 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateSlider(index);
             });
         });
-          // ===== ОБРАБОТКА ПОЛЯ "ДРУГОЕ" В АНКЕТЕ =====
-        const otherDrinkCheckbox = document.getElementById('otherDrinkCheckbox');
-        const otherDrinkContainer = document.getElementById('otherDrinkContainer');
+      // ===== ОТПРАВКА ФОРМЫ ЧЕРЕЗ FETCH (БЕЗ ПЕРЕЗАГРУЗКИ) =====
+const rsvpForm = document.querySelector('.rsvp-form');
+const otherDrinkCheckbox = document.getElementById('otherDrinkCheckbox');
+const otherDrinkContainer = document.getElementById('otherDrinkContainer');
+
+// Показ/скрытие поля "Другое"
+if (otherDrinkCheckbox && otherDrinkContainer) {
+    otherDrinkCheckbox.addEventListener('change', function() {
+        otherDrinkContainer.style.display = this.checked ? 'block' : 'none';
+        if (!this.checked) {
+            const otherInput = otherDrinkContainer.querySelector('input');
+            if (otherInput) otherInput.value = '';
+        }
+    });
+}
+
+// Отправка формы через fetch
+if (rsvpForm) {
+    rsvpForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Теперь отменяем, потому что отправляем сами
         
-        if (otherDrinkCheckbox && otherDrinkContainer) {
-            otherDrinkCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    otherDrinkContainer.style.display = 'block';
-                } else {
-                    otherDrinkContainer.style.display = 'none';
-                    // Очищаем поле, если чекбокс снят
-                    const otherInput = otherDrinkContainer.querySelector('input');
-                    if (otherInput) otherInput.value = '';
+        const formData = new FormData(this);
+        
+        // Показываем сообщение о отправке
+        const submitBtn = this.querySelector('.form-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Отправка...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
             });
-        }
-        
-        // ===== ОБРАБОТКА ОТПРАВКИ ФОРМЫ =====
-        const rsvpForm = document.querySelector('.rsvp-form');
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Собираем данные формы
-                const formData = new FormData(this);
-                let drinks = [];
-                
-                for (let pair of formData.entries()) {
-                    if (pair[0] === 'drinks[]') {
-                        drinks.push(pair[1]);
-                    }
-                }
-                
-                // Формируем сообщение для отладки (можно заменить на отправку)
-                console.log('Данные формы:');
-                console.log('Имя:', formData.get('name'));
-                console.log('Присутствие:', formData.get('attendance'));
-                console.log('Напитки:', drinks.join(', '));
-                console.log('Другой напиток:', formData.get('other_drink'));
-                console.log('Комментарий:', formData.get('comment'));
-                
-                // Здесь можно отправить данные через FormSpree
-                // this.submit(); // Раскомментировать для реальной отправки
-                
-                alert('Спасибо за подтверждение! Мы свяжемся с вами позже.');
+            
+            if (response.ok) {
+                alert('Спасибо! Ваша анкета отправлена.');
                 this.reset();
                 
-                // Скрываем поле "Другое" после сброса формы
+                // Скрываем поле "Другое"
                 if (otherDrinkContainer) {
                     otherDrinkContainer.style.display = 'none';
+                    if (otherDrinkCheckbox) otherDrinkCheckbox.checked = false;
                 }
-            });
-        }      
+            } else {
+                const data = await response.json();
+                if (data.errors) {
+                    alert('Ошибка: ' + data.errors.map(error => error.message).join(', '));
+                } else {
+                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+                }
+            }
+        } catch (error) {
+            alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
+            console.error('Error:', error);
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
         // ===== ПОДДЕРЖКА СВАЙПОВ =====
         sliderTrack.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
