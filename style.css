@@ -62,84 +62,67 @@ h1, h2, h3, .section-title, .greeting-title {
 }
 
 /* ========== СТРАНИЦА 1: Имена и фото ========== */
-
 .hero-container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 20px;
 }
 
 .hero-photo-container {
-    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Фото */
+/* Фото - адаптивный контейнер */
 .hero-photo-wrapper {
-    width: 100%; /* На всю ширину контейнера */
-    max-width: 650px;
+    width: 100%;
+    max-width: 500px; /* Максимальная ширина на десктопе */
     margin: 0 auto;
-    overflow: visible; /* Показать всё фото */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .hero-photo {
     width: 100%;
-    height: auto; /* Автоматическая высота */
-    object-fit: none; /* Без обрезки */
+    height: auto;
     display: block;
+    object-fit: contain; /* Показываем всё фото */
+    background-color: #f5f5f5; /* Фон на случай узких фото */
 }
 
-/* Дата */
+/* Дата под фото */
 .hero-date-wrapper {
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .hero-date {
-    font-size: clamp(26px, 4vw, 44px);
+    font-size: clamp(32px, 6vw, 48px);
     font-family: 'Cormorant Garamond', serif;
+    line-height: 1.2;
 }
 
 .hero-time {
-    font-size: clamp(16px, 2vw, 22px);
+    font-size: clamp(18px, 3vw, 24px);
     color: #666;
+    margin-top: 5px;
 }
 
+/* Адаптация для разных устройств */
 @media (max-width: 768px) {
-
     .hero-photo-wrapper {
-        width: 80vw;
-    }
-
-    .hero-name-left {
-        left: -45px;
-        font-size: 34px;
-    }
-
-    .hero-name-right {
-        right: -45px;
-        font-size: 34px;
+        max-width: 90%; /* На планшете - 90% ширины */
     }
 }
 
 @media (max-width: 480px) {
-
     .hero-photo-wrapper {
-        width: 85vw;
-    }
-
-    .hero-name-left {
-        left: -35px;
-        font-size: 28px;
-    }
-
-    .hero-name-right {
-        right: -35px;
-        font-size: 28px;
+        max-width: 95%; /* На телефоне - почти всю ширину */
     }
 }
 /* Анимации */
